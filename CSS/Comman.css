@@ -1,0 +1,49 @@
+﻿/*-------------------------------------------------------
+black_overlay - Used for Displaying Error in LightBox effect
+white_content - Used for Displaying Error in LightBox effect
+---------------------------------------------------------*/
+.black_overlay
+{
+	display: none;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 200%;
+	background-color: black;
+	z-index: 1001;
+	-moz-opacity: 0.8;
+	opacity: .80;
+	filter: alpha(opacity=80);
+}
+
+.white_content
+{
+	display: none;
+	position: absolute;
+	top: 60%;
+	left: 25%;
+	width: 50%;
+	height: 120px;
+	padding: 15px;
+	/*border: 5px Ridge red ;*/
+	border-width: 5px;
+	border-color: Red;
+	border-style: ridge;
+	background-color: white;
+	font-family: Verdana;
+	z-index: 1002;
+	overflow: auto;
+}
+
+.TitlebarRight
+{
+	background: transparent url(../_Images/cancel.gif) no-repeat scroll right center;
+	cursor: pointer;
+	float: right;
+	height: 15px;
+	width: 16px;
+	margin-top: 5px;
+	margin-right: 5px;
+}
+/*---------------------LightBox Effect End-----------------*/

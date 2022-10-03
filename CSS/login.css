@@ -1,0 +1,152 @@
+/* CSS Document */
+
+html, body {
+	margin:0;
+	padding:0;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:86%;
+	background:#183152;
+	color:#686868;
+}
+
+* {
+	outline:0;
+	outline:none;
+}
+
+a, img {
+	border:0;
+}
+
+button, input[type="reset"], input[type="button"], input[type="submit"] {
+	line-height:normal !important;
+}
+input {
+	padding:0;
+	margin:0;
+}
+
+.loginContainer {
+	background:#FFFFFF;
+	padding: 20px;
+	height: 310px;
+	margin: 105px 0px 0px 0px;
+	border: solid rgb(43, 85, 142);
+	border-width: 20px 0px 20px 0px;
+	text-align: center;
+}
+
+.loginHolder {
+	width:950px;
+	margin:0 auto;
+}
+
+.loginLogoHolder {
+	float:left;
+	border-right:1px solid #291672;
+	width:510px;
+	height:310px;
+}
+
+.loginLogo {
+	padding: 30px 0px 0px 0px;
+}
+
+.loginTitle {
+	color: #291672;
+	
+	font-size:26px;
+	padding: 30px 0px 0px 0px;
+}
+
+.loginFormHolder {
+	float:left;
+	width:400px;
+	text-align:left;
+	padding: 50px 0px 0px 0px;
+}
+
+.loginHeader {
+	font-size:20px;
+	padding-bottom: 10px !important;
+}
+
+.loginFormHolder .row {
+	padding: 10px 0px 0px 60px;
+}
+
+.loginFormHolder .linkRow {
+	padding: 20px 0px 0px 60px;
+}
+
+.loginFormHolder .row .textbox {
+	height:20px;
+	border:1px solid #c8c8c8;
+	border-radius:5px;
+	font-size:16px;
+	color:#666666;
+	padding:4px 5px 5px 5px;
+	width:230px;
+}
+
+.loginFormHolder .row .list {
+	height:32px;
+	border:1px solid #c8c8c8;
+	border-radius:5px;
+	font-size:16px;
+	color:#666666;
+	padding:4px 5px 5px 5px;
+	width:240px;
+}
+
+.loginFormHolder .linkRow .icon {
+	padding:0px 5px 0px 0px;
+}
+
+.loginFormHolder .row a {
+	color: #0054e3;
+	text-decoration:none;
+}
+
+.loginFormHolder .row a:hover {
+	color: #0054e3;
+	text-decoration:underline;
+}
+
+.button
+{
+	color: #FFFFFF;
+	font-weight: normal;
+	padding: 4px 4px 4px 4px;
+	/*background:#0054e3 url(../images/buttonBg.png) repeat-x;*/
+	background-color: #183152;
+	font-size: 14px;
+	border-radius: 5px;
+	line-height: normal;
+	border: 1px solid #0054e3;
+	width: 90px;
+	cursor: pointer;
+	cursor: default;
+	margin: 5px 0px 0px 150px;
+	behavior: url(_CSS/PIE-1.0.0/PIE.htc);
+	position: relative;
+	font-family: Verdana;
+}
+
+.footer
+{
+	color: #FFFFFF;
+	padding: 15px;
+}
+
+.footer a, .footer a:link, .footer a:visited, .footer a:active {
+	color: #565C61;
+	text-decoration:none;
+}
+
+.footer a:hover {
+	color: #565C61;
+	text-decoration:underline;
+}
+
+

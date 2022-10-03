@@ -1,0 +1,305 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="TrustMain.Master.cs" Inherits="GEIMS.Master.Main" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>G-EIMS</title>
+
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    <link href="../css/Comman.css" rel="stylesheet" type="text/css" />
+    <link href="../css/styles.css" rel="stylesheet" type="text/css" />
+
+    <link rel="shortcut icon" type="image/x-icon" href="~/Images/FERTILIZER NAGAR SCHOOL LOGO COLOUR copy.jpg" />
+
+    <script src="../js/ScriptPrint.js" type="text/javascript"></script>
+    <script src="../js/CommonJs.js" type="text/javascript"></script>
+    <script src="../js/CommonFunction.js" type="text/javascript"></script>
+    <script src="../js/Jquery-1.10.2.js"></script>
+    <%--<script src="../JS/jquery.min.js.js"></script>--%>
+    <script src="../js/jquery-ui.js" type="text/javascript"></script>
+    <script src="../js/ddmenu.js"></script>
+    <link href="../css/TabPanel.css" rel="stylesheet" />
+    <link href="../css/screen.css" rel="stylesheet" />
+    <script src="../js/ValidationEngine-en.js"></script>
+    <script src="../js/ValidationEngine.js"></script>
+    <link href="../css/ValidationEngine.css" rel="stylesheet" />
+    <script src="../js/jquery.quicksearch.js"></script>
+    <%--<meta name="google-translate-customization" content="5cfa2e7728846c87-5cf3f2394349edab-g9661435401362a7f-15"></meta>--%>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <script>
+        function myFunction() {
+
+            document.getElementById("aspnetForm").reset();
+        }
+        <%--    $(function () {
+            $("#accordion").accordion({
+                collapsible: true
+            });
+        });--%>
+
+        window.history.forward();
+        function noBack() { window.history.forward(); }
+        // You can then wire it up by just adding this code for each control:
+
+    </script>
+
+</head>
+<body onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="">
+    <form id="form1" runat="server" autocomplete="off">
+        <ajaxToolkit:ToolkitScriptManager EnablePartialRendering="true" runat="Server" ID="ScriptManager1" />
+        <%-- <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" />--%>
+        <div width="100%" height="100%;" border="0" cellspacing="0" cellpadding="0">
+            <div>
+                <div style="text-align: left" valign="top">
+                    <!--HEADER CONTAINER START -->
+                    <div class="headerContainer">
+                        <!--HEADER START -->
+                        <div class="header">
+                            <!--HEADER LEFT START -->
+                            <div class="left" style="width: 60%">
+                                <div class="headerLogo" style="margin-top: 9px;">
+                                    <asp:Image ImageUrl="~/Images/FERTILIZER NAGAR SCHOOL LOGO COLOUR copy.jpg" runat="server" ID="imgphoto"
+                                        Width="70px" Height="70px" />
+                                    <%--<img src="../Images/SKMLogo.jpg" width="80" height="80" />--%>
+                                </div>
+                                <div class="right">
+                                    <div class="headerTitle" style="color: #2d4373; margin-top: 12px;">
+                                        <b><span id="SessionTrustName" runat="server"></span>
+
+                                        </b>
+                                        <%-- <div id="google_translate_element"></div>
+                                        <script type="text/javascript">
+                                            function googleTranslateElementInit() {
+                                                new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+                                            }
+                                        </script>
+                                        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>--%>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--HEADER LEFT END -->
+                            <!--HEADER RIGHT START -->
+                            <div class="right">
+                                <div style="text-align: right">
+                                    <div>
+                                        <div colspan="4" style="text-align: right"></div>
+                                    </div>
+
+                                    <div>
+                                        <%--<td style="text-align: right; padding-right: 10px;"><b>Welcome</b>&nbsp;
+                                            <asp:Label ID="lblUserName" runat="server"></asp:Label>
+                                        </td>--%>
+                                        <div style="padding-bottom: 5px;">
+                                            <%--<a id="aRoleRights" href="../ClientUI/RoleRights.aspx">
+                                            <img src="../Images/userRights.gif" height="20px" width="20px" title="User Rights" alt="User Rights" /></a>--%>
+                                        </div>
+                                        <div style="padding-bottom: 5px;">
+                                            <%--<asp:ImageButton ID="imgbtnHelp" Height="20px" Width="20px" ToolTip="Help" runat="server" CssClass="Detach"
+                                                ImageUrl="../Images/help.gif" CausesValidation="false" />--%>
+                                        </div>
+                                        <div style="padding-bottom: 5px;">
+                                            <%--<asp:ImageButton ID="imbbtnLogout" Height="20px" Width="20px" CssClass="canc Detach" ToolTip="Logout" CausesValidation="false"
+                                                runat="server" ImageUrl="../Images/logout.gif" OnClick="imbbtnLogout_Click" UseSubmitBehavior="false" />--%>
+
+                                            <%--<a href="../Client.UI/LogOut.aspx">
+                                               <img id="Img1" runat="server" src="../Images/logout.gif" height="20" width="20" class="Detach" />
+                                           </a>--%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--HEADER RIGHT END -->
+
+                        </div>
+                    </div>
+                    <!--HEADER END -->
+
+
+                    <!--HEADER CONTAINER END -->
+                    <!--MAIN MENU START -->
+
+                    <div id='cssmenu' runat="server" clientidmode="Static">
+                        <ul>
+                            <li id="div0"><a href="../Client.UI/TrustHome.aspx"><span>
+                                <img src="../Images/home1.png" height="15px" width="15px" /></span></a></li>
+                            <li id="Masterli"><a id="Master" runat="server"><span>Masters</span></a>
+                                <ul>
+                                    <li id="Trust" runat="server" visible="False"><a href="../Client.UI/TrustMaster.aspx">Trust</a></li>
+                                    <%--    <li><a href="../Client.UI/SchoolMasterDetail.aspx">School</a></li>--%>
+                                    <li id="Department" runat="server" visible="False"><a href="../Client.UI/DepartmentMaster.aspx?Source=trust">Department</a></li>
+                                    <li id="Designation" runat="server" visible="False"><a href="../Client.UI/DesignationMaster.aspx?Source=trust">Designation</a></li>
+                                    <li id="Employee" runat="server" visible="False"><a href="../Client.UI/Employee.aspx">Employee</a></li>
+                                    <li id="Document" runat="server" visible="False"><a href="../Client.UI/DocumentMaster.aspx">Document</a></li>
+                                    <li id="Status" runat="server" visible="False"><a href="../Client.UI/Status.aspx">Student Status</a></li>
+                                    <li id="BackUp" runat="server" visible="False"><a href="../Client.UI/BackUp.aspx">Back Up</a></li>
+                                    <li id="Role" runat="server" visible="False"><a href="../Client.UI/RoleMaster.aspx">Role</a></li>
+                                    <li id="Leave" runat="server" visible="False"><a href="../Leave/Leave.aspx">Leave</a></li>
+                                    <li id="SyllabusMaster" runat="server" visible="False"><a href="../Client.UI/SyllabusMaster.aspx">Syllabus</a></li>
+                                    <li id="SyllabusProgressMaster" runat="server" visible="False"><a href="../Client.UI/SyllabusProgress.aspx">Syllabus Progress</a></li>
+                                </ul>
+                            </li>
+                            <li id="Attendanceli"><a id="AttendanceA" runat="server"><span>Attendance</span></a>
+                                <ul>
+                                    <li id="Attendance" runat="server" visible="False"><a href="../Client.UI/EmployeeAttandence.aspx">Employee</a></li>
+                                    <li id="ApproveLeave" runat="server" visible="False"><a href="../Leave/ApproveLeave.aspx">Approve Leave</a></li>
+                                </ul>
+                            </li>
+                            <%--     <li id="div2"><a href="../Client.UI/MainSection.aspx"><span>Manage School</span></a></li>--%>
+                            <li id="Schoolli"><a id="Schoola" runat="server"><span>School Portal</span></a>
+                                <ul>
+                                    <li id="School" runat="server" visible="False"><a href="../Client.UI/SchoolMasterDetail.aspx">School</a></li>
+                                    <li id="ManageSchool" runat="server" visible="False"><a href="../Client.UI/MainSection.aspx">Manage School</a></li>
+                                </ul>
+                            </li>
+                            <li id="Importli"><a id="Import" runat="server"><span>Data Import</span></a>
+                                <ul>
+                                    <li id="EmployeeImport" runat="server" visible="False"><a href="../Client.UI/EmployeeDataImport.aspx">Employees</a></li>
+                                    <li id="StudentsImport" runat="server" visible="False"><a href="../Client.UI/StudentDataImport.aspx">Students</a></li>
+                                </ul>
+                            </li>
+                            <li id="Invetoryli"><a id="Inventory" runat="server"><span>Inventory</span></a>
+                                <ul>
+                                    <li id="MaterialGroup" runat="server" visible="False"><a href="../Client.UI/MaterialGroup.aspx">Material Group</a></li>
+                                    <li id="Vendor" runat="server" visible="False"><a href="../Client.UI/Vendor.aspx">Vendor</a></li>
+                                    <li id="Material" runat="server" visible="False"><a href="../Client.UI/Material.aspx">Material</a></li>
+                                    <li id="UOM" runat="server" visible="False"><a href="../Client.UI/Uom.aspx">UOM</a></li>
+                                    <li id="Purchase" runat="server" visible="False"><a href="../Client.UI/Purchase.aspx">Purchase</a></li>
+                                    <li id="StockUpdate" runat="server" visible="False"><a href="../Client.UI/StockUpdation.aspx">Stock Updation</a></li>
+                                </ul>
+                            </li>
+                            <li id="Payrollli"><a id="Payroll" runat="server"><span>Pay Roll</span></a>
+                                <ul>
+                                    <li id="LeaveMaser" runat="server" visible="False"><a href="../PayRoll/LeaveMaster.aspx">Leave</a></li>
+                                    <li id="PayItem" runat="server" visible="False"><a href="../PayRoll/PayItem.aspx">Pay Item</a></li>
+                                    <li id="TrustTemplate" runat="server" visible="False"><a href="../PayRoll/TrustPayItemTemplate.aspx">School Pay Item Template</a></li>
+                                    <li id="TrustPayItem" runat="server" visible="False"><a href="../PayRoll/PayItemTemplate.aspx">Pay Item Template for Designations</a></li>
+                                    <li id="EmployeePayItem" runat="server" visible="False"><a href="../PayRoll/EmployeePayItem.aspx">Employee Pay Template</a></li>
+                                    <li id="GeneratePayslip" runat="server" visible="False"><a href="../PayRoll/GeneratePaySlip.aspx">Generate PaySlip</a></li>
+                                    <li id="ProcessPayroll" runat="server" visible="False"><a href="../PayRoll/ProcessPayRoll.aspx">Process PayRoll</a></li>
+                                    <li id="PayRollReport" runat="server" visible="False"><a href="../ReportUI/EmployeePayrollReport.aspx">PayRoll Report</a></li>
+                                    <li id="LeaveTemplate" runat="server" visible="False"><a href="../Leave/LeaveTemplate.aspx">Leave Template</a></li>
+                                </ul>
+                            </li>
+                            <li id="Accountingli"><a id="Accounting" runat="server"><span>Accounting</span></a>
+                                <ul>
+                                    <li id="AccountLogin" runat="server" visible="False"><a href="../Accounting/AccountLogin.aspx?mode=TU">Login</a></li>
+                                    <li id="AccountGroup" runat="server" visible="False"><a href="../Accounting/AccountGroup.aspx?mode=TU">Account Group</a></li>
+                                    <li id="SerialNo" runat="server" visible="False"><a href="../Accounting/SerialNo.aspx?mode=TU">Serial No</a></li>
+                                    <li id="GeneralLedger" runat="server" visible="False"><a href="../Accounting/GeneralLedger.aspx?mode=TU">General Ledger</a></li>
+                                    <li id="JournalEntry" runat="server" visible="False"><a href="../Accounting/JournalEntry.aspx?mode=TU">Journal Entry</a></li>
+                                    <li id="ContraEntry" runat="server" visible="False"><a href="../Accounting/ContraEntry.aspx?mode=TU">Contra Entry</a></li>
+                                    <li id="Receipts" runat="server" visible="False"><a href="../Accounting/Receipt.aspx?mode=TU">Receipts</a></li>
+                                    <li id="Payments" runat="server" visible="False"><a href="../Accounting/Payment.aspx?mode=TU">Payments</a></li>
+                                   <%-- <li id="BankRecoDetails" runat="server" visible="true"><a href="../Accounting/BankRecoDetails.aspx?mode=TU">Bank Reco Details</a></li>--%>
+                                    <li id="BankRecoDetails" runat="server" visible="true"><a href="../Accounting/BankReconciliation.aspx?mode=TU">Bank Reco Details</a></li>
+                                </ul>
+                            </li>
+                            <li id="Reportli"><a id="Report" runat="server"><span>Reports</span></a>
+                                <ul>
+                                    <li id="GeneralReports" runat="server" visible="False"><a href="../Client.UI/TrustReports.aspx?Mode=GeneralReports">General Reports</a></li>
+                                    <li id="FeesReports" runat="server" visible="False"><a href="../Client.UI/TrustReports.aspx?Mode=FeesReport">Fees Reports</a></li>
+                                    <li id="InventoryReports" runat="server" visible="False"><a href="../Client.UI/TrustReports.aspx?Mode=InventoryReports">Inventory Reports</a></li>
+                                    <li id="PayRollReports" runat="server" visible="False"><a href="../Client.UI/TrustReports.aspx?Mode=PayRollReports">PayRoll Reports</a></li>
+                                    <li id="AccountingReports" runat="server" visible="False"><a href="../Client.UI/TrustReports.aspx?Mode=AccountingReports">Accounting Reports</a></li>
+                                    <li id="StatutoryReports" runat="server" visible="False"><a href="../Client.UI/TrustReports.aspx?Mode=StatutoryReports">Statutory Reports</a></li>
+                                    <li id="ExamResultReport" runat="server" visible="False"><a href="../Result/ExamResultReport.aspx">Result Reports</a></li>
+                                    <%-- <li><a href="../ReportUI/EmployeeList.aspx">Employee List</a></li>
+                                   <li><a href="../ReportUI/EmpoyeeInformationReport.aspx">Empolyee Information</a></li>
+                                    <li><a href="../ReportUI/SchoolList.aspx">School List</a></li>
+                                    <li><a href="../ReportUI/SchoolInformation.aspx">School Information</a></li>
+                                    <li><a href="../ReportUI/MaterialTransferReport.aspx">Material Transfer</a></li>
+                                    <li><a href="../ReportUI/MaterialConsumption.aspx">Material Consumption</a></li>
+                                    <li><a href="../ReportUI/MaterialReturn.aspx">Material Return</a></li>
+                                    <li><a href="../ReportUI/MaterialStock.aspx">Material Stock</a></li>
+                                    <li><a href="../ReportUI/VendorList.aspx">Vandor Wise Material</a></li>
+                                    <li><a href="../ReportUI/MaterialVandorWise.aspx">Material Payment List</a></li>
+                                    <li><a href="../ReportUI/FeeCollectionSchoolWise.aspx">Fees Collection SchoolWise List</a></li>
+                                    <li><a href="../ReportUI/FeeCollectionClassWise.aspx">Fees Collection ClassWise  List</a></li>
+                                    <li><a href="../ReportUI/FeeCollectionStudentWise.aspx">Fees Collection StudentWise List</a></li>--%>
+                                </ul>
+                            </li>
+                              <li id="Li2" runat="server" visible="False"><a href="../Client.UI/BudgetAdjustmentScreen.aspx">Budget Adjustment</a></li> 
+                            <%-- <li id="Resultli"><a id="Result" runat="server">Result</a>
+                                <ul>
+	                                <li id="ExamConfiguration" runat ="server" visible="False"><a href="../Result/ExamConfiguration.aspx">Exam Configuration</a></li>
+									<li id="StudentExamMarks" runat ="server" visible="False"><a href="../Result/StudentExamMarks.aspx">Student Exam Marks</a></li>
+                                </ul>
+                            </li>--%>
+                            <li style="float: right;">
+                                <a id="div7" href="../Client.UI/LogOut.aspx" title="Log out">
+                                    <img src="../Images/so1.png" width="16px" height="16px" title="Log out" /></a>
+                            </li>
+                            <li id="RoleRightli" style="float: right;" runat="server">
+                                <a runat="server" id="RoleRight" href="../Client.UI/RoleRights.aspx" title="Role-Rights">
+                                    <img src="../Images/RR.png" width="16px" height="16px" title="User Role-Rights" /></a>
+                            </li>
+                            <li id="Versioncontrolli" style="float: right;">
+                                <a runat="server" id="Versioncontrol" href="../Client.UI/Versioncontrol.aspx" title="Software Version">
+                                    <img src="../Images/Help.png" width="16px" height="16px" title="Software Version" /></a>
+                            </li>
+                            <li style="float: right;">
+                                <a>Welcome&nbsp;
+											<asp:Label ID="lblUserName" runat="server" CssClass="label"></asp:Label></a>
+                            </li>
+                            <%--<li id="div3"><a><span>MIS Reports</span></a>
+                                <ul>
+                                    <li><a href="#"></a></li>
+                                </ul>
+                            </li>--%>
+                        </ul>
+                    </div>
+                    <!--MAIN MENU END -->
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div class="middleContainer">
+                        <div class="right">
+                            <div class="contentHolder" style="min-height: 500px;">
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div style="text-align: left" valign="top">
+                    <!--FOOTER START -->
+                    <div class="footer">
+                        <div class="footerLeft">
+                            © 2020 <span id="SessionTrustNameFooter" runat="server"></span>All rights reserved
+                        </div>
+                        <div class="footerRight">
+                            Powered by:
+                    <a href="http://garimasystem.com/" style="text-decoration: none;">
+                        <img src="../Images/GSSPL Rounded png.png" height="20" width="20" title="" align="absmiddle" /></a>
+                        </div>
+                    </div>
+                    <!--FOOTER END -->
+                </div>
+            </div>
+        </div>
+    </form>
+    <%--<script language="JavaScript" type="text/javascript">
+        var Lst, obj1;
+
+        var obj1 = document.getElementById('divCurrenTabSelected');
+        var dive = obj1.innerHTML;
+        var obj2 = document.getElementById(dive);
+        obj2.className = 'active';
+
+    </script>--%>
+    <script type="text/javascript" language="javascript">
+        $('.Detach').click(function () {
+            $("#aspnetForm").validationEngine('detach');
+        });
+
+        $('.Attach').click(function () {
+            $("#aspnetForm").validationEngine('attach');
+        });
+    </script>
+</body>
+</html>

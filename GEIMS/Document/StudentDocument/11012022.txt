@@ -1,0 +1,92 @@
+ItemType
+Descript : "Raw Material" and "Finished Goods"
+
+
+Points
+Over due date/Days
+
+Financial Dashboard
+Accounting Module [Flow Chart]
+Tally Integration points
+customer discount
+gst rate - [Sunil sir is already given]
+
+
+VAlidation message 
+validation box
+
+
+Bugs [11-01-2021]
+> When attendce entry for manuaaly start tiem is correct but end time is 15 min different so report shown to "Null" value.
+> Date formate should be 00:00 in Attendance Report
+> NET INCOME replace to Net SALARY 
+> NET SALARY 35791.95 replace to 35792 [remove round off]
+> after changes Not display "Week Off" and "Holiday" multi time display "Leave Code"
+> TAN No in Employee Profile
+> Payslip print issue
+> Payslip report school wise
+
+usp_tbl_Leave_M_Select_ForBalance
+exec [dbo].[usp_rpt_EmployeeWiseAttendance] '66','01/12/2021','31/12/2021'
+exec [dbo].[usp_rpt_EmployeeMonthlyAttendance] '12','21-22'
+
+
+
+"The column 'Basic' was specified multiple times for 'PVTTable'."
+
+
+Vangi Food Task
+
+> Database Document Complete with Description and Validation
+> Screen Review with Database
+> ERD Update
+> Codding Structure
+
+ISG
+Call Bhargav
+Last Project ISG
+download 7
+Overview
+asishbhai
+
+
+-----------------------------------------------------------------------------
+Vangi Food Inventory Management System
+
+Screen Make
+1> rejection note and 
+	Make Table : RejectionNote
+2> credit note show and make screen 
+
+1) Activity master - Make Screen -Already Done
+2) Monitoring Parameters master - Make Screen - Already Done
+
+DEPL
+gayatri febricator
+SystemLog []
+ActivityLog [Users]
+
+table name change 
+eg. 
+Mater table plural
+Transaction table Singular
+UserMaster - User
+
+Architecture
+
+---------------------------------------------------------------------------------
+
+usp_tbl_EmployeeAttendance_M_Update 
+
+--------------------------------------------------------------------------------
+LeaveBalance.aspx
+SchoolLeaveBalance.aspx
+
+EmployeeMonthlyAttendance.aspx
+TrustEmployeeMonthlyAttendance.aspx
+
+https://github.com/GSSPLREPO/InventoryManagement_Vangifoods
+
+usp_rpt_EmployeeMonthlyAttendance_School
+
+ 

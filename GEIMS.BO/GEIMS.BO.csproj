@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FCF0964C-7CDD-4280-8704-916AAFC19446}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GEIMS.BO</RootNamespace>
+    <AssemblyName>GEIMS.BO</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountGroupBO.cs" />
+    <Compile Include="AdmissionFormBO.cs" />
+    <Compile Include="BankAssociationBO.cs" />
+    <Compile Include="BankRecoDetailsBO.cs" />
+    <Compile Include="BudgetCapitalCostBO.cs" />
+    <Compile Include="BudgetCategoryMBO.cs" />
+    <Compile Include="BudgetEntryScreenMBO.cs" />
+    <Compile Include="BudgetEntryScreenTBO.cs" />
+    <Compile Include="BudgetHeadingMBO.cs" />
+    <Compile Include="BudgetSubHeadingMBO.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="ClassBO.cs" />
+    <Compile Include="ClassWiseFeesTemplateTBO.cs" />
+    <Compile Include="ClasswiseStudentTemplateBO.cs" />
+    <Compile Include="ConsumptionBO.cs" />
+    <Compile Include="DepartmentBO.cs" />
+    <Compile Include="DesignationBO.cs" />
+    <Compile Include="DivisionTBO.cs" />
+    <Compile Include="DocumentBO.cs" />
+    <Compile Include="EmployeeattendanceBO.cs" />
+    <Compile Include="EmployeeBO.cs" />
+    <Compile Include="EmployeeDeptTransferHistoryTBO.cs" />
+    <Compile Include="EmployeeExpirenceTBO.cs" />
+    <Compile Include="EmployeeFamilyTBO.cs" />
+    <Compile Include="EmployeeMBO.cs" />
+    <Compile Include="EmployeeRemarksTBO.cs" />
+    <Compile Include="EmployeeWorkTimeBO.cs" />
+    <Compile Include="EmpoyeeQualificationTBO.cs" />
+    <Compile Include="EventCategoryBO.cs" />
+    <Compile Include="EventDetailsBO.cs" />
+    <Compile Include="ExamBO.cs" />
+    <Compile Include="ExamClassAssociationBO.cs" />
+    <Compile Include="ExamConfigurationBO.cs" />
+    <Compile Include="ExamSubjectAssociation.cs" />
+    <Compile Include="FeesCategoryBO.cs" />
+    <Compile Include="FeesCollectionBO.cs" />
+    <Compile Include="FeesCollectionTBO.cs" />
+    <Compile Include="FeesGroupBO.cs" />
+    <Compile Include="FeesSeperationTBO.cs" />
+    <Compile Include="GeneralLedgerBO.cs" />
+    <Compile Include="HolidayBO.cs" />
+    <Compile Include="JournalVoucherMBO.cs" />
+    <Compile Include="JournalVoucherTBO.cs" />
+    <Compile Include="LeaveApplyBO.cs" />
+    <Compile Include="LeaveApprovalBO.cs" />
+    <Compile Include="LeaveBO.cs" />
+    <Compile Include="LeaveMBO.cs" />
+    <Compile Include="LeaveTemplateBO.cs" />
+    <Compile Include="LockBO.cs" />
+    <Compile Include="MaterialBO.cs" />
+    <Compile Include="MaterialGroupBO.cs" />
+    <Compile Include="MaterialStockTBO.cs" />
+    <Compile Include="MaterialTBO.cs" />
+    <Compile Include="MaterialTransferBO.cs" />
+    <Compile Include="MediumBO.cs" />
+    <Compile Include="MeetingCategoryBO.cs" />
+    <Compile Include="MeetingPointsBO.cs" />
+    <Compile Include="MeetingsBO.cs" />
+    <Compile Include="ModeOfPaymentBO.cs" />
+    <Compile Include="PayItemBO.cs" />
+    <Compile Include="PayItemMBO.cs" />
+    <Compile Include="PaySlipBO.cs" />
+    <Compile Include="PaySlipLeaveTBO.cs" />
+    <Compile Include="PaySlipUserPayItemTBO.cs" />
+    <Compile Include="PeriodBO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseBO.cs" />
+    <Compile Include="PurchaseTBo.cs" />
+    <Compile Include="ReceiptPaymentBO.cs" />
+    <Compile Include="RoleBO.cs" />
+    <Compile Include="RoleRightsBO.cs" />
+    <Compile Include="ScheduledEventBO.cs" />
+    <Compile Include="SchoolApprovalTBO.cs" />
+    <Compile Include="SchoolBO.cs" />
+    <Compile Include="SchoolPreEducationDetailTBO.cs" />
+    <Compile Include="SectionBO.cs" />
+    <Compile Include="SectionTBO.cs" />
+    <Compile Include="SerialNoBO.cs" />
+    <Compile Include="ShiftMasterBO.cs" />
+    <Compile Include="StatusBO.cs" />
+    <Compile Include="StudentAttemptBO.cs" />
+    <Compile Include="StudentAttendanceConsolidatedMBO.cs" />
+    <Compile Include="StudentAttendenceBO.cs" />
+    <Compile Include="StudentBO.cs" />
+    <Compile Include="StudentFeesTemplateTBO.cs" />
+    <Compile Include="StudentMarksBO.cs" />
+    <Compile Include="StudentPastEducationBO.cs" />
+    <Compile Include="StudentPreEducationDetailTBO.cs" />
+    <Compile Include="StudentTBO.cs" />
+    <Compile Include="SubjectMBO.cs" />
+    <Compile Include="SubjectTBO.cs" />
+    <Compile Include="SyllabusBO.cs" />
+    <Compile Include="SyllabusPlanningBO.cs" />
+    <Compile Include="TDSCalculatorMediclaimTBO.cs" />
+    <Compile Include="TDSCalculatorPayItemTBO.cs" />
+    <Compile Include="TDSCalculatorsBO.cs" />
+    <Compile Include="TDSCalculatorsDetailsTBO.cs" />
+    <Compile Include="TimeTableBO.cs" />
+    <Compile Include="TrustBO.cs" />
+    <Compile Include="TrustPayItemBO.cs" />
+    <Compile Include="TrustPayItemTemplateTBO.cs" />
+    <Compile Include="TrustTemplateBO.cs" />
+    <Compile Include="UOMBO.cs" />
+    <Compile Include="UserPayItemTemplateTBO.cs" />
+    <Compile Include="UserTemplateTBO.cs" />
+    <Compile Include="VendorBO.cs" />
+    <Compile Include="WorkingDaysBO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GEIMS.Common\GEIMS.Common.csproj">
+      <Project>{c027fa47-ab2f-48e2-b4d4-165d91259638}</Project>
+      <Name>GEIMS.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GEIMS.DataAccess\GEIMS.DataAccess.csproj">
+      <Project>{23ff21ac-e130-44b1-9aa9-c17d42829b40}</Project>
+      <Name>GEIMS.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="iTextSharp">
+      <Version>5.5.13.2</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

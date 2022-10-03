@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9ED63650-79CA-45FD-A3FA-E7C03A4CA8AA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GEIMS.BL</RootNamespace>
+    <AssemblyName>GEIMS.BL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountGroupBL.cs" />
+    <Compile Include="AdmissionFormBL.cs" />
+    <Compile Include="BankAssociationBL.cs" />
+    <Compile Include="BankRecoDetailsBL.cs" />
+    <Compile Include="BankReconciliationForFeesBL.cs" />
+    <Compile Include="BudgetCapitalCostBL.cs" />
+    <Compile Include="BudgetCategoryMBL.cs" />
+    <Compile Include="BudgetEntryScreenMBL.cs" />
+    <Compile Include="BudgetEntryScreenTBL.cs" />
+    <Compile Include="BudgetHeadingMBL.cs" />
+    <Compile Include="BudgetSubHeadingMBL.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="ClassBL.cs" />
+    <Compile Include="ClassWiseFeesTemplateTBL.cs" />
+    <Compile Include="ClasswiseStudentTemplateBL.cs" />
+    <Compile Include="ConsumptionBL.cs" />
+    <Compile Include="DepartmentBL.cs" />
+    <Compile Include="DesignationBL.cs" />
+    <Compile Include="DivisionTBL.cs" />
+    <Compile Include="DocumentBL.cs" />
+    <Compile Include="EmployeeattendanceBL.cs" />
+    <Compile Include="EmployeeBL.cs" />
+    <Compile Include="EmployeeMBL.cs" />
+    <Compile Include="EmployeeRemarksTBL.cs" />
+    <Compile Include="EmployeeTBL.cs" />
+    <Compile Include="EmployeeWorkTimeBL.cs" />
+    <Compile Include="EventCategoryBL.cs" />
+    <Compile Include="EventDetailsBL.cs" />
+    <Compile Include="ExamBL.cs" />
+    <Compile Include="ExamClassAssociationBL.cs" />
+    <Compile Include="ExamConfigurationBL.cs" />
+    <Compile Include="ExamSubjectAssociationBL.cs" />
+    <Compile Include="FeesCategoryBL.cs" />
+    <Compile Include="FeesCollectionBL.cs" />
+    <Compile Include="FeesGroupBL.cs" />
+    <Compile Include="FeesSeperationTBL.cs" />
+    <Compile Include="GeneralLedgerBL.cs" />
+    <Compile Include="HolidayBL.cs" />
+    <Compile Include="JournalVoucherMBL.cs" />
+    <Compile Include="JournalVoucherTBL.cs" />
+    <Compile Include="LeaveApplyBL.cs" />
+    <Compile Include="LeaveApprovalBL.cs" />
+    <Compile Include="LeaveBL.cs" />
+    <Compile Include="LeaveMBL.cs" />
+    <Compile Include="LeaveTemplateBL.cs" />
+    <Compile Include="LockBL.cs" />
+    <Compile Include="MaterialBL.cs" />
+    <Compile Include="MaterialGroupBL.cs" />
+    <Compile Include="MaterialStockTBL.cs" />
+    <Compile Include="MaterialTransferBL.cs" />
+    <Compile Include="MediumBL.cs" />
+    <Compile Include="MeetingCategoryBL.cs" />
+    <Compile Include="MeetingPointsBL.cs" />
+    <Compile Include="MeetingsBL.cs" />
+    <Compile Include="ModeOfPaymentBL.cs" />
+    <Compile Include="PayItemBL.cs" />
+    <Compile Include="PayItemMBL.cs" />
+    <Compile Include="PaySlipBL.cs" />
+    <Compile Include="PaySlipLeaveTBL.cs" />
+    <Compile Include="PaySlipUserPayItemTBL.cs" />
+    <Compile Include="PeriodBL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseBL.cs" />
+    <Compile Include="ReceiptPaymentBL.cs" />
+    <Compile Include="RoleBL.cs" />
+    <Compile Include="RoleRightsBL.cs" />
+    <Compile Include="rptBalanceSheetBL.cs" />
+    <Compile Include="RptPnLBL.cs" />
+    <Compile Include="ScheduleEventsBL.cs" />
+    <Compile Include="SchoolBL.cs" />
+    <Compile Include="SchoolEducationDetailTBL.cs" />
+    <Compile Include="SectionBL.cs" />
+    <Compile Include="SerialNoBL.cs" />
+    <Compile Include="ShiftMasterBL.cs" />
+    <Compile Include="StatusBL.cs" />
+    <Compile Include="StudentAttemptBL.cs" />
+    <Compile Include="StudentAttendanceConsolidatedMBL.cs" />
+    <Compile Include="StudentAttendenceBL.cs" />
+    <Compile Include="StudentBL.cs" />
+    <Compile Include="StudentFeesTemplateTBL.cs" />
+    <Compile Include="StudentMarksBL.cs" />
+    <Compile Include="StudentPastEducationBL.cs" />
+    <Compile Include="StudentPreEducationDetailTBL.cs" />
+    <Compile Include="SubjectMBL.cs" />
+    <Compile Include="SubjectTBL.cs" />
+    <Compile Include="SyllabusBL.cs" />
+    <Compile Include="SyllabusPlanningBL.cs" />
+    <Compile Include="TDSCalculatorsBL.cs" />
+    <Compile Include="TimeTableBL.cs" />
+    <Compile Include="TrustBL.cs" />
+    <Compile Include="TrustPayItemBL.cs" />
+    <Compile Include="TrustPayItemTemplateTBL.cs" />
+    <Compile Include="TrustTemplateBL.cs" />
+    <Compile Include="UnutolisedAmountBL.cs" />
+    <Compile Include="UOMBL.cs" />
+    <Compile Include="UserPayItemTemplateTBL.cs" />
+    <Compile Include="UserTemplateTBL.cs" />
+    <Compile Include="VendorBL.cs" />
+    <Compile Include="WorkingDaysBL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NavChetan_Kosamba.BL.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GEIMS.BO\GEIMS.BO.csproj">
+      <Project>{fcf0964c-7cdd-4280-8704-916aafc19446}</Project>
+      <Name>GEIMS.BO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GEIMS.Common\GEIMS.Common.csproj">
+      <Project>{c027fa47-ab2f-48e2-b4d4-165d91259638}</Project>
+      <Name>GEIMS.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GEIMS.DataAccess\GEIMS.DataAccess.csproj">
+      <Project>{23ff21ac-e130-44b1-9aa9-c17d42829b40}</Project>
+      <Name>GEIMS.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="iTextSharp">
+      <Version>5.5.13.2</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

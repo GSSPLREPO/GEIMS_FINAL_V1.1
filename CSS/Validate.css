@@ -1,0 +1,43 @@
+﻿form.cmxform
+{
+	width: 50em;
+}
+
+em.error
+{
+	background: url("../Images/unchecked.gif") no-repeat 0px 0px;
+	padding-left: 16px;
+}
+
+em1.error
+{
+	background: url("../Images/unchecked.gif") no-repeat 0px 0px;
+	padding-left: 16px;
+}
+
+em.success
+{
+	background: url("../Images/checked.gif") no-repeat 0px 0px;
+	padding-left: 16px;
+}
+
+form.cmxform label.error
+{
+	margin-left: auto;
+	width: 250px;
+}
+
+em.error
+{
+	color: black;
+}
+
+em1.error
+{
+	color: black;
+}
+
+#warning
+{
+	display: none;
+}
