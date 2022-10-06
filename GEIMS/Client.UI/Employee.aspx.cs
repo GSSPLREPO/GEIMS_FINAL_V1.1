@@ -35,6 +35,8 @@ namespace GEIMS.Client.UI
 
                 if (fuImage.HasFile)
                 {
+                    // Comments added on 04/10/2022 by Bhandavi
+                    //if image selected, show in image photo field
                     string Extension;
                     Extension = Path.GetExtension(fuImage.FileName);
                     if (Extension == ".jpg" || Extension == ".JPG" || Extension == ".jpeg" || Extension == ".JPEG" || Extension == ".bmp" || Extension == ".BMP" || Extension == ".gif" || Extension == ".GIF" || Extension == ".png" || Extension == ".PNG")

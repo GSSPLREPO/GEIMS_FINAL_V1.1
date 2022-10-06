@@ -412,6 +412,7 @@ namespace GEIMS.Client.UI
         #endregion
 
         #region gvSyllabus_RowCommand
+        
         protected void gvSyllabus_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             try
@@ -430,6 +431,8 @@ namespace GEIMS.Client.UI
                     ddlDivisionName.Enabled = true;
                     ddlYear.Enabled = true;
                     ddlSubject.Enabled = true;
+                    
+                    ddlSubject.Enabled = false;
                     txtChapterNameAndNoENG.Enabled = true;
                     txtChapterNameAndNoGUJ.Enabled = true;
                     txtSyllabusDetailsENG.Enabled = true;
@@ -780,6 +783,7 @@ namespace GEIMS.Client.UI
                         {
                             ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Record updated successfully.');</script>");
                         }
+                      
                     }
                     else if (ViewState["Mode"].ToString() == "Planning1")
                     {

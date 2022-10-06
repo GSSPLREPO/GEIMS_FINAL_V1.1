@@ -50,17 +50,12 @@
     <Compile Include="Class1.cs" />
     <Compile Include="CommonFunctions.cs" />
     <Compile Include="Controls.cs" />
+    <Compile Include="Encryption.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="PrintHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryStringProcessor.cs" />
     <Compile Include="UniqueArrayList.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GEIMS.DataAccess\GEIMS.DataAccess.csproj">
-      <Project>{23ff21ac-e130-44b1-9aa9-c17d42829b40}</Project>
-      <Name>GEIMS.DataAccess</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="iTextSharp">

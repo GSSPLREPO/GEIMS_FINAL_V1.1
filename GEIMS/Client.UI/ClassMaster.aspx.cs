@@ -67,6 +67,10 @@ namespace GEIMS.Client.UI
 
 
         #region DropDOwnList For Section
+        /// <summary> 
+        /// Comments added on 03/10/2022 by Bhandavi
+        /// to bind sections to drop down list
+        /// </summary>
         public void BindSection()
         {
             try
@@ -95,6 +99,7 @@ namespace GEIMS.Client.UI
 
         #region Bind grid for Class
         /// <summary>
+        /// Comments added on 03/10/2022 by Bhandavi
         /// To bind Class gridview with all class details
         /// </summary>
         private void GridDataBind()
@@ -131,6 +136,12 @@ namespace GEIMS.Client.UI
 
 
         #region View List Click Event
+        /// <summary>
+        /// Comments added on 03/10/2022 by Bhandavi
+        /// to show all saved classes as grid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void lnkViewList_Click(object sender, EventArgs e)
         {
             //Controls objControls = new Controls();
@@ -142,6 +153,12 @@ namespace GEIMS.Client.UI
         #endregion
 
         #region Add New Click Event
+        /// <summary>
+        /// Comments added on 03/10/2022 by Bhandavi
+        /// to show fields and division grid for new class entry
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void lnkAddNewClass_Click(object sender, EventArgs e)
         {
             //Controls objControls = new Controls();
@@ -152,6 +169,10 @@ namespace GEIMS.Client.UI
         #endregion
 
         #region Save Class Transaction
+        /// <summary>
+        /// Comments added on 03/10/2022 by Bhandavi
+        /// to insert divisions of a class into tables tbl_Division_T and tbl_TimeTable_M
+        /// </summary>
         public void SaveClass_T()
         {
             ApplicationResult objResults = new ApplicationResult();
@@ -181,6 +202,7 @@ namespace GEIMS.Client.UI
 
         #region Save Click Event
         /// <summary>
+        /// Comments added on 03/10/2022 by Bhandavi
         /// to save entered details of class and division for new and 
         /// to modify selected class
         /// </summary>
@@ -297,7 +319,8 @@ namespace GEIMS.Client.UI
 
         #region Add Button Click Event
         /// <summary>
-        /// 
+        /// Comments added on 03/10/2022 by Bhandavi
+        /// to add new divisions and edit entered divisions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -428,6 +451,13 @@ namespace GEIMS.Client.UI
 
 
         #region Gridview Class RowCommand Event
+
+        /// <summary>
+        /// Comments added on 03/10/2022 by Bhandavi
+        /// to edit or delete a class
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gvClass_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             try
@@ -514,6 +544,12 @@ namespace GEIMS.Client.UI
         #endregion
 
         #region Division GridView Events [Row Command, Pre Render]
+        /// <summary>
+        /// Comments added on 03/10/2022 by Bhandavi
+        /// to delete and edit a division
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gvDivision_OnRowCommand(object sender, GridViewCommandEventArgs e)
         {
             ApplicationResult objResults = new ApplicationResult();
@@ -522,7 +558,6 @@ namespace GEIMS.Client.UI
             Controls objControls = new Controls();
             try
             {
-
                 if (e.CommandName.ToString() == "EditDivision")
                 {
                     if (ViewState["Mode"].ToString() == "Save")
@@ -621,7 +656,7 @@ namespace GEIMS.Client.UI
 
         #region PanelGrid_VisibilityMode
         /// <summary>
-        /// 
+        /// Comments added on 03/10/2022 by Bhandavi
         /// displaying gridviews based on condition(to show class gridview or to show division gridview
         /// </summary>
         /// <param name="intMode"></param>
@@ -664,6 +699,11 @@ namespace GEIMS.Client.UI
 
 
         #region ValidateName
+        /// <summary>
+        /// Comments added on 03/10/2022 by Bhandavi
+        /// to check whether class name is already exists or not
+        /// </summary>
+        /// <returns></returns>
         public bool ValidateName()
         {
             try

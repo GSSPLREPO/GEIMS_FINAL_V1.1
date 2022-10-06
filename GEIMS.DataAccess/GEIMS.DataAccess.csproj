@@ -51,6 +51,12 @@
       <Version>5.5.13.2</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GEIMS.Common\GEIMS.Common.csproj">
+      <Project>{c027fa47-ab2f-48e2-b4d4-165d91259638}</Project>
+      <Name>GEIMS.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
