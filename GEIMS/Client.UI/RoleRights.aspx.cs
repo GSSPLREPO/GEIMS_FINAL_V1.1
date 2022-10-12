@@ -125,7 +125,7 @@ namespace GEIMS.Client.UI
                 gvSelectRights.DataSource = dt;
                 gvSelectRights.DataBind();
                 BindScreen();
-
+                
                 objApplicationResult = objRoleRightsBL.RoleRights_T_Select(Convert.ToInt32(ddlRole.SelectedValue), Convert.ToInt32(Session[ApplicationSession.TRUSTID]), Convert.ToInt32(ViewState["SchoolMID"].ToString()), 0);
                 dtRoleRight = objApplicationResult.resultDT;
                 if (dtRoleRight.Rows.Count > 0)
@@ -306,10 +306,18 @@ namespace GEIMS.Client.UI
         #endregion
 
         #region RadioButton Select
+        /// <summary>
+        /// trust or school radio button selected
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void rblSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (rblSelect.SelectedValue == "0")
             {
+                //Added 0n 12/10/2022 Bhandavi
+                //When we select trust after selecting some school then not showing role rights correctly
+                ViewState["SchoolMID"] = 0;
                 divSchool.Visible = false;
                 //  divTrust.Visible = true;
                 divRole.Visible = true;

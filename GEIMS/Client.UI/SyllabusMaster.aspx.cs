@@ -227,7 +227,7 @@ namespace GEIMS.Client.UI
                             objControls.BindDropDown_ListBox(objResult.resultDT, ddlClassName, "ClassName", "ClassMID");
                         }
                         //Added on 27/09/2022 Bhandavi
-                        //when a Section does not having classes, then showing previos classes along with select.
+                        //when a Section does not having classes, then showing previous classes along with select.
                         //If Section doesnot have classes then clear class dropdown
                         else
                         {
@@ -384,6 +384,7 @@ namespace GEIMS.Client.UI
             {
                 ClearAll();
                 PanelVisibility(2);
+                ddlSubject.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -407,6 +408,7 @@ namespace GEIMS.Client.UI
                 divGrid.Visible = false;
                 tabs.Visible = true;
                 lnkViewList.Visible = true;
+              
             }
         }
         #endregion

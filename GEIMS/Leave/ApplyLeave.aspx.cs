@@ -146,7 +146,7 @@ namespace GEIMS.Leave
         /// <summary>
         /// Commented By Bhandavi 29/09/2022
         /// Go button in display
-        /// display date,leave type dropdown and halfday check box are displayed
+        /// display date,leave type dropdown and halfday check box
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

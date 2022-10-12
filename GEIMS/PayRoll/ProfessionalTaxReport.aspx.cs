@@ -418,9 +418,18 @@ namespace GEIMS.PayRoll
         #endregion
 
         #region Report Button Event
+        /// <summary>
+        /// (Added comment on 07/10/2022 Bhandavi)
+        /// Back to menu button click Redirect to School Payroll reports main page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnReport_Click(object sender, EventArgs e)
         {
-            Response.Redirect("../Client.UI/TrustReports.aspx?Mode=GeneralReports");
+            //Response.Redirect("../Client.UI/TrustReports.aspx?Mode=GeneralReports");
+            //Previously redirecting to trust reports page (Need to redirect to school reports page)
+            //Changed code to redirect on 07 10 2022 Bhandavi
+            Response.Redirect("../Client.UI/SchoolReports.aspx?Mode=SchoolPayrollReports");
         }
         #endregion
 

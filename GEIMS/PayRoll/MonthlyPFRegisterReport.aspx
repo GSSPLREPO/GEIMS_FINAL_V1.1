@@ -12,9 +12,11 @@
                 OnClientClick="getPrint('divContent');" />--%>
                     &nbsp;
              <asp:Button ID="btnBack" runat="server" CssClass="btn-blue btn-blue-medium Detach" Text="Cancel"
-                 OnClick="btnBack_Click" />&nbsp;
-                    <asp:Button ID="btnReport" runat="server" CssClass="btn-blue btn-blue-medium Detach" Text="Back To Menu"
-                 OnClick="btnReport_Click" />
+                 OnClick="btnBack_Click" />&nbsp;                 
+       <%--       <asp:Button ID="btnReport" runat="server" CssClass="btn-blue btn-blue-medium Detach" Text="Back To Menu"
+                 OnClick="btnReport_Click" />--%>
+                   <asp:Button ID="btnReport" runat="server" CssClass="btn-blue btn-blue-medium Detach" Text="Back To Menu"
+                     OnClick="btnReport_Click"  OnClientClick="javascript: RedirectToMenu();"  />
         </div>
         <div id="divContent" style="height: 100%; font-family: Verdana;">
             <div id="divContent1" style="width: 10%; float: left; height: 100%; color: white;">1</div>
@@ -358,4 +360,13 @@
             return false;
         }
     </script>
+
+<script type="text/javascript">
+     //07 10 2022 Bhandavi
+    //To redirect to school portal PayRollReports page.
+    function RedirectToMenu() {
+         window.location = "../Client.UI/SchoolReports.aspx?Mode=SchoolPayrollReports";
+    }        
+</script>
+
 </asp:Content>

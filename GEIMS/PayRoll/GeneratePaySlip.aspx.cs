@@ -1367,7 +1367,9 @@ namespace GEIMS.PayRoll
 
                         if (objResultAbsent.resultDT.Rows.Count > 0)
                         {
-                            txtPayAbsenceDay.Text = objResultAbsent.resultDT.Rows[0]["AbsentDays"].ToString();
+                            //txtPayAbsenceDay.Text = objResultAbsent.resultDT.Rows[0]["AbsentDays"].ToString();
+                            //Getting error when objResultAbsent.resultDT.Rows[0]["AbsentDays"].ToString() value is empty string so changed following code 11/10/2022  Bhandvai
+                            txtPayAbsenceDay.Text = objResultAbsent.resultDT.Rows[0]["AbsentDays"].ToString() == "" ? "0" : objResultAbsent.resultDT.Rows[0]["AbsentDays"].ToString();
                             double PayAbsenceDay = Convert.ToDouble(txtPayAbsenceDay.Text);
 
                             if(PayAbsenceDay < 0)

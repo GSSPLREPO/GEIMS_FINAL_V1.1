@@ -37,7 +37,7 @@
 			<div class="col-sm-3 col-sm-6" >
 				<asp:Button ID="BtnPrint" runat="server" Text="Print" OnClick="btnPrint_Click" style="margin-left: 466px;"/> <br />
 				<p style="margin-left: 566px; margin-top:12px">Rs___</p>
-				<h2 align="center" style="margin-top:60px;"/>FERTILIZERNAGAR SCHOOL</h2>
+				<h2 align="center" style="margin-top:60px;"/>FERTILIZER NAGAR SCHOOL</h2>
 				<p align="center">P.O.FERTILIZERNAGAR,DIST. VADODARA - 391 750 </p>
 				<h4 align="center"><span style="border: 2px solid black;padding:7px">APPLICATION FORM FOR ADMISSION</span></h4><br />
 				

@@ -299,6 +299,7 @@ namespace GEIMS.PayRoll
         #endregion
 
         #region Back button Event
+       
         protected void btnBack_Click(object sender, EventArgs e)
         {
             ClearAll();
@@ -548,14 +549,15 @@ namespace GEIMS.PayRoll
         #region BtnBackToreport Event
 
         /// <summary>
-        /// bavk to school report page
+        /// back to school payroll reports page
+        /// Comment added on 06 10 2022 Bhandavi
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void btnReport_Click(object sender, EventArgs e)
         {
             //Response.Redirect("../Client.UI/TrustReports.aspx?Mode=PayRollReports");
-            //Changed on 05 10 2022 Bhandavi
+            //Changed on 06 10 2022 Bhandavi
             //Previousy redirecting to trust reports page, need to redirect to SchoolReports page when back to menu button clicked
             Response.Redirect("../Client.UI/SchoolReports.aspx?Mode=SchoolPayrollReports");
 

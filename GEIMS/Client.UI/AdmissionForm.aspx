@@ -43,11 +43,11 @@
                                <%--Height : 559Px--%>
                             <div style="width: 100%;">
                                <div style="width: 100%;" class="divclasswithfloat">
-                                       <div style="text-align: left; width: 20%; float: left;" class="label">
+                                       <div style="text-align: left; width: 10%; float: left;" class="label">
                                            School Name :<span style="color: red">*</span>
                                        </div>
-                                       <div style="text-align: left; width: 30%; float: left;">
-                                           <asp:DropDownList ID="ddlSchoolName" runat="server" CssClass=" validate[required] Droptextarea" Width="260px" Enabled="true" AutoPostBack="True" OnSelectedIndexChanged="ddlSchoolName_SelectedIndexChanged">
+                                       <div style="text-align: left; width: 40%; float: left;">
+                                           <asp:DropDownList ID="ddlSchoolName" runat="server" CssClass=" validate[required] Droptextarea" Width="450px" Enabled="true" AutoPostBack="True" OnSelectedIndexChanged="ddlSchoolName_SelectedIndexChanged">
                                            </asp:DropDownList>
                                        </div>
                                        <div style="text-align: left; width: 20%; float: left;" class="label">

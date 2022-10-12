@@ -41,6 +41,10 @@ namespace GEIMS.PayRoll
         #endregion
 
         #region Bind grid
+        /// <summary>
+        /// Comment added on 12/10/2022 Bhandavi        
+        /// Bind gridview gvPayItem with values from [tbl_PayItem_M] table with trust id 1 (for all schools taking trust id as parameter)
+        /// </summary>
         private void GridDataBind()
         {
             try
@@ -76,6 +80,12 @@ namespace GEIMS.PayRoll
         #endregion
 
         #region Save Event
+        /// <summary>
+        /// Comment added on 12/10/2022 Bhandavi    
+        /// to save new pay item into table  [tbl_PayItem_M]
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnSave_Click(object sender, EventArgs e)
         {
             PayItemBo objPayItemBo = new PayItemBo();
