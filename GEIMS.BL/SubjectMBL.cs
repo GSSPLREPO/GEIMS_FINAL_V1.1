@@ -17,19 +17,21 @@ namespace GEIMS.BL
         public string sSql;
         public string strStoredProcName;
         public SqlParameter[] pSqlParameter = null;
-        public static readonly string mstrConnString = System.Configuration.ConfigurationSettings.AppSettings["DBConnString"];
+        //public static readonly string mstrConnString = System.Configuration.ConfigurationSettings.AppSettings["DBConnString"];
+        public static readonly string mstrConnString = Encryption.Decrypt_Static(System.Configuration.ConfigurationSettings.AppSettings["DBConnString"]);
+
 
         #endregion
-		
 
-		
-		#region Select All SubjectM Details
+
+
+        #region Select All SubjectM Details
         /// <summary>
         /// To Select All data from the tbl_Subject_M table
         /// Created By : Darshan, 09/02/2014
-		/// Modified By :
+        /// Modified By :
         /// </summary>
-		/// <param name=""></param>
+        /// <param name=""></param>
         /// <returns></returns>
         public ApplicationResult  SubjectM_SelectAll()
         {

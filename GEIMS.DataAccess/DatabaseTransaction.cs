@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GEIMS.Common;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -11,7 +12,10 @@ namespace GEIMS.DataAccess
 		/// <summary>
 		/// Declaration of static variables
 		/// </summary>
-		public static readonly string mstrConnString = System.Configuration.ConfigurationSettings.AppSettings["DBConnString"];
+		//public static readonly string mstrConnString = System.Configuration.ConfigurationSettings.AppSettings["DBConnString"];
+
+		public static readonly string mstrConnString = Encryption.Decrypt_Static(System.Configuration.ConfigurationSettings.AppSettings["DBConnString"]);
+
 		public static SqlConnection connection = new SqlConnection(mstrConnString);
 		public static SqlCommand command = new SqlCommand();
 		public static SqlTransaction transaction = default(SqlTransaction);

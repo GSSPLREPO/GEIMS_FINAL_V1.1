@@ -315,7 +315,7 @@ namespace GEIMS.Client.UI
         {
             if (rblSelect.SelectedValue == "0")
             {
-                //Added 0n 12/10/2022 Bhandavi
+                //Added on 12/10/2022 Bhandavi
                 //When we select trust after selecting some school then not showing role rights correctly
                 ViewState["SchoolMID"] = 0;
                 divSchool.Visible = false;

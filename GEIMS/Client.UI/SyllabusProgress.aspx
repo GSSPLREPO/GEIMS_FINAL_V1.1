@@ -18,8 +18,8 @@
         <div id="divTitle" class="pageTitle" style="width: 100%;">
             Syllabus Progress
        <%--     <asp:LinkButton CausesValidation="false" ID="lnkAddNewClass" runat="server" CssClass="btn-blue btn-blue-medium Detach" OnClick="lnkAddNewClass_OnClick">Add New</asp:LinkButton>
-            &nbsp;
-			 <asp:LinkButton CausesValidation="false" ID="lnkViewList" runat="server" CssClass="btn-blue btn-blue-medium Detach" OnClick="lnkViewList_OnClick">View List</asp:LinkButton>--%>
+            &nbsp;--%>
+			 <asp:LinkButton CausesValidation="false" Visible="false" ID="lnkViewList" runat="server" CssClass="btn-blue btn-blue-medium Detach" OnClick="lnkViewList_OnClick">View List</asp:LinkButton>
         </div>
         <div id="divContent" style="height: 100%; font-family: Verdana;">
             <div id="divContent1" style="width: 10%; float: left; height: 100%; color: white;">1</div>

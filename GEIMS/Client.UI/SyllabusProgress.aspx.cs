@@ -27,6 +27,9 @@ namespace GEIMS.Client.UI
             }
         }
         #region Bind Employees
+        /// <summary>
+        /// to bind employees t odrop down list
+        /// </summary>
         public void BindEmployeeList()
         {
             try
@@ -150,21 +153,31 @@ namespace GEIMS.Client.UI
                 ApplicationResult objResult = new ApplicationResult();
                 SyllabusPlanningBL objSyllabusPLanningbl = new SyllabusPlanningBL();
 
-                int TeacherMID = Convert.ToInt32(ddlEmployeeList.SelectedValue);
-
-                objResult = objSyllabusPLanningbl.SyllabusPlanningListByTeacehrID(TeacherMID);
-                if (objResult.resultDT.Rows.Count > 0)
+                if (ddlEmployeeList.SelectedValue != "")
                 {
-                    gvSyllabusPlanning.Visible = true;
-                    NoDataFoundDiv.Visible = false;
-                    gvSyllabusPlanning.DataSource = objResult.resultDT;
-                    gvSyllabusPlanning.DataBind();
-                    PanelVisibility(1);
+                    int TeacherMID = Convert.ToInt32(ddlEmployeeList.SelectedValue);
 
+                    objResult = objSyllabusPLanningbl.SyllabusPlanningListByTeacehrID(TeacherMID);
+                    if (objResult.resultDT.Rows.Count > 0)
+                    {
+                        gvSyllabusPlanning.Visible = true;
+                        NoDataFoundDiv.Visible = false;
+                        gvSyllabusPlanning.DataSource = objResult.resultDT;
+                        gvSyllabusPlanning.DataBind();
+                        PanelVisibility(1);
+
+                    }
+                    else
+                    {
+                        NoDataFoundDiv.Visible = true;
+                        tabs.Visible = false;
+                        gvSyllabusPlanning.Visible = false;
+                        // PanelVisibility(2);
+                    }
                 }
                 else
                 {
-                    NoDataFoundDiv.Visible = true;
+                    //NoDataFoundDiv.Visible = true;
                     tabs.Visible = false;
                     gvSyllabusPlanning.Visible = false;
                     // PanelVisibility(2);
@@ -208,7 +221,7 @@ namespace GEIMS.Client.UI
                     SyllabusPlanningDiv3.Visible = true;
                     SyllabusRecoveredDiv.Visible = true;
                     ddlTeacherList.Enabled = false;
-
+                    lnkViewList.Visible = true;
 
                     ViewState["Mode"] = "Edit";
                     ViewState["SyllabusPlanTID"] = e.CommandArgument.ToString();
@@ -601,30 +614,81 @@ namespace GEIMS.Client.UI
                         if (objResult.status == ApplicationResult.CommonStatusType.SUCCESS)
                         {
                             ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Record updated successfully.');</script>");
-                            ClearAll();
-                            //     BindSyllabusMaster();
+                           // ClearAll();
+                            //BindSyllabusMaster();
                             ddlEmployeeList.Enabled = true;
-                            BindEmployeeList();
-                            PanelVisibility(1);
-
+                            //BindEmployeeList();
+                            //PanelVisibility(1);
+                            //Added on 13/10/2022 Bhandavi for displaying already selected employee syllabus detailes after saving
+                            ShowDetails();
                         }
                     }
                     else
                     {
-
                         ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Please Enter Actual Dates');</script>");
 
                     }
 
                 }
-
-             
             }
             catch (Exception ex)
             {
                 logger.Error("Error", ex);
                 ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Oops! There is some technical issue. Please Contact to your administrator.');</script>");
             }
+        }
+
+        /// <summary>
+        /// 13/10/2022 Bhandavi Back to menu button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void lnkViewList_OnClick(object sender, EventArgs e)
+        {
+            try
+            {               
+                ViewState["Mode"] = "Save";                    
+                ShowDetails();
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Error", ex);
+                ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Oops! There is some technical issue. Please Contact to your administrator.');</script>");
+            }
+        }
+
+        /// <summary>
+        /// 13/12/2022 Bhandavi
+        /// To show Previous Data of selected employee
+        /// </summary>
+        public void ShowDetails()
+        {
+            tabs.Visible = false;
+            gvSyllabusPlanning.Visible = false;
+            ddlEmployeeList.Enabled = true;
+
+            ApplicationResult objResult = new ApplicationResult();
+            SyllabusPlanningBL objSyllabusPLanningbl = new SyllabusPlanningBL();
+
+            int TeacherMID = Convert.ToInt32(ddlEmployeeList.SelectedValue);
+
+            objResult = objSyllabusPLanningbl.SyllabusPlanningListByTeacehrID(TeacherMID);
+            if (objResult.resultDT.Rows.Count > 0)
+            {
+                gvSyllabusPlanning.Visible = true;
+                NoDataFoundDiv.Visible = false;
+                gvSyllabusPlanning.DataSource = objResult.resultDT;
+                gvSyllabusPlanning.DataBind();
+                PanelVisibility(1);
+            }
+            else
+            {
+                NoDataFoundDiv.Visible = true;
+                tabs.Visible = false;
+                gvSyllabusPlanning.Visible = false;
+                // PanelVisibility(2);
+            }
+            lnkViewList.Visible = false;
         }
     }
 }

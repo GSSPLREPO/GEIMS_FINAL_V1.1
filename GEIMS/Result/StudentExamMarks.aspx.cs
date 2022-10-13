@@ -19,7 +19,9 @@ namespace GEIMS.Result
     {
         #region Declaration
         private static ILog logger = LogManager.GetLogger(typeof(StudentDetailMaster));
-        public static readonly string mstrConnString = System.Configuration.ConfigurationSettings.AppSettings["DBConnString"];
+        //public static readonly string mstrConnString = System.Configuration.ConfigurationSettings.AppSettings["DBConnString"];
+        public static readonly string mstrConnString = Encryption.Decrypt_Static(System.Configuration.ConfigurationSettings.AppSettings["DBConnString"]);
+
         #endregion
 
 

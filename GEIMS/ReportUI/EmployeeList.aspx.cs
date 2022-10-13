@@ -130,12 +130,13 @@ namespace GEIMS.ReportUI
         //}
 
         #region Bind Parameter Grid
+        //Following parameeters will be shown in grid view to select.
         public void BindParameterGrid()
         {
             DataTable dtParameters = new DataTable();
             dtParameters.Columns.Add("SrNo");
             dtParameters.Columns.Add("Fields");
-            dtParameters.Rows.Add("1", "Sr.");
+            dtParameters.Rows.Add("1", "Sr No.");
             dtParameters.Rows.Add("2", "Employee Code");
             dtParameters.Rows.Add("3", "Department Name");
             dtParameters.Rows.Add("4", "Designation Name");
@@ -168,15 +169,15 @@ namespace GEIMS.ReportUI
             dtParameters.Rows.Add("31", "Current State");
             dtParameters.Rows.Add("32", "Current State (Gujarati)");
             dtParameters.Rows.Add("33", "Current PinCode");
-            dtParameters.Rows.Add("34", "Permenant Address");
-            dtParameters.Rows.Add("35", "Permenant Address (Gujarati)");
-            dtParameters.Rows.Add("36", "Permenamt LandMark");
-            dtParameters.Rows.Add("37", "Permenant LandMark (Gujarati)");
-            dtParameters.Rows.Add("38", "Permenant City");
-            dtParameters.Rows.Add("39", "Permenant City (Gujarati)");
-            dtParameters.Rows.Add("40", "Permenant State");
-            dtParameters.Rows.Add("41", "Permenant State (Gujarati)");
-            dtParameters.Rows.Add("42", "Permenant PinCode");
+            dtParameters.Rows.Add("34", "Permanent Address");
+            dtParameters.Rows.Add("35", "Permanent Address (Gujarati)");
+            dtParameters.Rows.Add("36", "Permanent LandMark");
+            dtParameters.Rows.Add("37", "Permanent LandMark (Gujarati)");
+            dtParameters.Rows.Add("38", "Permanent City");
+            dtParameters.Rows.Add("39", "Permanent City (Gujarati)");
+            dtParameters.Rows.Add("40", "Permanent State");
+            dtParameters.Rows.Add("41", "Permanent State (Gujarati)");
+            dtParameters.Rows.Add("42", "Permanent PinCode");
             dtParameters.Rows.Add("43", "TelephoneNo");
             dtParameters.Rows.Add("44", "MobileNo");
             dtParameters.Rows.Add("45", "EmailId");
@@ -222,7 +223,7 @@ namespace GEIMS.ReportUI
             dtParameters.Rows.Add("85", "AllowAccountAccess");
             dtParameters.Rows.Add("86", "Category");
             dtParameters.Rows.Add("87", "Category (Gujarati)");
-            dtParameters.Rows.Add("88", "AaharCardNo");
+            dtParameters.Rows.Add("88", "Aadhar Card No.");
            
 
             gvParameter.DataSource = dtParameters;

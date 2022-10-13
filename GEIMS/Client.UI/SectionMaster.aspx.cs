@@ -91,6 +91,8 @@ namespace GEIMS.Client.UI
             objControls.ClearForm(Master.FindControl("ContentPlaceHolder1"));
             PanelGrid_VisibilityMode(2);
             txtAbbreviation.Enabled = true;
+            lnkAddNewSection.Visible = false;
+            ViewState["Mode"] = "Save";
         }
         #endregion
 
@@ -211,6 +213,7 @@ namespace GEIMS.Client.UI
                             PanelGrid_VisibilityMode(2);
                         }
                     }
+                    lnkAddNewSection.Visible = false;
                 }
                 else if ((e.CommandName.ToString() == "Delete1"))
                 {
