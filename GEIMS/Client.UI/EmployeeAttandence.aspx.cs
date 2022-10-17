@@ -525,6 +525,11 @@ namespace GEIMS.Client.UI
                 {
                     DatabaseTransaction.CommitTransation();
                     ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script language='javascript'>alert('Employee Attendence saved Successfully.');</script>");
+                  
+                    GetSchoolName();
+                    btnSave.Enabled = false;
+                    txtdate.Attributes.Add("readonly", "readonly");
+                    ViewState["Mode"] = "Save";
                     divNote.Visible = false;
                 }
                 else

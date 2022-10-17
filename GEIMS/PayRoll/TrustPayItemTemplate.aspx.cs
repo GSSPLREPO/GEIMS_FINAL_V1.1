@@ -176,8 +176,13 @@ namespace GEIMS.PayRoll
                 }
                 foreach (GridViewRow row in gvPayItem.Rows)
                 {
+                    //17/10/2022 Bhandavi Inserting into [tbl_TrustPayItem_M] table if checked (saving even already existed in table)
+                    //Need to check in table if exists(for checked checkbox) then do not insert
+                    //and delete from table if unchecked and if exists in the table
+                   
                     if (((CheckBox)row.FindControl("CheckBoxPayItem")).Checked)
                     {
+                      
                         //int SchoolID = Convert.ToInt32(ddlSchool.SelectedValue);
                         objTrustPayItemBO.SchoolMID = Convert.ToInt32(ddlSchool.SelectedValue); 
                         objTrustPayItemBO.PayItemID = Convert.ToInt32(row.Cells[0].Text);
@@ -187,12 +192,33 @@ namespace GEIMS.PayRoll
                         objTrustPayItemBO.TrustMID = Convert.ToInt32(Session[ApplicationSession.TRUSTID]);
                         objTrustPayItemBO.CreatedDate = DateTime.UtcNow.AddHours(5.5).ToString();
                         objTrustPayItemBO.CreatedUserID = Convert.ToInt32(Session[ApplicationSession.USERID]);
-                        objResultsInsert = objTrustPayItemBl.TrustPayItem_Insert(objTrustPayItemBO);
+
+                        //check if already exists in tbl_TrustPayItem_M table with selected parameters                        
+                        int payItemCount = objTrustPayItemBl.CheckTrustPayItem(Convert.ToInt32(Session[ApplicationSession.TRUSTID]),
+                                         Convert.ToInt32(ddlSchool.SelectedValue), Convert.ToInt32(row.Cells[0].Text));
+
+                        if(payItemCount == 0)
+                            objResultsInsert = objTrustPayItemBl.TrustPayItem_Insert(objTrustPayItemBO);
+
                         if (objResultsInsert != null)
                         {
                             ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script language='javascript'>alert('School PayItem Successfully Saved.');</script>");
                         }
+
                     }
+
+                    //if unchecked check if exists in tbl_TrustPayItem_M table with selected parameters, if used then do not delete 
+                    //delete if not used in tbl_PaySlipUserPayItem_T table for unselected payitem
+                    else
+                    {
+                        int payItemCount = objTrustPayItemBl.CheckTrustPayItem(Convert.ToInt32(Session[ApplicationSession.TRUSTID]),
+                                        Convert.ToInt32(ddlSchool.SelectedValue), Convert.ToInt32(row.Cells[0].Text));
+                        if (payItemCount > 0)
+                        {
+                            
+                        }
+                    }
+
                 }
                 DatabaseTransaction.CommitTransation();
                 #endregion

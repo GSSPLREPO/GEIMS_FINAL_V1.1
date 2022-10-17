@@ -471,6 +471,63 @@ namespace GEIMS.BL
         }
         #endregion
 
+        /// <summary>
+        /// 17/10/2022 Bhandavi 
+        /// To check selected parameters are already exists in [tbl_TrustPayItem_M] table
+        /// </summary>
+        /// <param name=></param>
+        /// <returns></returns>
+        public int CheckTrustPayItem(int TrustMID,int SchoolMID,int PayItemID)
+        {
+            try
+            {
+                pSqlParameter = new SqlParameter[3];
+
+                pSqlParameter[0] = new SqlParameter("@TrustMID", SqlDbType.Int);
+                pSqlParameter[0].Direction = ParameterDirection.Input;
+                pSqlParameter[0].Value = TrustMID;
+
+                pSqlParameter[1] = new SqlParameter("@SchoolMID", SqlDbType.Int);
+                pSqlParameter[1].Direction = ParameterDirection.Input;
+                pSqlParameter[1].Value = SchoolMID;
+
+                pSqlParameter[2] = new SqlParameter("@PayItemID", SqlDbType.Int);
+                pSqlParameter[2].Direction = ParameterDirection.Input;
+                pSqlParameter[2].Value = PayItemID;
+
+                //pSqlParameter[3] = new SqlParameter("@Count", SqlDbType.Int);
+                //pSqlParameter[3].Direction = ParameterDirection.Output;
+                //pSqlParameter[2].Value = objTrustPayItemBO.PayItemID;
+
+                sSql = "usp_tbl_TrustPayItem_M_Check";
+                DataTable dt= DatabaseTransaction.ExecuteDataTable(CommandType.StoredProcedure, sSql, pSqlParameter);
+                if (dt.Rows.Count > 0)
+                    return Convert.ToInt32(dt.Rows[0][0]);
+                else
+                    return 0;
+                //if (dt.Rows.Count > 0)
+                //{
+                //    ApplicationResult objResults = new ApplicationResult();
+                //    objResults.status = ApplicationResult.CommonStatusType.SUCCESS;
+                //    return dt.;
+                //}
+                //else
+                //{
+                //    ApplicationResult objResults = new ApplicationResult();
+                //    objResults.status = ApplicationResult.CommonStatusType.FAILURE;
+                //    return objResults;
+                //}
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                //objResults.sta = null;
+            }
+        }
+
     }
 }
 

@@ -446,8 +446,7 @@ namespace GEIMS.Leave
             gvLeave.DataSource = null;
             btnSave.Visible = false;
         }
-
-       
+              
 
         protected void ddlSearchBy_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -456,8 +455,6 @@ namespace GEIMS.Leave
             btnSave.Visible = false;
             // gvLeave.Visible = true;
             //txtSearchName.Enabled = true;
-        }
-
-       
+        }       
     }
 }

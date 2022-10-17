@@ -416,7 +416,7 @@ namespace GEIMS.Client.UI
         #region gvSyllabus_RowCommand
         
         protected void gvSyllabus_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
+         {
             try
             {
                 ApplicationResult objResult = new ApplicationResult();
