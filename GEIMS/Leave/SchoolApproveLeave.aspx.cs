@@ -69,7 +69,7 @@ namespace GEIMS.Leave
         /// <summary>
         /// Comments on 29/09/2022 Bhandavi
         /// To approve or reject a leave
-        /// If we reject a leave isDeleted flag is set to 1 in tbl_LeaveApply table.
+        /// If we reject a leave [IsApproved] flag to 2 and isDeleted flag is set to 1 in tbl_LeaveApply table.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

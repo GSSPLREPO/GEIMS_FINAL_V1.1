@@ -303,15 +303,16 @@ namespace GEIMS.Reports
 
                     if (objResults != null)
                     {
-                        gvEducationalDetail1.DataSource = objResults.resultDT;
-                        gvEducationalDetail1.DataBind();
+                        
                         if (objResults.resultDT.Rows.Count > 0)
                         {
+                            gvEducationalDetail1.DataSource = objResults.resultDT;
+                            gvEducationalDetail1.DataBind();
                             gvEducationalDetail1.Visible = true;
                         }
                         else
                         {
-                            gvEducationalDetail1.Visible = false;
+                            //gvEducationalDetail1.Visible = false;
                         }
                     }
 
@@ -319,16 +320,17 @@ namespace GEIMS.Reports
 
                     if (objResults != null)
                     {
-                        gvExperience1.DataSource = objResults.resultDT;
-                        gvExperience1.DataBind();
-                     
+                       
                         if (objResults.resultDT.Rows.Count > 0)
                         {
-                           gvExperience1.Visible = true;
+                            gvExperience1.DataSource = objResults.resultDT;
+                            gvExperience1.DataBind();
+
+                            gvExperience1.Visible = true;
                         }
                         else
                         {
-                            gvExperience1.Visible = false;
+                            //gvExperience1.Visible = false;
                         }
                     }
 

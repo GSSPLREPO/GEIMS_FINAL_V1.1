@@ -370,11 +370,12 @@ namespace GEIMS.BL
 
                 pSqlParameter[4] = new SqlParameter("@RecOutTime", SqlDbType.VarChar);
                 pSqlParameter[4].Direction = ParameterDirection.Input;
-                pSqlParameter[4].Value = objEmployeeattendanceBO.OutTime;
+                pSqlParameter[4].Value = objEmployeeattendanceBO.RecOutTime;
 
-                pSqlParameter[5].Direction = ParameterDirection.Input;
-                pSqlParameter[5].Value = objEmployeeattendanceBO.InTime;
                 pSqlParameter[5] = new SqlParameter("@RecInTime", SqlDbType.VarChar);
+                pSqlParameter[5].Value = objEmployeeattendanceBO.InTime;
+                pSqlParameter[5].Direction = ParameterDirection.Input;
+                
 
                 pSqlParameter[6] = new SqlParameter("@OutTime", SqlDbType.VarChar);
                 pSqlParameter[6].Direction = ParameterDirection.Input;

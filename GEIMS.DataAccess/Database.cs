@@ -445,6 +445,8 @@ namespace GEIMS.DataAccess
 		/// </summary>
 		//public static readonly string mstrConnString=System.Configuration.ConfigurationSettings.AppSettings["ConnString"];
 		//public static readonly string mstrConnString = System.Configuration.ConfigurationSettings.AppSettings["DBConnString"];
+		//05 10 2022 Bhandavi
+		//Added code to decrypt connection string(encrypted in web.config)
 		public static readonly string mstrConnString = Encryption.Decrypt_Static(System.Configuration.ConfigurationSettings.AppSettings["DBConnString"]);
 
 		#region "Constructors and members"
