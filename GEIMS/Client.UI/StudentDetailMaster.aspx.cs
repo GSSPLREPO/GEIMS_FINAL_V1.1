@@ -363,6 +363,11 @@ namespace GEIMS.Client.UI
         #endregion
 
         #region AddStudent
+        /// <summary>
+        /// For new student registration
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnAddNewStudent_Click(object sender, EventArgs e)
         {
             Controls objControls = new Controls();
@@ -592,14 +597,23 @@ namespace GEIMS.Client.UI
                         if (objResults.status == ApplicationResult.CommonStatusType.SUCCESS)
                         {
                             lblMessage.Visible = true;
-                            lblMessage.Text = "Student Created Successfully.";
+                            //20/10/2022 Bhandavi
+                            //To show alert message instead of label message
+                            ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Student Created Successfully.');</script>");                            
+                            lblMessage.Text = "";
+                            //lblMessage.Text = "Student Created Successfully.";
+
                             ClearAll();
                             hfTab.Value = "5";
                         }
                         else
                         {
                             lblMessage.Visible = true;
-                            lblMessage.Text = "Student GRNo Already Exist.";
+                            //20/10/2022 Bhandavi
+                            //To show alert message instead of label message
+                            ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Student GRNo Already Exist.');</script>");
+                            lblMessage.Text = "";
+                            //lblMessage.Text = "Student GRNo Already Exist.";
                             ClearAll();
                             hfTab.Value = "5";
                         }
@@ -625,7 +639,12 @@ namespace GEIMS.Client.UI
                         hfTab.Value = "4";
                         hdnStudentID.Value = ViewState["StudentMID"].ToString();
                         lblMessage.Visible = true;
-                        lblMessage.Text = "Student updated successfully.";
+                        //20/10/2022 Bhandavi
+                        //To show alert message instead of label message
+                        ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Student Updated Successfully.');</script>");
+                        lblMessage.Text = "";
+                        //lblMessage.Text = "Student Created Successfully.";
+
                         ClearAll();
                         ViewState["Mode"] = "Save";
                         btnSave.Text = "Save";
@@ -636,7 +655,11 @@ namespace GEIMS.Client.UI
                         hfTab.Value = "4";
                         hdnStudentID.Value = ViewState["StudentMID"].ToString();
                         lblMessage.Visible = true;
-                        lblMessage.Text = "Student GRNo Already Exists.";
+                        //20/10/2022 Bhandavi
+                        //To show alert message instead of label message
+                        ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Student GRNo Already Exists.');</script>");
+                        lblMessage.Text = "";
+                        //lblMessage.Text = "Student GRNo Already Exists.";
                         ClearAll();
                         ViewState["Mode"] = "Save";
                         btnSave.Text = "Save";
@@ -656,6 +679,11 @@ namespace GEIMS.Client.UI
         #endregion
 
         #region Go for Searching Student
+        /// <summary>
+        /// To get selected student grid (based on Student Name / Student GRNo / Student Form No / Student Unique Id
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnGo_Click(object sender, EventArgs e)
         {
             try
@@ -922,6 +950,12 @@ namespace GEIMS.Client.UI
         #endregion
 
         #region Row Command
+        /// <summary>
+        /// Comment added on 20/10/2022 Bhandavi
+        /// to display details of selected student
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gvStudent_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             try
@@ -1110,7 +1144,9 @@ namespace GEIMS.Client.UI
                             txtSubcasteEng.Text = objResults.resultDT.Rows[0][StudentBO.STUDENT_SUBCASTEENG].ToString();
                             txtSubCasteGuj.Text = objResults.resultDT.Rows[0][StudentBO.STUDENT_SUBCASTEGUJ].ToString();
 
-                            if (objResults.resultDT.Rows[0][StudentBO.STUDENT_CATEGORYENG].ToString() == "Open")
+                            if (objResults.resultDT.Rows[0][StudentBO.STUDENT_CATEGORYENG].ToString() == "Open" ||
+                                   objResults.resultDT.Rows[0][StudentBO.STUDENT_CATEGORYENG].ToString() == "General" ||
+                                   objResults.resultDT.Rows[0][StudentBO.STUDENT_CATEGORYENG].ToString() == "GENERAL")
                             {
                                 rblCategory.Items[0].Selected = true;
                             }
@@ -1131,7 +1167,8 @@ namespace GEIMS.Client.UI
                                 rblCategory.Items[4].Selected = true;
                             }
 
-                            if (objResults.resultDT.Rows[0][StudentBO.STUDENT_CATEGORYGUJ].ToString() == "સામાન્ય")
+                            if (objResults.resultDT.Rows[0][StudentBO.STUDENT_CATEGORYGUJ].ToString() == "સામાન્ય" ||
+                                objResults.resultDT.Rows[0][StudentBO.STUDENT_CATEGORYGUJ].ToString() == "જનરલ")
                             {
                                 rblCategoryGuj.Items[0].Selected = true;
                             }
@@ -1331,15 +1368,19 @@ namespace GEIMS.Client.UI
             {
                 if (intMode == 1)
                 {
+                    //Comments added on 20/10/2022 Bhandavi
+                    //for displaying search student panel (Section, Class, Division, and search student dropdown)
                     GridPanel.Visible = true;
                     divStudent.Visible = false;
                     lnkAddNewStudent.Visible = true;
                 }
                 else if (intMode == 2)
                 {
+                    //Comments added on 20/10/2022 Bhandavi
+                    //for new student registration and for editing existing student
                     GridPanel.Visible = false;
                     divStudent.Visible = true;
-                    lnkAddNewStudent.Visible = true;
+                    lnkAddNewStudent.Visible = false;
                 }
             }
         }
@@ -1382,10 +1423,9 @@ namespace GEIMS.Client.UI
         {
             if (intMode == 1)
             {
-
-
-                //Student Detail
-
+                //Comments added on 20/10/2022 Bhandavi
+                //for searching a student, in edit mode
+            
                 ddlSection.Enabled = false;
                 //txtAdmittedGr.Enabled = false;
                 txtCurAdmissionDate.Enabled = false;
@@ -1397,9 +1437,8 @@ namespace GEIMS.Client.UI
             }
             else if (intMode == 2)
             {
-
-
-                //Student Detail
+                //Comments added on 20/10/2022 Bhandavi
+                //for new student registration to enter student details
 
                 ddlSection.Enabled = true;
                 //txtAdmittedGr.Enabled = true;
@@ -1524,23 +1563,53 @@ namespace GEIMS.Client.UI
         }
         #endregion
 
+
         protected void rblGender_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (rblGender.SelectedValue == "MALE")
             {
                 imgphoto.ImageUrl = "../Images/MALE_ICON.png";
+                //20/20/2022 Bhandavi
+                // If user selects Male then select male in gujarati
+                rblGenderGuj.SelectedIndex = 0;
             }
             else if (rblGender.SelectedValue == "FEMALE")
             {
                 imgphoto.ImageUrl = "../Images/FEMALE_ICON.png";
+                //20/20/2022 Bhandavi
+                // If user selects female then select female in gujarati
+                rblGenderGuj.SelectedIndex = 1;
             }
             else {
                 imgphoto.ImageUrl = "../Images/noimage-big.jpg";
-            }
-                
+            }           
                 
         }
 
-       
+        /// <summary>
+        /// 20/10/2022 Bhandavi
+        /// When user changed gender in gujarati, same gender need to selected in gender english also
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void rblGenderGuj_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rblGenderGuj.SelectedIndex ==0)
+            {
+                imgphoto.ImageUrl = "../Images/MALE_ICON.png";
+
+                rblGender.SelectedIndex = 0;
+            }
+            else if (rblGenderGuj.SelectedIndex == 1)
+            {
+                imgphoto.ImageUrl = "../Images/FEMALE_ICON.png";
+                rblGender.SelectedIndex = 1;
+            }
+            else
+            {
+                imgphoto.ImageUrl = "../Images/noimage-big.jpg";
+            }
+        }
+
     }
 }

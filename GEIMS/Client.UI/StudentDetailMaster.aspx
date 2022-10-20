@@ -600,7 +600,8 @@
                                         <div style="text-align: left; width: 73%; float: left;">
                                             <%--<asp:RadioButton runat="server" CssClass="validate[required]" ValidationGroup="Gender" Text="Male" ID="rdMale" />
 										<asp:RadioButton runat="server" CssClass="validate[required]" ValidationGroup="Gender" Text="Female" ID="rdFemale" />--%>
-                                            <asp:RadioButtonList ID="rblGender" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="rblGender_SelectedIndexChanged">
+                                            <asp:RadioButtonList ID="rblGender" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="rblGender_SelectedIndexChanged"
+                                                 onclick="OnChangeGender(this);">
                                                 <asp:ListItem Value="MALE">Male</asp:ListItem>
                                                 <asp:ListItem Value="FEMALE">Female</asp:ListItem>
                                             </asp:RadioButtonList>
@@ -680,7 +681,7 @@
                             </div>
                             <div style="height: 30px; margin-top: 10px; float: left; width: 100%;">
                                 <div style="text-align: left; width: 19%; float: left;" class="label">
-                                    Sub Category: <span style="color: red">*</span>
+                                    Category: <span style="color: red">*</span>
                                 </div>
                                 <div style="text-align: left; width: 81%; float: left;">
                                     <asp:RadioButtonList ID="rblCategory" CssClass="CheckBoxList" runat="server" RepeatDirection="Horizontal" Font-Bold="false">
@@ -1347,7 +1348,8 @@
                                     જાતિ :<span style="color: red">*</span>
                                 </div>
                                 <div style="text-align: left; width: 27%; float: left;">
-                                    <asp:RadioButtonList ID="rblGenderGuj" runat="server" RepeatDirection="Horizontal">
+                       <asp:RadioButtonList ID="rblGenderGuj" runat="server" RepeatDirection="Horizontal" onclick="OnChangeGenderGuj(this);">
+                              <%--  <asp:RadioButtonList ID="rblGenderGuj" runat="server" AutoPostBack="true"  onclick="OnChangeGenderGuj(this);"  RepeatDirection="Horizontal" OnSelectedIndexChanged="rblGenderGuj_SelectedIndexChanged">--%>
                                         <asp:ListItem Value="પુરૂષ">પુરૂષ</asp:ListItem>
                                         <asp:ListItem Value="સ્ત્રી">સ્ત્રી</asp:ListItem>
                                     </asp:RadioButtonList>
@@ -1910,26 +1912,29 @@
             var tab = $(document.getElementById('<%= hfTab.ClientID %>')).val();
             // alert("Save");
             if (tab == "0") {
-                // alert("0");
-                $(document.getElementById('<%= tabs.ClientID %>')).tabs();
-                    $(document.getElementById('<%= tabs.ClientID %>')).tabs("enable", 0);
-                    $(document.getElementById('<%= tabs.ClientID %>')).tabs({ disabled: [1, 2, 3, 4] });
-                    $(document.getElementById('<%= tabs.ClientID %>')).tabs({ active: 0 });
+                alert("0");
+            $(document.getElementById('<%= tabs.ClientID %>')).tabs();
+                $(document.getElementById('<%= tabs.ClientID %>')).tabs("enable", 0);
+                $(document.getElementById('<%= tabs.ClientID %>')).tabs({ disabled: [1, 2, 3, 4] });
+                $(document.getElementById('<%= tabs.ClientID %>')).tabs({ active: 0 });
 
 
-                }
-                else if (tab == "4") {
-                    // alert("4");
-                    $(document.getElementById('<%= tabs.ClientID %>')).tabs();
-                    $(document.getElementById('<%= tabs.ClientID %>')).tabs("enable", 4);
-                    $(document.getElementById('<%= tabs.ClientID %>')).tabs({ disabled: [0, 1, 2, 3] });
-                    $(document.getElementById('<%= tabs.ClientID %>')).tabs({ active: 4 });
-
-
-                }
-                else if (tab == "1") {
-                    $(document.getElementById('<%= tabs.ClientID %>')).tabs();
             }
+            else if (tab == "4") {
+                    alert("4");
+                $(document.getElementById('<%= tabs.ClientID %>')).tabs();
+                $(document.getElementById('<%= tabs.ClientID %>')).tabs("enable", 4);
+                $(document.getElementById('<%= tabs.ClientID %>')).tabs({ disabled: [0, 1, 2, 3] });
+                $(document.getElementById('<%= tabs.ClientID %>')).tabs({ active: 4 });
+
+
+            }
+            else if (tab == "1") {
+                alert("1");
+                $(document.getElementById('<%= tabs.ClientID %>')).tabs();
+            }
+
+            ShowStudentDocuments();
         });
 
 
@@ -2139,6 +2144,12 @@
         });
 
         $("#btnUploadDocument").click(function () {
+
+            ShowStudentDocuments();   
+
+        });
+
+        function ShowStudentDocuments() {
             // alert("hi");
             $("#btnStudentDetail").show();
             $("#btnUploadDocument").hide();
@@ -2367,8 +2378,7 @@
                 }
                 return false;
             }
-
-        });
+        }
 
         $(document.getElementById('<%= lnkViewList.ClientID %>')).click(function () {
             $("#btnUploadDocument").hide();
@@ -2379,8 +2389,57 @@
 
 
         });
+
+          
         function calendarShown(sender, args) {
             sender._popupBehavior._element.style.zIndex = 10005;
         }
     </script>
+      <script type="text/javascript">
+
+          /*
+          Added code on 20/10/2022 Bhandavi
+          When we change the gender radio button in english then automatically change the gender radio button in gujarati and viceversa
+           */
+
+          //on gender gujarati selected value changed
+        function OnChangeGenderGuj(myRadio) {
+            var rbG = document.getElementById("<%=rblGenderGuj.ClientID%>");
+            var rb = document.getElementById("<%=rblGender.ClientID%>");
+
+            var radioG = rbG.getElementsByTagName("input");
+            var radio = rb.getElementsByTagName("input");
+
+            var isChecked = false;
+            for (var i = 0; i < radioG.length; i++) {
+                if (radioG[i].checked) {
+                    radio[i].checked = true;
+                    isChecked = true;
+                    break;
+                }
+            }
+            return isChecked;
+        }
+
+             //on gender english selected value changed
+          function OnChangeGender(myRadio) {
+              var rbG = document.getElementById("<%=rblGenderGuj.ClientID%>");
+               var rb = document.getElementById("<%=rblGender.ClientID%>");
+
+               var radioG = rbG.getElementsByTagName("input");
+               var radio = rb.getElementsByTagName("input");
+
+               var isChecked = false;
+               for (var i = 0; i < radio.length; i++) {
+                   if (radio[i].checked) {
+                       radioG[i].checked = true;
+                       isChecked = true;
+                       break;
+                   }
+               }
+               return isChecked;
+           }
+
+</script>
+
 </asp:Content>
