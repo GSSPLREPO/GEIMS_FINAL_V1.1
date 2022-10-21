@@ -602,9 +602,14 @@ namespace GEIMS.Client.UI
                             ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Student Created Successfully.');</script>");                            
                             lblMessage.Text = "";
                             //lblMessage.Text = "Student Created Successfully.";
-
+                          
                             ClearAll();
                             hfTab.Value = "5";
+                            //21/10/2022 Bhandavi
+                            //To display documents after saving details of a student
+                            hdfSaveStudent.Value = "Saved";
+
+                            
                         }
                         else
                         {
@@ -616,6 +621,7 @@ namespace GEIMS.Client.UI
                             //lblMessage.Text = "Student GRNo Already Exist.";
                             ClearAll();
                             hfTab.Value = "5";
+                            hdfSaveStudent.Value = "";
                         }
 
                     }
@@ -648,6 +654,10 @@ namespace GEIMS.Client.UI
                         ClearAll();
                         ViewState["Mode"] = "Save";
                         btnSave.Text = "Save";
+                       //21/10/2022 Bhandavi
+                       //To display documents after saving details of a student
+                        hdfSaveStudent.Value = "Saved";
+                       
                         //}
                     }
                     else
@@ -663,6 +673,7 @@ namespace GEIMS.Client.UI
                         ClearAll();
                         ViewState["Mode"] = "Save";
                         btnSave.Text = "Save";
+                        hdfSaveStudent.Value = "";
                     }
                 }
                 DatabaseTransaction.CommitTransation();
@@ -969,6 +980,7 @@ namespace GEIMS.Client.UI
 
                 if (e.CommandName.ToString() == "Edit1")
                 {
+                    hdfSaveStudent.Value = "";
                     Manage_Student(1);
                     dt = FetchSection(Convert.ToInt32(Session[ApplicationSession.SCHOOLID]));
                     if (dt.Rows.Count > 0)

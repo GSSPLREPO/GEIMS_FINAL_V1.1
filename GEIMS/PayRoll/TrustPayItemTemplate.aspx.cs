@@ -203,6 +203,7 @@ namespace GEIMS.PayRoll
                         if (objResultsInsert != null)
                         {
                             ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script language='javascript'>alert('School PayItem Successfully Saved.');</script>");
+                           
                         }
 
                     }
@@ -211,12 +212,19 @@ namespace GEIMS.PayRoll
                     //delete if not used in tbl_PaySlipUserPayItem_T table for unselected payitem
                     else
                     {
-                        int payItemCount = objTrustPayItemBl.CheckTrustPayItem(Convert.ToInt32(Session[ApplicationSession.TRUSTID]),
-                                        Convert.ToInt32(ddlSchool.SelectedValue), Convert.ToInt32(row.Cells[0].Text));
-                        if (payItemCount > 0)
-                        {
-                            
-                        }
+                        //int payItemCount = objTrustPayItemBl.CheckTrustPayItem(Convert.ToInt32(Session[ApplicationSession.TRUSTID]),
+                        //                Convert.ToInt32(ddlSchool.SelectedValue), Convert.ToInt32(row.Cells[0].Text));                     
+
+                        //if (payItemCount > 0)
+                        //{
+                        //    objResultsDelete = objTrustPayItemBl.TrustPayItem_DeleteN
+                        //        (Convert.ToInt32(Convert.ToInt32(row.Cells[0].Text).ToString()),TrustMID,SchoolMID, Convert.ToInt32(Session[ApplicationSession.USERID]), DateTime.UtcNow.AddHours(5.5).ToString());
+
+                        //}
+                        //if (objResultsDelete != null)
+                        //{
+                        //    ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script language='javascript'>alert('School PayItem Successfully Saved.');</script>");
+                        //}
                     }
 
                 }

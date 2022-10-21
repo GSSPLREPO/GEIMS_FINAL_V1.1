@@ -684,7 +684,8 @@
                                     Category: <span style="color: red">*</span>
                                 </div>
                                 <div style="text-align: left; width: 81%; float: left;">
-                                    <asp:RadioButtonList ID="rblCategory" CssClass="CheckBoxList" runat="server" RepeatDirection="Horizontal" Font-Bold="false">
+                                    <asp:RadioButtonList ID="rblCategory" CssClass="CheckBoxList"  onclick="OnChangeCat();"
+                                        runat="server" RepeatDirection="Horizontal" Font-Bold="false">
                                         <asp:ListItem Value="Open">Open</asp:ListItem>
                                         <asp:ListItem Value="OBC">OBC</asp:ListItem>
                                         <asp:ListItem Value="SC">SC</asp:ListItem>
@@ -1390,7 +1391,8 @@
                                     જાતિ : <span style="color: red">*</span>
                                 </div>
                                 <div style="text-align: left; width: 81%; float: right; vertical-align: top;">
-                                    <asp:RadioButtonList ID="rblCategoryGuj" CssClass="CheckBoxList" runat="server" RepeatDirection="Horizontal" Font-Bold="false">
+                                    <asp:RadioButtonList ID="rblCategoryGuj" CssClass="CheckBoxList" 
+                                        runat="server" RepeatDirection="Horizontal" Font-Bold="false" onclick="onChangeCatGuj()">
                                         <asp:ListItem Value="સામાન્ય">સામાન્ય</asp:ListItem>
                                         <asp:ListItem Value="બક્ષીપંચ">બક્ષીપંચ</asp:ListItem>
                                         <asp:ListItem Value="SC">અનુસૂચિત જાતિ</asp:ListItem>
@@ -1614,7 +1616,7 @@
                                     runat="server" ID="btnCancel" Text="Cancel"
                                     CssClass="btn-blue btn-blue-medium Detach"
                                     OnClientClick="myFunction()" />--%>
-
+                                      <asp:HiddenField ID="hdfSaveStudent" runat="server" />
                                 &nbsp;&nbsp;
                                  <asp:Button runat="server" ID="btnSave" Text="Save"
                                      CssClass="btn-blue btn-blue-medium"
@@ -1630,14 +1632,14 @@
                             <div style="width: 100%;">
                                 <%--  <p style="font-size: 15px; margin-bottom: 10px; margin-left: 10px; font-weight: bold">
             Upload Files</p>--%>
-                                <div id="divGrid" style="width: 500px; background-color: #3b5998; height: 25px; clear: both; color: white;">
-                                    <div style="width: 175px; float: left; margin-left: 40px; margin-top: 4px;">
+                                <div id="divGrid" style="width: 700px; background-color: #3b5998; height: 25px; clear: both; color: white;">
+                                    <div style="width: 260px; float: left; margin-left: 40px; margin-top: 4px;">
                                         File Name
                                     </div>
-                                    <div style="width: 180px; float: left; margin-top: 4px;">
+                                    <div style="width: 300px; float: left; margin-top: 4px;">
                                         Description
                                     </div>
-                                    <div style="width: 50px; float: left; margin-top: 4px;">
+                                    <div style="width: 40px; float: left; margin-top: 4px;">
                                         Action
                                     </div>
                                 </div>
@@ -1739,7 +1741,6 @@
                 //alert("Upload1");
                 $("#aspnetForm").submit();
             }
-
         };
 
         jQuery("#aspnetForm").validationEngine('attach', {
@@ -1912,8 +1913,8 @@
             var tab = $(document.getElementById('<%= hfTab.ClientID %>')).val();
             // alert("Save");
             if (tab == "0") {
-                alert("0");
-            $(document.getElementById('<%= tabs.ClientID %>')).tabs();
+                //alert("0");
+                $(document.getElementById('<%= tabs.ClientID %>')).tabs();
                 $(document.getElementById('<%= tabs.ClientID %>')).tabs("enable", 0);
                 $(document.getElementById('<%= tabs.ClientID %>')).tabs({ disabled: [1, 2, 3, 4] });
                 $(document.getElementById('<%= tabs.ClientID %>')).tabs({ active: 0 });
@@ -1921,7 +1922,7 @@
 
             }
             else if (tab == "4") {
-                    alert("4");
+                //alert("4");
                 $(document.getElementById('<%= tabs.ClientID %>')).tabs();
                 $(document.getElementById('<%= tabs.ClientID %>')).tabs("enable", 4);
                 $(document.getElementById('<%= tabs.ClientID %>')).tabs({ disabled: [0, 1, 2, 3] });
@@ -1930,11 +1931,12 @@
 
             }
             else if (tab == "1") {
-                alert("1");
+                //alert("1");
                 $(document.getElementById('<%= tabs.ClientID %>')).tabs();
             }
-
+          
             ShowStudentDocuments();
+          
         });
 
 
@@ -2339,8 +2341,8 @@
                 var lblfilename = 'lblfilename_' + count;
                 var path = $('#hdnUploadFilePath').val();
                 //alert("uploadedDiv");
-                $("#uploadedDiv").append("<div id='" + hdnid + "' style='clear:both; background-color:#d2e9ff; padding-top:5px; height:25px; width:500px'><span id='" + lblfilename + "' style='width:175px;float:left;margin-left:40px;overflow:hidden;'>" + fileName +
-                    "</span><span style='width:170px;float:left;margin-left:0px;'><input type='text' id='" + txtDocDescId + "' value='" + fileName +
+                $("#uploadedDiv").append("<div id='" + hdnid + "' style='clear:both; background-color:#d2e9ff; padding-top:5px; height:25px; width:700px'><span id='" + lblfilename + "' style='width:260px;float:left;margin-left:40px;overflow:hidden;'>" + fileName +
+                    "</span><span style='width:300px;float:left;margin-left:0px;'><input type='text' id='" + txtDocDescId + "' value='" + fileName +
                     "' /><input name='" + hdnid + "' id='" + hdnid + "' value='" + count + "' type='hidden'></span><span style='float:left; margin-left:10px; width:40px;' >" +
                     "<a href='#' class='dellink' onclick='deleterow(\"#" + hdnid + "," + file + "\")'>Delete</a></span>" + // for deleting file
                     "<span style='float:left; margin-left:10px; width:40px;' ><a class='dellink' href='FileUpload.ashx?filepath=" + path + "&file=" + file + "&SchoolID=" + SchoolID + "&TrustID=" + TrustID + "&StudentMID=" + StudentMID + "&EmployeeMID=" + EmployeeMID + "' >View</a></span></div>" // for downloading file
@@ -2438,8 +2440,64 @@
                    }
                }
                return isChecked;
-           }
+          }         
+        </script>
 
-</script>
 
+    <script type="text/javascript">
+        //21/10/2022 Bhandavi
+        //When we change category in english then automatically change in gugarati and vice versa
+        
+        function OnChangeCat() {
+         
+            var rbG = document.getElementById("<%=rblCategoryGuj.ClientID%>");
+             var rb = document.getElementById("<%=rblCategory.ClientID%>");
+
+              var radioG = rbG.getElementsByTagName("input");
+              var radio = rb.getElementsByTagName("input");
+            
+              var isChecked = false;
+              for (var i = 0; i < radio.length; i++) {
+                  if (radio[i].checked) {
+                      radioG[i].checked = true;
+                      isChecked = true;
+                      break;
+                  }
+              }
+              return isChecked;
+          }
+
+          function onChangeCatGuj() {           
+            var rbG = document.getElementById("<%=rblCategoryGuj.ClientID%>");
+            var rb = document.getElementById("<%=rblCategory.ClientID%>");
+
+            var radioG = rbG.getElementsByTagName("input");
+            var radio = rb.getElementsByTagName("input");
+
+            var isChecked = false;
+            for (var i = 0; i < radioG.length; i++) {
+                if (radioG[i].checked) {
+                    radio[i].checked = true;
+                    isChecked = true;
+                    break;
+                }
+            }
+            return isChecked;
+        }  
+        </script>
+     
+     
+    <script type="text/javascript">
+        //21/10/2022 Bhandavi
+        //displaying documents of student after saving student details
+        $(document).ready(function () {
+            var saveD = document.getElementById("<%=hdfSaveStudent.ClientID%>");
+            if (saveD.value == "Saved") {
+                ShowStudentDocuments();
+                $("#btnStudentDetail").hide();
+            }
+            hdfSaveStudent.value = "";
+        });
+    </script>
+       
 </asp:Content>

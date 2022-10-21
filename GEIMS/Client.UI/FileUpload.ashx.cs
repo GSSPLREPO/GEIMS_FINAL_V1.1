@@ -28,8 +28,6 @@ namespace GEIMS.Client.UI
             {
                 if (context.Request.QueryString["path"] != null && context.Request.QueryString["file"] != null && context.Request.QueryString["SchoolID"] != null && context.Request.QueryString["TrustID"] != null && context.Request.QueryString["DocMID"] != null && context.Request.QueryString["EmployeeMID"] != null)
                 {
-
-
                     string Serverpath = "";
                     string filename = context.Request.QueryString["file"].ToString();
                     // Serverpath = Serverpath + "\\" + filename;

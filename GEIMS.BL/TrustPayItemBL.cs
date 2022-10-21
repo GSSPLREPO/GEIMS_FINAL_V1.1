@@ -528,6 +528,60 @@ namespace GEIMS.BL
             }
         }
 
+        /// <summary>
+        /// To Delete details of TrustPayItem for unchecked TrustPayItemID from tbl_TrustPayItem_M table
+        /// Bhandavi 21/10/2022
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public ApplicationResult TrustPayItem_DeleteN(int payItemId,int trustId,int SchoolId, int intLastModifiedID, string strLastModifiedDate)
+        {
+            try
+            {
+                pSqlParameter = new SqlParameter[5];
+
+                pSqlParameter[0] = new SqlParameter("@PayItemID", SqlDbType.Int);
+                pSqlParameter[0].Direction = ParameterDirection.Input;
+                pSqlParameter[0].Value = payItemId;
+
+                pSqlParameter[1] = new SqlParameter("@TrustId", SqlDbType.Int);
+                pSqlParameter[1].Direction = ParameterDirection.Input;
+                pSqlParameter[1].Value = trustId; 
+                
+                pSqlParameter[2] = new SqlParameter("@SchoolId", SqlDbType.Int);
+                pSqlParameter[2].Direction = ParameterDirection.Input;
+                pSqlParameter[2].Value = SchoolId;
+
+                pSqlParameter[3] = new SqlParameter("@LastModifiedUserID", SqlDbType.Int);
+                pSqlParameter[3].Direction = ParameterDirection.Input;
+                pSqlParameter[3].Value = intLastModifiedID;
+
+                pSqlParameter[4] = new SqlParameter("@LastModifiedDate", SqlDbType.VarChar);
+                pSqlParameter[4].Direction = ParameterDirection.Input;
+                pSqlParameter[4].Value = strLastModifiedDate;
+
+                strStoredProcName = "usp_tbl_TrustPayItem_M_DeleteN";
+
+                int iResult = DatabaseTransaction.ExecuteNonQuery(CommandType.StoredProcedure, strStoredProcName, pSqlParameter);
+                if (iResult > 0)
+                {
+                    ApplicationResult objResults = new ApplicationResult();
+                    objResults.status = ApplicationResult.CommonStatusType.SUCCESS;
+                    return objResults;
+                }
+                else
+                {
+                    ApplicationResult objResults = new ApplicationResult();
+                    objResults.status = ApplicationResult.CommonStatusType.FAILURE;
+                    return objResults;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }
 

@@ -80,6 +80,7 @@
                                     </asp:GridView>
                                 </div>
                                 <div style="width: 100%; text-align: right;" class="divclasswithoutfloat">
+                                  
                                     <asp:Button runat="server" ID="btnSave" Text="Save" CssClass="btn-blue-new btn-blue-medium" OnClick="btnSave_Click"  />
                                 </div>
                             </div>
