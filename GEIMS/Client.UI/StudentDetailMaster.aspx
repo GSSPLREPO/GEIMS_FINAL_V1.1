@@ -2448,8 +2448,7 @@
         //21/10/2022 Bhandavi
         //When we change category in english then automatically change in gugarati and vice versa
         
-        function OnChangeCat() {
-         
+        function OnChangeCat() {         
             var rbG = document.getElementById("<%=rblCategoryGuj.ClientID%>");
              var rb = document.getElementById("<%=rblCategory.ClientID%>");
 
@@ -2484,7 +2483,7 @@
             }
             return isChecked;
         }  
-        </script>
+    </script>
      
      
     <script type="text/javascript">

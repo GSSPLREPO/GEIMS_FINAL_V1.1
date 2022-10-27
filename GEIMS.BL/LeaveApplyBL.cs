@@ -826,7 +826,7 @@ namespace GEIMS.Bl
                 pSqlParameter[0].Direction = ParameterDirection.Input;
                 pSqlParameter[0].Value = objLeaveApplyBo.LeaveApplylID;
 
-                pSqlParameter[1] = new SqlParameter("@ApprovedDate", SqlDbType.VarChar);
+                pSqlParameter[1] = new SqlParameter("@ApprovedDate", SqlDbType.NVarChar);
                 pSqlParameter[1].Direction = ParameterDirection.Input;
                 pSqlParameter[1].Value = objLeaveApplyBo.ApprovedDate;
 
@@ -834,7 +834,7 @@ namespace GEIMS.Bl
                 pSqlParameter[2].Direction = ParameterDirection.Input;
                 pSqlParameter[2].Value = objLeaveApplyBo.LastModifiedBy;
 
-                pSqlParameter[3] = new SqlParameter("@LastModifiedDate", SqlDbType.VarChar);
+                pSqlParameter[3] = new SqlParameter("@LastModifiedDate", SqlDbType.NVarChar);
                 pSqlParameter[3].Direction = ParameterDirection.Input;
                 pSqlParameter[3].Value = objLeaveApplyBo.LastModifiedDate;
 

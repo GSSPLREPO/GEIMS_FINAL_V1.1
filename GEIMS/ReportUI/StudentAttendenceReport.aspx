@@ -201,6 +201,7 @@
                                 <div style="float: left; text-align: center; width: 100%; padding-bottom: 10px;">
                                     <b>School :</b>
                                     <asp:Label runat="server" ID="lblSchool1"></asp:Label>
+                                  
                                     &nbsp; &nbsp; &nbsp;
                                                 <b>Class :</b>
                                     <asp:Label runat="server" ID="lblClass1"></asp:Label>

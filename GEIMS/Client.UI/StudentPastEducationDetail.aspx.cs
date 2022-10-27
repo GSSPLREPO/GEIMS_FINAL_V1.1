@@ -172,6 +172,8 @@ namespace GEIMS.Client.UI
                     }
                    
                     GridDataBind();
+
+                    ClearPastEducationDetails();
                 }
             }
             catch (Exception ex)
@@ -180,9 +182,37 @@ namespace GEIMS.Client.UI
                 ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Oops! There is some technical issue. Please Contact to your administrator.');</script>");
             }
         }
+
+        /// <summary>
+        /// 27/10/2022 Bhandavi
+        /// to clear all fields of divDetails when adding new education details
+        /// </summary>
+        private void ClearPastEducationDetails()
+        {
+            //clearDetails
+            divStudentPanel.Visible = true;
+            txtSchoolName.Text = "";
+            txtSchoolAddress.Text = "";
+            txtMediumName.Text = "";
+            txtPassedExam.Text = "";
+            txtBoardName.Text = "";
+            ddlPassingYear.SelectedIndex = 0;
+            txtState.Text = "";
+            txtDistrict.Text = "";
+            txtTaluka.Text = "";
+            txtTown.Text = "";
+            ViewState["Mode"] = "Save";
+        }
         #endregion
 
         #region Education Gridview Row Command
+
+        /// <summary>
+        /// Commnet added by Bhandavi 27/10/2022
+        /// To get details of selected students pre education details(Previous school,exam, year)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gvEducation_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             try
@@ -214,6 +244,9 @@ namespace GEIMS.Client.UI
                             ViewState["Mode"] = "Edit";
                             
                         }
+                        
+                        GridDataBind();
+                        divDetails.Visible = true;
                     }
 
                 }
@@ -275,6 +308,9 @@ namespace GEIMS.Client.UI
                     {
                         divDetails.Visible = false;
                         ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script language='javascript'>alert('Student Education Details Saved Successfully.');</script>");
+                        //added code here because after pasing exam/passing year already exists message comes also clear all fields of divDetails
+                        ClearPastEducationDetails();
+                        ClearAll();
                     }
                     else
                     {
@@ -290,14 +326,17 @@ namespace GEIMS.Client.UI
                     if (objResults.status == ApplicationResult.CommonStatusType.SUCCESS)
                     {
                         ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script language='JavaScript'>alert('Student Education Details Update Successfully.');</script>");
+                        //added code here because after pasing exam/passing year already exists message comes also clear all fields of divDetails
+                        ClearAll();
+                        ViewState["Mode"] = "Edit";
                     }
                     else
                     {
                         ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script language='javascript'>alert('Passing Exam/ Passing Year is already exists .');</script>");
                     }
                 }
-                DatabaseTransaction.CommitTransation();
-                ClearAll();
+                //DatabaseTransaction.CommitTransation();
+                //ClearAll(); commented on 27/10/2022
                 GridDataBind();
                 #endregion
             }

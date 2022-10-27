@@ -167,6 +167,10 @@ namespace GEIMS.ReportUI
         #endregion
 
         #region Bind Student Attendance Grid
+
+        /// <summary>
+        /// to show selected class attendance
+        /// </summary>
         public void BindStudentAttendance()
         {
 
@@ -230,10 +234,14 @@ namespace GEIMS.ReportUI
                 pnlStudentAttendanceInfo.Visible = false;
                 lblYear.Text = ddlYear.SelectedItem.ToString();
                 lblMonth.Text = ddlMonth.SelectedItem.ToString();
-                lblSchool1.Text = Session[ApplicationSession.SCHOOLNAME].ToString();
-               lblClass1.Text = ddlclass.SelectedItem.ToString() + "-" + ddlDivision.SelectedItem.ToString();
+                lblSchool1.Text = Session[ApplicationSession.SCHOOLNAME].ToString();               
+                lblClass1.Text = ddlclass.SelectedItem.ToString() + "-" + ddlDivision.SelectedItem.ToString();              
                 lblYear1.Text = ddlYear.SelectedItem.ToString();
                 lblMonth1.Text = ddlMonth.SelectedItem.ToString();
+
+                //Added on 27/10/2022 Bhandavi to display school name and class name (previously not displaying)
+                lblSchoolName.Text = Session[ApplicationSession.SCHOOLNAME].ToString();
+                lblClassName.Text = ddlclass.SelectedItem.ToString() + "-" + ddlDivision.SelectedItem.ToString();
 
             }
             else

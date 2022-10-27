@@ -377,6 +377,7 @@ namespace GEIMS.ReportUI
         #endregion
 
         #region Bind Student DataList
+
         public void BindStudentList()
         {
 

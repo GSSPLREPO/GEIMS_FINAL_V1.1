@@ -875,6 +875,7 @@ namespace GEIMS.PayRoll
                                                     j = j + 1;
                                                 }
                                                 catch (Exception ex)
+
                                                 {
                                                     throw ex;
                                                 }
