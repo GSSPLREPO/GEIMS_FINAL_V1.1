@@ -310,6 +310,7 @@ namespace GEIMS.Client.UI
                         ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script language='javascript'>alert('Student Education Details Saved Successfully.');</script>");
                         //added code here because after pasing exam/passing year already exists message comes also clear all fields of divDetails
                         ClearPastEducationDetails();
+
                         ClearAll();
                     }
                     else
@@ -547,6 +548,34 @@ namespace GEIMS.Client.UI
         protected void ddlClassName1_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindDivision();
+        }
+
+        /// <summary>
+        /// 28/10/2022 Bhandavi
+        /// To clear all fields in the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ViewState["Mode"] = "Save";
+                ddlClassName1.Items.Clear();
+                ddlClassName1.Items.Insert(0, new ListItem("-Select-", "0"));
+                ddlDivisionName1.Items.Clear();
+                ddlDivisionName1.Items.Insert(0, new ListItem("-Select-", "0"));
+                ddlSearchBy.SelectedIndex = 0;
+                ddlSection1.SelectedIndex = 0;
+                txtSearchName.Text = "";
+                divStudentPanel.Visible = false;
+                gvStudent.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Error", ex);
+                ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Oops! There is some technical issue. Please Contact to your administrator.');</script>");
+            }
         }
     }
 }

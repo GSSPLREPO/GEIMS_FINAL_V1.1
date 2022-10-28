@@ -328,18 +328,33 @@ namespace GEIMS.Result
                             objExamConfigurationBO.LastModifiedBy = Convert.ToInt32(Session[ApplicationSession.USERID]);
                             objExamConfigurationBO.LastModifiedDate = DateTime.UtcNow.AddHours(5.5).ToString();
                             objResult = objExamConfigurationBL.ExamConfigurationBL_Update(objExamConfigurationBO);
-                            if (objResult.resultDT.Rows[0][0].ToString() == "333")
+
+                            //Changed code on 28/10/2022 Bhandavi
+                            //getting oops error as objResult.resultDT.Rows[0][0].ToString() doesnot have any value
+                            if (objResult.status == ApplicationResult.CommonStatusType.SUCCESS)                               
                             {
                                 Controls objControls = new Controls();
                                 objControls.ClearForm(Master.FindControl("ContentPlaceHolder1"));
                                 ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp",
-                                    "<script language='javascript'>alert('Exam Details Updated Successfully.');</script>");
+                                "<script language='javascript'>alert('Exam Details Updated Successfully.');</script>");
                             }
-                            else if (objResult.resultDT.Rows[0][0].ToString() == "222")
+                            else if (objResult.status == ApplicationResult.CommonStatusType.FAILURE)
                             {
                                 ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp",
-                                    "<script language='javascript'>alert('Exam Details Can not be Updated.');</script>");
+                                      "<script language='javascript'>alert('Exam Details Can not be Updated.');</script>");
                             }
+                            //    if (objResult.resultDT.Rows[0][0].ToString() == "333")
+                            //{
+                            //    Controls objControls = new Controls();
+                            //    objControls.ClearForm(Master.FindControl("ContentPlaceHolder1"));
+                            //    ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp",
+                            //        "<script language='javascript'>alert('Exam Details Updated Successfully.');</script>");
+                            //}
+                            //        else if (objResult.resultDT.Rows[0][0].ToString() == "222")
+                            //{
+                            //    ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp",
+                            //        "<script language='javascript'>alert('Exam Details Can not be Updated.');</script>");
+                            //}
                             else
                             {
                                 ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp",
@@ -392,6 +407,7 @@ namespace GEIMS.Result
         }
         #endregion
 
+        
         #region Remove Button Click Event
         protected void btnRemove_Click(object sender, EventArgs e)
         {
@@ -417,7 +433,8 @@ namespace GEIMS.Result
                         if (!arraylist2.Contains(lbDestSubject.Items[i]))
                         {
                             arraylist2.Add(lbDestSubject.Items[i]);
-                        }
+                        }                      
+
                     }
                 }
                 for (int i = 0; i < arraylist2.Count; i++)
@@ -429,6 +446,11 @@ namespace GEIMS.Result
                     lbDestSubject.Items.Remove(((ListItem)arraylist2[i]));
                 }
                 lbSrcSubject.SelectedIndex = -1;
+
+                //Added on 28/10/2022 Bhandavi
+                //to select first item in list of subjects for saving(otherwise validation message is coming)
+                if(lbDestSubject.Items.Count > 0)
+                    lbDestSubject.SelectedIndex = 0;
             }
         }
         #endregion
@@ -642,7 +664,10 @@ namespace GEIMS.Result
                     objControls.BindDropDown_ListBox(objResult.resultDT, lbDestSubject, "NameEng", "SubjectMID");
                     if (objResult.resultDT.Rows.Count > 0)
                     {
-
+                        //Added on 28/10/2022 Bhandavi
+                        //to select first item in list of subjects for saving(otherwise validation message is coming)
+                        lbDestSubject.SelectedIndex = 0;
+                        
                     }
                 }
 

@@ -402,26 +402,45 @@ namespace GEIMS.BL
 
                 sSql = "usp_tbl_ExamConfiguration_Update";
 
-                DataTable ResultDT= Database.ExecuteDataTable(CommandType.StoredProcedure, sSql, pSqlParameter);
+                //DataTable ResultDT= Database.ExecuteDataTable(CommandType.StoredProcedure, sSql, pSqlParameter);
 
-                if (ResultDT.Rows[0][0].ToString() == "333")
+                //if (ResultDT.Rows[0][0].ToString() == "333")
+                //{
+                //    ApplicationResult objResults = new ApplicationResult(ResultDT);
+                //    objResults.status = ApplicationResult.CommonStatusType.SUCCESS;
+                //    return objResults;
+                //}
+                //else if (ResultDT.Rows[0][0].ToString() == "222")
+                //{
+                //    ApplicationResult objResults = new ApplicationResult(ResultDT);
+                //    objResults.status = ApplicationResult.CommonStatusType.RECORD_FK_VIOLATION;
+                //    return objResults;
+                //}
+                //else
+                //{
+                //    ApplicationResult objResults = new ApplicationResult(ResultDT);
+                //    objResults.status = ApplicationResult.CommonStatusType.FAILURE;
+                //    return objResults;
+                //}
+
+                //Changed code on 28/10/2022 Bhandavi
+                //to return success or failure as getting oops error (ResultDT.Rows[0][0].ToString() does not have any value)
+                
+                int iResult = Database.ExecuteNonQuery(CommandType.StoredProcedure, sSql, pSqlParameter);
+
+                if (iResult > 0)
                 {
-                    ApplicationResult objResults = new ApplicationResult(ResultDT);
+                    ApplicationResult objResults = new ApplicationResult();
                     objResults.status = ApplicationResult.CommonStatusType.SUCCESS;
-                    return objResults;
-                }
-                else if (ResultDT.Rows[0][0].ToString() == "222")
-                {
-                    ApplicationResult objResults = new ApplicationResult(ResultDT);
-                    objResults.status = ApplicationResult.CommonStatusType.RECORD_FK_VIOLATION;
                     return objResults;
                 }
                 else
                 {
-                    ApplicationResult objResults = new ApplicationResult(ResultDT);
+                    ApplicationResult objResults = new ApplicationResult();
                     objResults.status = ApplicationResult.CommonStatusType.FAILURE;
                     return objResults;
                 }
+
             }
             catch (Exception ex)
             {

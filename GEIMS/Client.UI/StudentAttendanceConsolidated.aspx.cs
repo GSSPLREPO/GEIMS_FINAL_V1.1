@@ -119,6 +119,9 @@ namespace GEIMS.Client.UI
             }
         }
 
+        /// <summary>
+        /// to bind classes in selected school
+        /// </summary>
         public void BindClass()
         {
             try
@@ -313,12 +316,17 @@ namespace GEIMS.Client.UI
             }
         }
 
+
         protected void lnkViewList_Click(object sender, EventArgs e)
         {
             try
             {
                 ClearAll();
                 PanelVisibility(1);
+
+                //Added on 28/10/2022 Bhandavi
+                //When we click on View list button hide grid view
+                gvStudentAttendance.Visible = false;
             }
             catch (Exception ex)
             {
@@ -328,7 +336,11 @@ namespace GEIMS.Client.UI
         }
 
 
-
+        /// <summary>
+        /// On edit/delete of student attendance grid(To edit and delte consolidated details)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gvStudentAttendance_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             try

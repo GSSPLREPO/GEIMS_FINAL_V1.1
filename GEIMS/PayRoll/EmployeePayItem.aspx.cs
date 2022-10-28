@@ -245,7 +245,6 @@ namespace GEIMS.PayRoll
                     double Earnings = 0;
                     double DA = 0;
 
-
                     //if (txtGross.Text == "")   
                     //{
                     //    lblmsg.text = "please enter the gross amount";

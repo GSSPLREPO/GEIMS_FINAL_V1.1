@@ -135,7 +135,7 @@ namespace GEIMS.Client.UI
             ViewState["EmployeeMID"] = null;
             PanelGrid_VisibilityMode(1);
             divGridPanel.Visible = true;
-
+            gvEmployee.Visible = false;
             //User Wise Display Profile
             hdnLastUserID.Value = Session[ApplicationSession.USERID].ToString();
             if (hdnLastUserID.Value == "1" || hdnLastUserID.Value == "74" || hdnLastUserID.Value == "93")
