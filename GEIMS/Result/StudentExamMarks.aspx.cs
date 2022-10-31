@@ -39,6 +39,9 @@ namespace GEIMS.Result
         #endregion
 
         #region Bind Class
+        /// <summary>
+        /// To bind classes to dropdownlist
+        /// </summary>
         protected void BindClass()
         {
             ApplicationResult objResult = new ApplicationResult();
@@ -69,6 +72,19 @@ namespace GEIMS.Result
                 {
 
                 }
+
+                //Added below code on 31/10/2022 Bhandavi
+                //to clear total marks and passing marks text boxes, to hide save button and marks griview, to select first option in academic year and subject drop down
+                //when class changed
+                ddlAcademicYear.SelectedIndex = 0;
+                ddlExam.SelectedIndex = 0;
+                if(ddlSubject.Items.Count > 0)
+                    ddlSubject.SelectedIndex = 0;
+                txtTotalMarks.Text = "";
+                txtPassingMarks.Text = "";
+                gvStudentMarks.DataSource = null;
+                gvStudentMarks.Visible = false;
+                btnsave.Visible = false;
                 //ddlDesignation.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select All--", "-1"));
             }
         }
@@ -178,6 +194,10 @@ namespace GEIMS.Result
                 }
                 else
                 {
+                    //Added below code on 31/10/2022 Bhandavi
+                    //When subjects are not availabe then clear sbuject drop down
+                    ddlSubject.Items.Clear();
+                    ddlSubject.Items.Insert(0, new ListItem("--Select--", ""));
                     ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('No Subjects To be Bound.');</script>");
                 }
             }
@@ -334,6 +354,13 @@ namespace GEIMS.Result
                         gvStudentMarks.DataSource = null;
                         gvStudentMarks.Visible = false;
                         btnsave.Visible = false;
+                        
+                        //Added below code on 31/10/2022 Bhandavi
+                        //to clear fields after saving 
+                        //Bug No 149
+                       
+                        ddlDivision.Items.Clear();
+                        ddlSubject.Items.Clear();
                     }
                 }
             }
@@ -361,6 +388,11 @@ namespace GEIMS.Result
         protected void ddlExam_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindSubject();
+            //Added below code on 31/10/2022 Bhandavi
+            //to clear total marks and passing marks text boxes when exam changed
+
+            txtTotalMarks.Text = "";
+            txtPassingMarks.Text = "";
         }
 
         #endregion

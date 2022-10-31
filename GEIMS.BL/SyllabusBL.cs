@@ -201,7 +201,7 @@ namespace GEIMS.BL
         {
             try
             {
-                pSqlParameter = new SqlParameter[13];
+                pSqlParameter = new SqlParameter[14];
 
 
                 pSqlParameter[0] = new SqlParameter("@SyllabusMID", SqlDbType.Int);
@@ -256,6 +256,9 @@ namespace GEIMS.BL
                 pSqlParameter[12].Direction = ParameterDirection.Input;
                 pSqlParameter[12].Value = objSyllabusBO.ModifiedDate;
 
+                pSqlParameter[13] = new SqlParameter("@SubjectId", SqlDbType.Int);
+                pSqlParameter[13].Direction = ParameterDirection.Input;
+                pSqlParameter[13].Value = objSyllabusBO.SubjectID;
 
                 sSql = "usp_tbl_Syllabus_M_Update";
                 int iResult = Database.ExecuteNonQuery(CommandType.StoredProcedure, sSql, pSqlParameter);
@@ -358,5 +361,30 @@ namespace GEIMS.BL
             }
         }
         #endregion
+
+
+        public ApplicationResult SyyllabusProgress_Count(int intSyllabusMID) //
+        {
+            try
+            {
+                pSqlParameter = new SqlParameter[1];
+
+                pSqlParameter[0] = new SqlParameter("@SyllabusMID", SqlDbType.Int);
+                pSqlParameter[0].Direction = ParameterDirection.Input;
+                pSqlParameter[0].Value = intSyllabusMID;
+
+                strStoredProcName = "usp_tbl_SyllabusPlanning_M_Select";
+
+                DataTable dtResult = new DataTable();
+                dtResult = Database.ExecuteDataTable(CommandType.StoredProcedure, strStoredProcName, pSqlParameter);
+                ApplicationResult objResults = new ApplicationResult(dtResult);
+                objResults.status = ApplicationResult.CommonStatusType.SUCCESS;
+                return objResults;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

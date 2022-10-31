@@ -7,11 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GEIMS.Leave {
-    
-    
-    public partial class LeaveTemplate {
-        
+namespace GEIMS.Leave
+{
+
+
+    public partial class LeaveTemplate
+    {
+
+        /// <summary>
+        /// btnClear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnClear;
+
         /// <summary>
         /// tabs control.
         /// </summary>
@@ -20,7 +31,7 @@ namespace GEIMS.Leave {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tabs;
-        
+
         /// <summary>
         /// ddlSearchBy control.
         /// </summary>
@@ -29,7 +40,7 @@ namespace GEIMS.Leave {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSearchBy;
-        
+
         /// <summary>
         /// txtSearchName control.
         /// </summary>
@@ -38,7 +49,7 @@ namespace GEIMS.Leave {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSearchName;
-        
+
         /// <summary>
         /// hfEmployeeName control.
         /// </summary>
@@ -47,7 +58,7 @@ namespace GEIMS.Leave {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfEmployeeName;
-        
+
         /// <summary>
         /// hfEmployeeID control.
         /// </summary>
@@ -56,7 +67,7 @@ namespace GEIMS.Leave {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfEmployeeID;
-        
+
         /// <summary>
         /// ddlYear control.
         /// </summary>
@@ -65,7 +76,7 @@ namespace GEIMS.Leave {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlYear;
-        
+
         /// <summary>
         /// btnGo control.
         /// </summary>
@@ -74,7 +85,7 @@ namespace GEIMS.Leave {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGo;
-        
+
         /// <summary>
         /// gvLeave control.
         /// </summary>
@@ -83,7 +94,7 @@ namespace GEIMS.Leave {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvLeave;
-        
+
         /// <summary>
         /// btnSave control.
         /// </summary>

@@ -72,6 +72,7 @@
             <%--<asp:LinkButton CausesValidation="false" ID="btnAddClassTemplate" runat="server" CssClass="btn-blue btn-blue-medium" OnClick="bbtnAddClassTemplate_Click">Add New</asp:LinkButton>--%>
 			&nbsp;
 			 <%--<asp:LinkButton CausesValidation="false" ID="btnViewList" runat="server" CssClass="btn-blue btn-blue-medium" OnClick="btnViewList_Click">View List</asp:LinkButton>--%>
+             <asp:LinkButton CausesValidation="false" ID="btnClear" runat="server" CssClass="btn-blue btn-blue-medium" OnClick="btnClear_Click">Clear</asp:LinkButton>
         </div>
         <div id="divContent" style="height: 100%; font-family: Verdana;">
             <div id="divContent1" style="width: 10%; float: left; height: 100%; color: white;">1</div>

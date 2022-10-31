@@ -61,10 +61,28 @@ namespace GEIMS.PayRoll
         #endregion
 
         #region ViewList Event
+        /// <summary>
+        /// 31/10/2022 Bhandavi
+        /// To show list of Designation Pay Items
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void lnkViewList_Click(object sender, EventArgs e)
         {
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "divHide();", true);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "divShow();", true);
             gvPayTemplate.Visible = false;
+            GridTemplateBind();
+            ViewState["Mode"] = "Save";
+            //BindTemplateName();
+            //BindPayItem();
+            ddlSearchBy.Enabled = false;
+            ddlSearchBy.SelectedIndex = 1;
+            btnAddTemplate.Text = "Add Template";
+            //btnSave.Visible = true;
+            btnSave.Enabled = false;
+            lbDependsOn.Enabled = false;
+            gvPayTemplate.Visible = false;
+            txtTemplateName.Text = "";
         }
         #endregion
 

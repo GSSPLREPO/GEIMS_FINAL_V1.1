@@ -102,7 +102,7 @@ namespace GEIMS.Client.UI
                 #endregion
 
                 //27/09/2022 Bhandavi
-                //Need to clear class and division drop down when we change school drop down value(coming previuos values only)
+                //Need to clear class and division drop down when we change school drop down value(coming previous values only)
                 ddlClassName.Items.Clear();
                 ddlClassName.Items.Insert(0, new ListItem("--Select--", ""));
                 ddlDivisionName.Items.Clear();
@@ -385,6 +385,12 @@ namespace GEIMS.Client.UI
                 ClearAll();
                 PanelVisibility(2);
                 ddlSubject.Enabled = true;
+                ddlSchoolName.Enabled = true;
+                ddlSection.Enabled = true;
+                ddlClassName.Enabled = true;
+                ddlDivisionName.Enabled = true;
+                ddlYear.Enabled = true;             
+
             }
             catch (Exception ex)
             {
@@ -420,13 +426,14 @@ namespace GEIMS.Client.UI
             try
             {
                 ApplicationResult objResult = new ApplicationResult();
+                ApplicationResult objResult1 = new ApplicationResult();
                 DataTable dt = new DataTable();
                 SyllabusBL objSyllabusBL = new SyllabusBL();
 
                 Controls objControls = new Controls();
               
                 if (e.CommandName.ToString() == "Edit1")
-                {                 
+                {
                     ddlSchoolName.Enabled = true;
                     ddlSection.Enabled = true;
                     ddlClassName.Enabled = true;
@@ -434,7 +441,7 @@ namespace GEIMS.Client.UI
                     ddlYear.Enabled = true;
                     ddlSubject.Enabled = true;
                     
-                    ddlSubject.Enabled = false;
+                   // ddlSubject.Enabled = false;
                     txtChapterNameAndNoENG.Enabled = true;
                     txtChapterNameAndNoGUJ.Enabled = true;
                     txtSyllabusDetailsENG.Enabled = true;
@@ -445,6 +452,26 @@ namespace GEIMS.Client.UI
 
                     ViewState["Mode"] = "Edit";
                     ViewState["SyllabusMID"] = e.CommandArgument.ToString();
+
+                    //31/11/2022 Bhandavi
+                    //check if planning is there if  yes then disable school,section,classname,division name,year and subject drop downlists
+                    objResult1 = objSyllabusBL.SyyllabusProgress_Count(Convert.ToInt32(ViewState["SyllabusMID"].ToString()));
+                    if (objResult1 != null)
+                    {
+                        DataTable dtResult = objResult1.resultDT;
+                        if (dtResult.Rows.Count > 0)
+                        {
+                            ddlSchoolName.Enabled = false;
+                            ddlSection.Enabled = false;
+                            ddlClassName.Enabled = false;
+                            ddlDivisionName.Enabled = false;
+                            ddlYear.Enabled = false;
+                            ddlSubject.Enabled = false;
+                        }
+                    }
+
+
+
                     objResult = objSyllabusBL.Syllabus_Select(Convert.ToInt32(ViewState["SyllabusMID"].ToString()));
                     if (objResult != null)
                     {
@@ -505,17 +532,33 @@ namespace GEIMS.Client.UI
                 }
                 else if (e.CommandName.ToString() == "Delete1")
                 {
-                    objResult = objSyllabusBL.Syllabus_Delete(Convert.ToInt32(e.CommandArgument.ToString()));
-                    if (objResult.status == ApplicationResult.CommonStatusType.SUCCESS)
+                    //31/10/2022 Bhandavi
+                    //check if planning is there if  yes then unable to delete a syllabus
+                    objResult1 = objSyllabusBL.SyyllabusProgress_Count(Convert.ToInt32(e.CommandArgument.ToString()));
+                    if (objResult1 != null)
                     {
-                        ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Record deleted successfully.');</script>");
-                        PanelVisibility(1);
-                        BindSyllabusMaster();
+                        DataTable dtResult = objResult1.resultDT;
+                        if (dtResult.Rows.Count > 0)
+                        {
+                            ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('You cannot delete this record because it is in use.');</script>");
+                        }
+                        else
+                        {
+                            objResult = objSyllabusBL.Syllabus_Delete(Convert.ToInt32(e.CommandArgument.ToString()));
+                            if (objResult.status == ApplicationResult.CommonStatusType.SUCCESS)
+                            {
+                                ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Record deleted successfully.');</script>");
+                                PanelVisibility(1);
+                                BindSyllabusMaster();
+                            }
+                            else
+                            {
+                                ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('You cannot delete this record because it is in use.');</script>");
+                            }
+                        }
                     }
-                    else
-                    {
-                        ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('You cannot delete this record because it is in used.');</script>");
-                    }
+
+                   
                 }
                 else if (e.CommandName.ToString() == "Planning1")
                 {
@@ -789,17 +832,28 @@ namespace GEIMS.Client.UI
                     }
                     else if (ViewState["Mode"].ToString() == "Planning1")
                     {
-                        objSyllabusPlanningBO.SyllabusMID = intDepartmentID;
-                        objSyllabusPlanningBO.CreatedByID = Convert.ToInt32(Session[ApplicationSession.USERID]);
-                        objSyllabusPlanningBO.CreatedDate = DateTime.UtcNow.AddHours(5.5).ToString();
-                        objSyllabusPlanningBO.MonthNo = Convert.ToInt32(ddlMonth.SelectedValue);
-                        objSyllabusPlanningBO.TeacherMID = Convert.ToInt32(ddlEmployeeList.SelectedValue);
-                        objSyllabusPlanningBO.PlannedStartDate = Convert.ToDateTime(txtPlanStartDate.Text);
-                        objSyllabusPlanningBO.PlannedEndDate = Convert.ToDateTime(txtPlanEndDate.Text);
-                        objResult = objSyllabusPlanningBL.SyllabusPlanning_Insert(objSyllabusPlanningBO);
-                        if (objResult.status == ApplicationResult.CommonStatusType.SUCCESS)
+                        //31/10/2022 Bhandavi
+                        //Changed code to get validation messages when clicking on save button in planning without selecting mandatory fields
+                        if (ddlMonth.SelectedIndex <=0 || ddlEmployeeList.SelectedIndex <=0 || txtPlanStartDate.Text == "" || txtPlanEndDate.Text == "")
                         {
-                            ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Record saved successfully.');</script>");
+                            
+                            ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Please Select All Mandatory fields.');</script>");
+                            goto msg;
+                        }
+                        else
+                        {
+                            objSyllabusPlanningBO.SyllabusMID = intDepartmentID;
+                            objSyllabusPlanningBO.CreatedByID = Convert.ToInt32(Session[ApplicationSession.USERID]);
+                            objSyllabusPlanningBO.CreatedDate = DateTime.UtcNow.AddHours(5.5).ToString();
+                            objSyllabusPlanningBO.MonthNo = Convert.ToInt32(ddlMonth.SelectedValue);
+                            objSyllabusPlanningBO.TeacherMID = Convert.ToInt32(ddlEmployeeList.SelectedValue);
+                            objSyllabusPlanningBO.PlannedStartDate = Convert.ToDateTime(txtPlanStartDate.Text);
+                            objSyllabusPlanningBO.PlannedEndDate = Convert.ToDateTime(txtPlanEndDate.Text);
+                            objResult = objSyllabusPlanningBL.SyllabusPlanning_Insert(objSyllabusPlanningBO);
+                            if (objResult.status == ApplicationResult.CommonStatusType.SUCCESS)
+                            {
+                                ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Record saved successfully.');</script>");
+                            } 
                         }
                     }
                     ClearAll();
@@ -808,8 +862,9 @@ namespace GEIMS.Client.UI
                 }    
                 else
                 {
-                    ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Please Select All DropDown List.');</script>");
+                    ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Please Select All DropDown Lists.');</script>");
                 }
+            msg:;
             }
             catch (Exception ex)
             {

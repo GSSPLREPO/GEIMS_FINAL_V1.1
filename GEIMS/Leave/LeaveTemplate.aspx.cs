@@ -316,6 +316,10 @@ namespace GEIMS.Leave
                     DatabaseTransaction.CommitTransation();
                     ClearAll();
                     gvLeave.Visible = false;
+
+                    //31/10/2022 Bhandavi
+                    //Save button should be invisible after saving leave template
+                    btnSave.Visible = false;
                 }
                 else
                 {
@@ -334,6 +338,12 @@ namespace GEIMS.Leave
         #endregion
 
         #region Go for Searching Employee
+
+        /// <summary>
+        /// To dispaly available leaves for selected employee
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnGo_Click(object sender, EventArgs e)
         {
             try
@@ -381,7 +391,10 @@ namespace GEIMS.Leave
                                     if (objResult1.status == ApplicationResult.CommonStatusType.SUCCESS)
                                     {
 
-                                        if ((Total != "0"))// || ((objResult1.resultDT.Rows[0]["LeaveName"].ToString()) == "Duty Leave"))
+                                        // if ((Total != "0"))// || ((objResult1.resultDT.Rows[0]["LeaveName"].ToString()) == "Duty Leave"))
+                                        //Getting error when not getting data (for example if we get empty string for Leave With out Pay 
+                                        //Changed code on 31/10/2022 Bhandavi to check for empty string also
+                                        if ((Total != "0") && Total != "")
                                         {
                                             ((CheckBox)row.FindControl("chkChild")).Checked = true;
                                             Convert.ToDouble(((TextBox)row.FindControl("txtTotalLeaves")).Text = Total);
@@ -455,6 +468,21 @@ namespace GEIMS.Leave
             btnSave.Visible = false;
             // gvLeave.Visible = true;
             //txtSearchName.Enabled = true;
-        }       
+        }
+
+        /// <summary>
+        /// 31/10/2022 Bhandavi
+        /// To clear form 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearAll();
+            ddlSearchBy.SelectedIndex = 1;
+            gvLeave.DataSource = null;
+            gvLeave.Visible = false;
+            btnSave.Visible = false;
+        }
     }
 }

@@ -100,7 +100,7 @@
             Pay Item Template for Designations
             <asp:LinkButton CausesValidation="false" ID="lnkAddNew" runat="server" CssClass="btn-blue btn-blue-medium Detach" OnClick="lnkAddNew_Click">Add Pay Item</asp:LinkButton>
             &nbsp;
-			 <%--<asp:LinkButton CausesValidation="false" ID="lnkViewList" runat="server" CssClass="btn-blue btn-blue-medium Detach" OnClick="lnkViewList_Click">View List</asp:LinkButton>--%>
+			 <asp:LinkButton CausesValidation="false" ID="lnkViewList" runat="server" CssClass="btn-blue btn-blue-medium Detach" OnClick="lnkViewList_Click">View List</asp:LinkButton>
             &nbsp;
 			 <%--<asp:LinkButton CausesValidation="false" ID="lnkAddNewTemplate" runat="server" CssClass="btn-blue btn-blue-medium Detach" OnClick="lnkAddNewTemplate_Click" style="left: -8px; top: 2px">Add Template</asp:LinkButton>--%>
         </div>
