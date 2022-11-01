@@ -699,7 +699,10 @@
                                     Handicapped Percentage(In %):  
                                 </div>
                                 <div style="text-align: left; width: 81%; float: left;">
-                                    <asp:TextBox ID="txtHandicapePercentage" runat="server" CssClass="validate[custom[onlyNumberSp]] TextBox" Width="150px"></asp:TextBox>
+                                    <asp:TextBox ID="txtHandicapePercentage" runat="server" CssClass="validate[custom[onlyNumberSp],
+                                        maxVal[100],minSize[1]] TextBox"
+                                         Width="150px"
+                                        ></asp:TextBox>
                                 </div>
 
                             </div>
@@ -1909,6 +1912,7 @@
             //$("#btnSave").click(function () {
             //var valid = $("#aspnetForm").validationEngine('validate');
             //var vars = $("#aspnetForm").serialize();
+                     
 
             var tab = $(document.getElementById('<%= hfTab.ClientID %>')).val();
             // alert("Save");
@@ -2498,5 +2502,20 @@
             hdfSaveStudent.value = "";
         });
     </script>
-       
+
+
+        <script type="text/javascript">
+            function ValidateDecimal(ele) {
+                //var regex = /^\d+(\.\d{1,2})?$/;
+                var regex = /(?:\d*\.\d{1,2}|\d+)$/;
+                if (regex.test(ele.value)) {
+                    return true;
+                    //alert("Valid");
+                } else {
+                    alert('Please Enter numeric or float Value.');
+                    return false;
+                    //alert("Invalid");
+                }
+            }
+     </script>
 </asp:Content>

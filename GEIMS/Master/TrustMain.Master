@@ -161,7 +161,7 @@
                                     <li id="StudentsImport" runat="server" visible="False"><a href="../Client.UI/StudentDataImport.aspx">Students</a></li>
                                 </ul>
                             </li>
-                            <%--<li id="Invetorylinew"><a id="Inventory" runat="server"><span>Inventory</span></a>
+                            <li id="Invetorylinew"><a id="Inventory" runat="server"><span>Inventory</span></a>
                                 <ul>
                                     <li id="MaterialGroup" runat="server" visible="False"><a href="../Client.UI/MaterialGroup.aspx">Material Group</a></li>
                                     <li id="Vendor" runat="server" visible="False"><a href="../Client.UI/Vendor.aspx">Vendor</a></li>
@@ -170,7 +170,7 @@
                                     <li id="Purchase" runat="server" visible="False"><a href="../Client.UI/Purchase.aspx">Purchase</a></li>
                                     <li id="StockUpdate" runat="server" visible="False"><a href="../Client.UI/StockUpdation.aspx">Stock Updation</a></li>
                                 </ul>
-                            </li>--%>
+                            </li>
                             <%-- <li id="Payrollli"><a id="Payroll" runat="server"><span>Pay Roll</span></a>
                                 <ul>
                                     <li id="LeaveMaser" runat="server" visible="False"><a href="../PayRoll/LeaveMaster.aspx">Leave</a></li>

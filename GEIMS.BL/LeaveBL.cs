@@ -491,7 +491,7 @@ namespace GEIMS.Bl
                 pSqlParameter[2].Direction = ParameterDirection.Input;
                 pSqlParameter[2].Value = intYear;
 
-                strStoredProcName = "usp_tbl_Leave_M_Select_ForPayrollLeave";
+                strStoredProcName = "usp_tbl_Leave_M_Select_ForPayrollLeave_old";
 
                 DataTable dtTable = new DataTable();
                 dtTable = Database.ExecuteDataTable(CommandType.StoredProcedure, strStoredProcName, pSqlParameter);

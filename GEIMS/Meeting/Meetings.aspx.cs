@@ -526,6 +526,7 @@ namespace GEIMS.Meeting
                         pnlAgenda.Visible = false;
                         pnlParticipant.Visible = false;
                     }
+
                 }
                 else if (e.CommandName.ToString() == "Delete1")
                 {

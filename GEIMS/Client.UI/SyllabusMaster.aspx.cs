@@ -292,7 +292,9 @@ namespace GEIMS.Client.UI
         #endregion
 
         #region Fetch School
-
+        /// <summary>
+        /// bind school names
+        /// </summary>
         public void GetSchoolName()
         {
             ApplicationResult objResult = new ApplicationResult();
@@ -320,6 +322,11 @@ namespace GEIMS.Client.UI
         #endregion
 
         #region Bind Syllabus Master
+        /// <summary>
+        /// Commented on 01/11/2022 Bhandavi
+        /// To get all syllabus from Tbl_Syllabus_M With isDeleted flag 0
+        /// and bind to GridView gvSyllabus
+        /// </summary>
         public void BindSyllabusMaster()
         {
             try
@@ -717,6 +724,10 @@ namespace GEIMS.Client.UI
         #endregion
 
         #region Fetch Subject Data For Drop Down
+        /// <summary>
+        /// Bind subjects to dropdown
+        /// </summary>
+        /// <param name="intSchoolMID"></param>
         private void FetchSubject(int intSchoolMID)
         {
             SubjectMBL objSubjectBL = new SubjectMBL();         

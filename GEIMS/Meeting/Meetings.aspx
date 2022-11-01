@@ -455,7 +455,7 @@
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="This Field Required" ControlToValidate="txtParticipantName" ForeColor="#FF3300" ValidationGroup="vg4"></asp:RequiredFieldValidator>
                                         </div>
                                         <div style="text-align: left; padding-left: 60px; width: 10%; float: left;" class="label">
-                                            Orgenization :<span style="color: red">*</span>
+                                           <%-- Orgenization :--%> Organization :<span style="color: red">*</span>
                                         </div>
                                         <div style="text-align: left; width: 30%; float: left;">
                                             <asp:TextBox ID="txtOrgName" runat="server" onKeyUp="CheckTextLength(this,100)" onkeypress="return charName(event);" CssClass="TextBox" Width="100%" ValidationGroup="vg4"></asp:TextBox>
@@ -491,7 +491,7 @@
                                             <HeaderStyle Width="20%" HorizontalAlign="left" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="left" Width="20%" VerticalAlign="Top" Wrap="true" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="OrgName" HeaderText="Orgenization">
+                                        <asp:BoundField DataField="OrgName" HeaderText="Organization">
                                             <HeaderStyle Width="20%" HorizontalAlign="left" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="left" Width="20%" VerticalAlign="Top" Wrap="true" />
                                         </asp:BoundField>

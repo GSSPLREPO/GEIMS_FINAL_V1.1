@@ -20,7 +20,11 @@ namespace GEIMS.BL
 
 
         #region Select All Syllabus Details
-    
+        /// <summary>
+        /// 01/11/2022
+        /// To get all syllabuses from tbl_Syllabus_M with is Deleted 0
+        /// </summary>
+        /// <returns></returns>
         public ApplicationResult Syllabus_SelectAll()
         {
             try
