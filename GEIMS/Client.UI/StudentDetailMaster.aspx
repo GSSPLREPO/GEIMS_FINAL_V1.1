@@ -540,11 +540,14 @@
                                     Student Name : <span style="color: red">*</span>
                                 </div>
                                 <div style="text-align: left; width: 81%; float: left;">
-                                    <asp:TextBox ID="txtStudentFirstName" runat="server" CssClass="validate[required] TextBox" placeholder="First Name" Width="150px"></asp:TextBox>
+                                    <%--<asp:TextBox ID="txtStudentFirstName" runat="server" CssClass="validate[required]TextBox" placeholder="First Name" Width="150px"></asp:TextBox>--%>
+                                    <asp:TextBox ID="txtStudentFirstName" runat="server" CssClass="validate[required,custom[onlyLetterNumber]]TextBox" placeholder="First Name" Width="150px"></asp:TextBox>
                                     &nbsp;
-								<asp:TextBox ID="txtStudentMiddleName" runat="server" CssClass=" TextBox" placeholder="Middle Name" Width="150px"></asp:TextBox>
+								<%--<asp:TextBox ID="txtStudentMiddleName" runat="server" CssClass="TextBox" placeholder="Middle Name" Width="150px"></asp:TextBox>--%>
+								<asp:TextBox ID="txtStudentMiddleName" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" placeholder="Middle Name" Width="150px"></asp:TextBox>
                                     &nbsp;
-								<asp:TextBox ID="txtStudentLastName" runat="server" CssClass="validate[required] TextBox" placeholder="Last Name" Width="150px"></asp:TextBox>
+								<%--<asp:TextBox ID="txtStudentLastName" runat="server" CssClass="validate[required] TextBox" placeholder="Last Name" Width="150px"></asp:TextBox>--%>
+								<asp:TextBox ID="txtStudentLastName" runat="server" CssClass="validate[required,custom[onlyLetterNumber]] TextBox" placeholder="Last Name" Width="150px"></asp:TextBox>
                                 </div>
                             </div>
                             <div style="height: 30px; margin-top: 10px; width: 100%;">
@@ -552,11 +555,14 @@
                                     Father's Name : 
                                 </div>
                                 <div style="text-align: left; width: 81%; float: left;">
-                                    <asp:TextBox ID="txtFatherFirstName" runat="server" placeholder="First Name" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                    <%--<asp:TextBox ID="txtFatherFirstName" runat="server" placeholder="First Name" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                    <asp:TextBox ID="txtFatherFirstName" runat="server" placeholder="First Name" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                     &nbsp;
-									<asp:TextBox ID="txtFatherMiddleName" runat="server" placeholder="Middle Name" CssClass="TextBox" Width="150px"></asp:TextBox>
+									<%--<asp:TextBox ID="txtFatherMiddleName" runat="server" placeholder="Middle Name" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+									<asp:TextBox ID="txtFatherMiddleName" runat="server" placeholder="Middle Name" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                     &nbsp;
-									<asp:TextBox ID="txtFatherLastName" runat="server" placeholder="Last Name" CssClass="TextBox" Width="150px"></asp:TextBox>
+									<%--<asp:TextBox ID="txtFatherLastName" runat="server" placeholder="Last Name" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+									<asp:TextBox ID="txtFatherLastName" runat="server" placeholder="Last Name" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                 </div>
                             </div>
                             <div style="height: 30px; margin-top: 10px; width: 100%;">
@@ -564,11 +570,14 @@
                                     Mother's Name : 
                                 </div>
                                 <div style="text-align: left; width: 81%; float: left;">
-                                    <asp:TextBox ID="txtMotherFirstName" placeholder="First Name" runat="server" CssClass=" TextBox" Width="150px"></asp:TextBox>
+                                    <%--<asp:TextBox ID="txtMotherFirstName" placeholder="First Name" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                    <asp:TextBox ID="txtMotherFirstName" placeholder="First Name" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                     &nbsp;
-									<asp:TextBox ID="txtMotherMiddleName" placeholder="Middle Name" runat="server" CssClass="va TextBox" Width="150px"></asp:TextBox>
+									<%--<asp:TextBox ID="txtMotherMiddleName" placeholder="Middle Name" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+									<asp:TextBox ID="txtMotherMiddleName" placeholder="Middle Name" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                     &nbsp;
-									<asp:TextBox ID="txtMotherLastName" placeholder="Last Name" runat="server" CssClass=" TextBox" Width="150px"></asp:TextBox>
+									<%--<asp:TextBox ID="txtMotherLastName" placeholder="Last Name" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+									<asp:TextBox ID="txtMotherLastName" placeholder="Last Name" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                 </div>
                             </div>
                             <div style="height: 30px; margin-top: 10px; width: 100%;">
@@ -576,11 +585,14 @@
                                     Gaurdian's Name :
                                 </div>
                                 <div style="text-align: left; width: 81%; float: left;">
-                                    <asp:TextBox ID="txtGardianFirstName" placeholder="First Name" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                    <%--<asp:TextBox ID="txtGardianFirstName" placeholder="First Name" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                    <asp:TextBox ID="txtGardianFirstName" placeholder="First Name" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                     &nbsp;
-									<asp:TextBox ID="txtGardianMiddleName" placeholder="Middle Name" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+									<%--<asp:TextBox ID="txtGardianMiddleName" placeholder="Middle Name" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+									<asp:TextBox ID="txtGardianMiddleName" placeholder="Middle Name" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                     &nbsp;
-									<asp:TextBox ID="txtGardianLastName" placeholder="Last Name" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+									<%--<asp:TextBox ID="txtGardianLastName" placeholder="Last Name" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+									<asp:TextBox ID="txtGardianLastName" placeholder="Last Name" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                 </div>
                             </div>
                             <div style="height: 30px; margin-top: 10px; width: 100%;">
@@ -622,7 +634,8 @@
                                             Birth District:  
                                         </div>
                                         <div style="text-align: left; width: 73%; float: left;">
-                                            <asp:TextBox ID="txtBirthDistrict" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                            <%--<asp:TextBox ID="txtBirthDistrict" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                            <asp:TextBox ID="txtBirthDistrict" runat="server" CssClass="validate[custom[onlyLetterSp]] TextBox" Width="150px"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div style="height: 30px; margin-top: 10px; width: 100%;">
@@ -630,7 +643,8 @@
                                             Nationality:
                                         </div>
                                         <div style="text-align: left; width: 73%; float: right; vertical-align: top;">
-                                            <asp:TextBox ID="txtNationality" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                            <%--<asp:TextBox ID="txtNationality" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                            <asp:TextBox ID="txtNationality" runat="server" CssClass="validate[custom[onlyLetterSp]] TextBox" Width="150px"></asp:TextBox>
                                         </div>
                                     </div>
                                        <div style="height: 30px; margin-top: 10px; width: 100%;">
@@ -638,7 +652,8 @@
                                             Mother Tongue:
                                         </div>
                                         <div style="text-align: left; width: 73%; float: right; vertical-align: top;">
-                                            <asp:TextBox ID="txtMotherTongue" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                            <%--<asp:TextBox ID="txtMotherTongue" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                            <asp:TextBox ID="txtMotherTongue" runat="server" CssClass="validate[custom[onlyLetterSp]] TextBox" Width="150px"></asp:TextBox>
                                         </div>
                                     </div>
                                        <div style="height: 30px; margin-top: 10px; width: 100%;">
@@ -699,10 +714,9 @@
                                     Handicapped Percentage(In %):  
                                 </div>
                                 <div style="text-align: left; width: 81%; float: left;">
-                                    <asp:TextBox ID="txtHandicapePercentage" runat="server" CssClass="validate[custom[onlyNumberSp],
-                                        maxVal[100],minSize[1]] TextBox"
-                                         Width="150px"
-                                        ></asp:TextBox>
+                                    <%--<asp:TextBox ID="txtHandicapePercentage" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                    <asp:TextBox ID="txtHandicapePercentage" runat="server" CssClass="validate[custom[number],max[100.00],min[0.00]] TextBox" Width="150px"></asp:TextBox>
+
                                 </div>
 
                             </div>
@@ -720,13 +734,15 @@
                                     Religion:  
                                 </div>
                                 <div style="text-align: left; width: 31%; float: left;">
-                                    <asp:TextBox ID="txtReligion" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                    <%--<asp:TextBox ID="txtReligion" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                    <asp:TextBox ID="txtReligion" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                 </div>
                                 <div style="text-align: left; width: 19%; float: left;" class="label">
                                     Caste:
                                 </div>
                                 <div style="text-align: left; width: 31%; float: right; vertical-align: top;">
-                                    <asp:TextBox ID="txtCaste" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                    <%--<asp:TextBox ID="txtCaste" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                    <asp:TextBox ID="txtCaste" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                 </div>
                             </div>
                             <div style="height: 30px; margin-top: 10px; float: left; width: 100%;">
@@ -734,7 +750,8 @@
                                     Sub Caste:  
                                 </div>
                                 <div style="text-align: left; width: 31%; float: left;">
-                                    <asp:TextBox ID="txtSubcasteEng" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                    <%--<asp:TextBox ID="txtSubcasteEng" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                    <asp:TextBox ID="txtSubcasteEng" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                 </div>
                                 <div style="text-align: left; width: 19%; float: left;" class="label">
                                  Blood Group :
@@ -750,13 +767,15 @@
                                     Height(In cms):  
                                 </div>
                                 <div style="text-align: left; width: 31%; float: left;">
-                                    <asp:TextBox ID="txthight" runat="server" CssClass="validate[custom[number]] TextBox" Width="150px"></asp:TextBox>
+                                    <%--<asp:TextBox ID="txthight" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                    <asp:TextBox ID="txthight" runat="server" CssClass="validate[custom[number],max[250.00],min[1.00]] TextBox" Width="150px"></asp:TextBox>
                                 </div>
                                 <div style="text-align: left; width: 19%; float: left;" class="label">
                                     Weight(In Kgs):
                                 </div>
                                 <div style="text-align: left; width: 31%; float: right; vertical-align: top;">
-                                    <asp:TextBox ID="txtweight" runat="server" CssClass="validate[custom[number]] TextBox" Width="150px"></asp:TextBox>
+                                    <%--<asp:TextBox ID="txtweight" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                    <asp:TextBox ID="txtweight" runat="server" CssClass="validate[custom[number],max[250.00],min[1.00]] TextBox" Width="150px"></asp:TextBox>
                                 </div>
                             </div>
                             <div style="height: 30px; margin-top: 10px; float: left; width: 100%;">
@@ -792,7 +811,8 @@
                                                 City/Town :  
                                             </div>
                                             <div style="text-align: left; width: 60%; float: left;">
-                                                <asp:TextBox ID="txtCurCity" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                                <%--<asp:TextBox ID="txtCurCity" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                                <asp:TextBox ID="txtCurCity" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div style="height: 30px; margin-top: 10px; width: 100%;">
@@ -800,7 +820,8 @@
                                                 State :  
                                             </div>
                                             <div style="text-align: left; width: 60%; float: left;">
-                                                <asp:TextBox ID="txtCurState" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                                <%--<asp:TextBox ID="txtCurState" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                                <asp:TextBox ID="txtCurState" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                             </div>
                                         </div>
 
@@ -811,7 +832,8 @@
                                                 Pin Code :  
                                             </div>
                                             <div style="text-align: left; width: 60%; float: left;">
-                                                <asp:TextBox ID="txtCurPinCode" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                                <%--<asp:TextBox ID="txtCurPinCode" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                                <asp:TextBox ID="txtCurPinCode" runat="server" CssClass="validate[custom[onlyNumberSp],maxSize[6],minSize[6]] TextBox" Width="150px"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div style="height: 30px; margin-top: 10px; width: 100%;">
@@ -864,7 +886,7 @@
                                                 City/Town :  
                                             </div>
                                             <div style="text-align: left; width: 60%; float: left;">
-                                                <asp:TextBox ID="txtPermenantCity" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                                <asp:TextBox ID="txtPermenantCity" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div style="height: 30px; margin-top: 10px; width: 100%;">
@@ -872,7 +894,7 @@
                                                 State :  
                                             </div>
                                             <div style="text-align: left; width: 60%; float: left;">
-                                                <asp:TextBox ID="txtPermenantState" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                                <asp:TextBox ID="txtPermenantState" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                             </div>
                                         </div>
 
@@ -883,7 +905,8 @@
                                                 Pin Code :  
                                             </div>
                                             <div style="text-align: left; width: 60%; float: left;">
-                                                <asp:TextBox ID="txtPermenantPinCode" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                                <%--<asp:TextBox ID="txtPermenantPinCode" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                                <asp:TextBox ID="txtPermenantPinCode" runat="server" CssClass="validate[custom[onlyNumberSp],maxSize[6],minSize[6]] TextBox" Width="150px"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div style="height: 30px; margin-top: 10px; width: 100%;">
@@ -994,13 +1017,15 @@
                                          Roll Number :
                                     </div>
                                     <div style="text-align: left; width: 29%; float: left;">
-                                        <asp:TextBox ID="txtRollNumber" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                        <%--<asp:TextBox ID="txtRollNumber" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                        <asp:TextBox ID="txtRollNumber" runat="server" CssClass="validate[custom[onlyNumberSp] TextBox" Width="150px"></asp:TextBox>
                                          </div>  
                                       <div style="text-align: left; width: 21%; float: left;" class="label">
                                   Aadhar Card No. :
                                     </div>
                                     <div style="text-align: left; width: 29%; float: right; vertical-align: top;">
-                                        <asp:TextBox ID="txtAadharCardNo" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                        <%--<asp:TextBox ID="txtAadharCardNo" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                        <asp:TextBox ID="txtAadharCardNo" runat="server" CssClass="validate[custom[onlyNumberSp],maxSize[12],minSize[12] TextBox" Width="150px"></asp:TextBox>
                                     </div>
                               
                                 </div>
@@ -1137,7 +1162,8 @@
                                      Type Of Vehicle :
                                     </div>
                                     <div style="text-align: left; width: 27%; float: left;">
-                                        <asp:TextBox ID="txtTypeOfVehicle" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                        <%--<asp:TextBox ID="txtTypeOfVehicle" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                        <asp:TextBox ID="txtTypeOfVehicle" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                     </div>
                                     <div style="text-align: left; width: 26%; float: left;" class="label">
                                      Vehicle No. :
@@ -1152,7 +1178,8 @@
                                     Driver Name :
                                     </div>
                                     <div style="text-align: left; width: 27%; float: left;">
-                                        <asp:TextBox ID="txtDriverName" runat="server" CssClass=" TextBox" Width="150px"></asp:TextBox>
+                                        <%--<asp:TextBox ID="txtDriverName" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                        <asp:TextBox ID="txtDriverName" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                     </div>
                                     <div style="text-align: left; width: 26%; float: left;" class="label">
                                       Driver Contact No:
@@ -1823,17 +1850,17 @@
                     }
                 });
                 if (i == 1) {
-               //     $('#tabs-1').height(1035);
+                    //     $('#tabs-1').height(1035);
                     $('#tabs-1').height(1162);
                 }
                 else if (i == 2) {
                     $("#divPercentage").show();
                     $("#divDefects").show();
-                //    $('#tabs-1').height(1075);
+                    //    $('#tabs-1').height(1075);
                     $('#tabs-1').height(1161);
                 }
                 else if (i == 0) {
-                   // $('#tabs-1').height(995);
+                    // $('#tabs-1').height(995);
                     $('#tabs-1').height(1121);
                 }
             });
@@ -1912,7 +1939,6 @@
             //$("#btnSave").click(function () {
             //var valid = $("#aspnetForm").validationEngine('validate');
             //var vars = $("#aspnetForm").serialize();
-                     
 
             var tab = $(document.getElementById('<%= hfTab.ClientID %>')).val();
             // alert("Save");
@@ -2502,20 +2528,5 @@
             hdfSaveStudent.value = "";
         });
     </script>
-
-
-        <script type="text/javascript">
-            function ValidateDecimal(ele) {
-                //var regex = /^\d+(\.\d{1,2})?$/;
-                var regex = /(?:\d*\.\d{1,2}|\d+)$/;
-                if (regex.test(ele.value)) {
-                    return true;
-                    //alert("Valid");
-                } else {
-                    alert('Please Enter numeric or float Value.');
-                    return false;
-                    //alert("Invalid");
-                }
-            }
-     </script>
+       
 </asp:Content>

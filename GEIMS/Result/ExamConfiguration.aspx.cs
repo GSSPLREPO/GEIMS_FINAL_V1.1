@@ -658,6 +658,7 @@ namespace GEIMS.Result
                 ExamConfigurationBL objExamConfigurationBL = new ExamConfigurationBL();
 
                 objResult = objExamConfigurationBL.ExamConfiguration_Select_Subject_ForEdit(Convert.ToInt32(ViewState["ExamConfigID"].ToString()), Convert.ToInt32(Session[ApplicationSession.SCHOOLID]));
+                              
 
                 if (objResult != null)
                 {
@@ -671,17 +672,33 @@ namespace GEIMS.Result
                     }
                 }
 
-                ApplicationResult objResult1 = new ApplicationResult();
-                Controls objControls1 = new Controls();
-                objResult1 = objExamConfigurationBL.ExamConfiguration_Select_Subject_ForEdit_SourceListBox(Convert.ToInt32(ViewState["ExamConfigID"].ToString()), Convert.ToInt32(Session[ApplicationSession.SCHOOLID]));
+                //ApplicationResult objResult1 = new ApplicationResult();
+                //Controls objControls1 = new Controls();
+                //objResult1 = objExamConfigurationBL.ExamConfiguration_Select_Subject_ForEdit_SourceListBox(Convert.ToInt32(ViewState["ExamConfigID"].ToString()), Convert.ToInt32(Session[ApplicationSession.SCHOOLID]));
 
+                //if (objResult1 != null)
+
+                //{
+                //    objControls1.BindDropDown_ListBox(objResult1.resultDT, lbSrcSubject, "NameEng", "SubjectMID");
+                //    if (objResult1.resultDT.Rows.Count > 0)
+                //    {
+
+                //    }
+                //}
+
+                //Changed code on 02/11/2022 Bhandavi 
+                //to display subjects of selected class, previously displaying all subjects
+
+                ApplicationResult objResult1 = new ApplicationResult();
+                SubjectMBL objSubjectMbl = new SubjectMBL();
+                Controls objControl = new Controls();
+                objResult1 = objSubjectMbl.SubjectM_Select_By_ClassDivision(Convert.ToInt32(ddlClass.SelectedValue), DivisionTID);
                 if (objResult1 != null)
                 {
-                    objControls1.BindDropDown_ListBox(objResult1.resultDT, lbSrcSubject, "NameEng", "SubjectMID");
-                    if (objResult1.resultDT.Rows.Count > 0)
-                    {
-
-                    }
+                    objControl.BindDropDown_ListBox(objResult1.resultDT, lbSrcSubject, "NameEng", "SubjectMID");
+                }
+                else
+                {
                 }
             }
             catch (Exception ex)

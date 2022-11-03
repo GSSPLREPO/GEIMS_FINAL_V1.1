@@ -547,7 +547,7 @@ namespace GEIMS.Client.UI
                         DataTable dtResult = objResult1.resultDT;
                         if (dtResult.Rows.Count > 0)
                         {
-                            ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('You cannot delete this record because it is in use.');</script>");
+                            ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('You cannot delete this record because Planning has been created.');</script>");
                         }
                         else
                         {
@@ -582,11 +582,11 @@ namespace GEIMS.Client.UI
                     txtSyllabusDetailsENG.Attributes.Add("readonly", "readonly");
                     txtSyllabusDetailsGUJ.Attributes.Add("readonly", "readonly");
                     txtSyllabusRemark.Attributes.Add("readonly", "readonly");*/
-                    txtChapterNameAndNoENG.Enabled = false;
-                    txtChapterNameAndNoGUJ.Enabled = false;
-                    txtSyllabusDetailsENG.Enabled = false;
-                    txtSyllabusDetailsGUJ.Enabled = false;
-                    txtSyllabusRemark.Enabled = false;
+                    //txtChapterNameAndNoENG.Enabled = false;
+                    //txtChapterNameAndNoGUJ.Enabled = false;
+                    //txtSyllabusDetailsENG.Enabled = false;
+                    //txtSyllabusDetailsGUJ.Enabled = false;
+                    //txtSyllabusRemark.Enabled = false;
 
                     SyllabusPlanningDiv1.Visible = true;
                     SyllabusPlanningDiv2.Visible = true;

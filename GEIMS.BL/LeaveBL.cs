@@ -417,7 +417,7 @@ namespace GEIMS.Bl
                 pSqlParameter[2].Direction = ParameterDirection.Input;
                 pSqlParameter[2].Value = intYear;
 
-                strStoredProcName = "usp_tbl_Leave_M_Select_ForPayrollBalance";
+                strStoredProcName = "usp_tbl_Leave_M_Select_ForPayrollBalance_New";
 
                 DataTable dtResult = new DataTable();
                 dtResult = Database.ExecuteDataTable(CommandType.StoredProcedure, strStoredProcName, pSqlParameter);
@@ -491,7 +491,7 @@ namespace GEIMS.Bl
                 pSqlParameter[2].Direction = ParameterDirection.Input;
                 pSqlParameter[2].Value = intYear;
 
-                strStoredProcName = "usp_tbl_Leave_M_Select_ForPayrollLeave_old";
+                strStoredProcName = "usp_tbl_Leave_M_Select_ForPayrollLeave_New";
 
                 DataTable dtTable = new DataTable();
                 dtTable = Database.ExecuteDataTable(CommandType.StoredProcedure, strStoredProcName, pSqlParameter);

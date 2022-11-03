@@ -26,7 +26,12 @@
                         <div id="divReport" runat="server" style="width: 100%; float: left; padding-top: 0px;" class="label">
                             <div style="width: 100%; float: left; padding-top: 0px;" class="label">
                                 <div style="padding: 10px; padding-right: 30px;">
-                                    <div style="float: left; text-align: center; width: 100%; padding-bottom: 10px;">
+                                    <div style="float:left;text-align:left; width: 20%; padding-bottom: 10px;"">
+                                        <img src="../Images/Logo1.jpg" style="height:100px;width:100px"/>
+                                    </div>
+
+                                    <div style="float: left; text-align: right; width: 80%; padding-bottom: 10px;">
+                                       
                                         <asp:ImageButton ID="btnExportPDF" runat="server" ImageUrl="~/Images/adobe.PNG"
                                             ToolTip="Export to PDF" OnClick="btnExportPDF_Click" />
 
@@ -49,12 +54,12 @@
                             <div style="width: 100%; float: left; padding-top: 0px;" class="label">
                                 <div style="padding: 10px; padding-right: 30px;">
                                     <div style="float: left; text-align: center; width: 100%; padding-bottom: 10px;">
-                                        Trust Name :
-                                                <asp:Label runat="server" ID="lblTrust"></asp:Label>
+                                        <b>Trust Name :
+                                                <asp:Label runat="server" ID="lblTrust"></asp:Label></b>
                                     </div>
                                 </div>
                             </div>
-                            <div style="padding: 10px; padding-right: 30px; width: 1100px; float:left">
+                            <div style="padding: 10px; padding-right: 30px; width: 1500px; float:left">
                                 <asp:GridView ID="gvReport" Visible="true" runat="server" BackColor="White" BorderColor="Black" AutoGenerateColumns="true"
                                     CellPadding="4" Font-Names="Verdana" Font-Size="11px" AllowSorting="false" Width="100%">
                                     <RowStyle BackColor="White" />

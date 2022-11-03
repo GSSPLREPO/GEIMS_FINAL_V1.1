@@ -27,7 +27,8 @@
                         type: "POST",
                         contentType: "application/json; charset=utf-8",
                         url: "StudentDetailMaster.aspx/GetAllStudentNameForReport",
-                        data: "{'prefixText':'" + request.term + "','SearchType':'" + $(document.getElementById('<%= ddlSearchBy.ClientID %>')).val() + "','SchoolMID':'" +<%=Session[ApplicationSession.SCHOOLID] %> + "'}",
+                       <%-- data: "{'prefixText':'" + request.term + "','SearchType':'" + $(document.getElementById('<%= ddlSearchBy.ClientID %>')).val() + "','SchoolMID':'" +<%=Session[ApplicationSession.SCHOOLID] %> + "'}",--%>
+                        data: "{'prefixText':'" + request.term + "','SearchType':'" + $(document.getElementById('<%= ddlSearchBy.ClientID %>')).val() + "','SchoolMID':'" +<%=Session[ApplicationSession.SCHOOLID] %> + "','SectionType':'" + $(document.getElementById('<%= ddlSection1.ClientID %>')).val() + "','ClassType':'" + $(document.getElementById('<%= ddlClassName1.ClientID %>')).val() + "','DivisionType':'" + $(document.getElementById('<%= ddlDivisionName1.ClientID %>')).val() + "'}",
                         dataType: "json",
                         success: function (data) {
                             response($.map(data.d, function (item) {
@@ -444,8 +445,22 @@
                     <asp:Label ID="lblMsg" runat="server" CssClass="message" Visible="false"></asp:Label>
                 </div>--%>
                 <div id="divGridPanel" style="text-align: center; padding-top: 10px; padding-bottom: 10px; padding-right: 10px; width: 100%;">
-                    <asp:Panel ID="GridPanel" runat="server" Font-Names="Verdana" Font-Size="11px"
-                        GroupingText="Search Student">
+                    <asp:Panel ID="GridPanel" runat="server" Font-Names="Verdana" Font-Size="11px" GroupingText="Search Student">
+                        <asp:DropDownList runat="server" CssClass="textarea" ID="ddlSection1" Height="23px" Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlSection1_SelectedIndexChanged">
+                             <asp:ListItem Value="-1">-Select-</asp:ListItem>  
+                        </asp:DropDownList>
+                        &nbsp;&nbsp;&nbsp;
+                        <asp:DropDownList ID="ddlClassName1"  CssClass="textarea" runat="server" Height="23px" Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlClassName1_SelectedIndexChanged"  >
+                             <asp:ListItem Value="-1">-Select-</asp:ListItem>                                          
+                        </asp:DropDownList>
+                        <asp:HiddenField ID="hfClassID" runat="server" />
+                        &nbsp;&nbsp;&nbsp;
+                        <asp:DropDownList ID="ddlDivisionName1"  CssClass="textarea" runat="server" Height="23px" Width="150px">
+                             <asp:ListItem Value="-1">-Select-</asp:ListItem>                                          
+                        </asp:DropDownList>  
+                        <asp:HiddenField ID="hfDivisionID" runat="server" />
+                        <asp:HiddenField ID="hfSectionID" runat="server" />
+                         &nbsp;&nbsp;&nbsp;
                         <asp:DropDownList ID="ddlSearchBy" Width="150px" CssClass="textarea" runat="server">
                             <asp:ListItem Value="-1">-Select-</asp:ListItem>
                             <asp:ListItem Value="1">Student Name</asp:ListItem>
@@ -585,7 +600,8 @@
                                         <div style="text-align: left; width: 73%; float: left;">
                                             <%--<asp:RadioButton runat="server" CssClass="validate[required]" ValidationGroup="Gender" Text="Male" ID="rdMale" />
 										<asp:RadioButton runat="server" CssClass="validate[required]" ValidationGroup="Gender" Text="Female" ID="rdFemale" />--%>
-                                            <asp:RadioButtonList ID="rblGender" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="rblGender_SelectedIndexChanged">
+                                            <asp:RadioButtonList ID="rblGender" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="rblGender_SelectedIndexChanged"
+                                                 onclick="OnChangeGender(this);">
                                                 <asp:ListItem Value="MALE">Male</asp:ListItem>
                                                 <asp:ListItem Value="FEMALE">Female</asp:ListItem>
                                             </asp:RadioButtonList>
@@ -665,10 +681,11 @@
                             </div>
                             <div style="height: 30px; margin-top: 10px; float: left; width: 100%;">
                                 <div style="text-align: left; width: 19%; float: left;" class="label">
-                                    Sub Category: <span style="color: red">*</span>
+                                    Category: <span style="color: red">*</span>
                                 </div>
                                 <div style="text-align: left; width: 81%; float: left;">
-                                    <asp:RadioButtonList ID="rblCategory" CssClass="CheckBoxList" runat="server" RepeatDirection="Horizontal" Font-Bold="false">
+                                    <asp:RadioButtonList ID="rblCategory" CssClass="CheckBoxList"  onclick="OnChangeCat();"
+                                        runat="server" RepeatDirection="Horizontal" Font-Bold="false">
                                         <asp:ListItem Value="Open">Open</asp:ListItem>
                                         <asp:ListItem Value="OBC">OBC</asp:ListItem>
                                         <asp:ListItem Value="SC">SC</asp:ListItem>
@@ -730,13 +747,13 @@
                                     Height(In cms):  
                                 </div>
                                 <div style="text-align: left; width: 31%; float: left;">
-                                    <asp:TextBox ID="txthight" runat="server" CssClass="validate[custom[onlyNumberSp]] TextBox" Width="150px"></asp:TextBox>
+                                    <asp:TextBox ID="txthight" runat="server" CssClass="validate[custom[number]] TextBox" Width="150px"></asp:TextBox>
                                 </div>
                                 <div style="text-align: left; width: 19%; float: left;" class="label">
                                     Weight(In Kgs):
                                 </div>
                                 <div style="text-align: left; width: 31%; float: right; vertical-align: top;">
-                                    <asp:TextBox ID="txtweight" runat="server" CssClass="validate[custom[onlyNumberSp]] TextBox" Width="150px"></asp:TextBox>
+                                    <asp:TextBox ID="txtweight" runat="server" CssClass="validate[custom[number]] TextBox" Width="150px"></asp:TextBox>
                                 </div>
                             </div>
                             <div style="height: 30px; margin-top: 10px; float: left; width: 100%;">
@@ -989,13 +1006,13 @@
                                         Form No:<span style="color: red">*</span>
                                     </div>
                                     <div style="text-align: left; width: 29%; float: left;">
-                                        <asp:TextBox ID="txtCurAdmissionNo" runat="server" CssClass="validate[groupRequired[UniqueNo]] TextBox" Width="150px"></asp:TextBox>
+                                        <asp:TextBox ID="txtCurAdmissionNo" runat="server" CssClass="validate[required] TextBox" Width="150px"></asp:TextBox>
                                     </div>
                                     <div style="text-align: left; width: 21%; float: left;" class="label">
                                         Current GR NO :<span style="color: red">*</span>
                                     </div>
                                     <div style="text-align: left; width: 29%; float: right; vertical-align: top;">
-                                        <asp:TextBox ID="txtCurGrNo" runat="server" CssClass="validate[groupRequired[UniqueNo]] TextBox" Width="150px"></asp:TextBox>
+                                        <asp:TextBox ID="txtCurGrNo" runat="server" CssClass="validate[required] TextBox" Width="150px"></asp:TextBox>
                                     </div>
                                 </div>
 
@@ -1040,7 +1057,7 @@
                                         Admitted GR NO :<span style="color: red">*</span>
                                     </div>
                                     <div style="text-align: left; width: 29%; float: left;">
-                                        <asp:TextBox ID="txtAdmittedGr" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                        <asp:TextBox ID="txtAdmittedGr" runat="server" CssClass="validate[required] TextBox" Width="150px"></asp:TextBox>
                                     </div>
                                     <div style="text-align: left; width: 21%; float: left;" class="label">
                                         Academic Year: <span style="color: red">*</span>
@@ -1132,13 +1149,13 @@
                                     Driver Name :
                                     </div>
                                     <div style="text-align: left; width: 27%; float: left;">
-                                        <asp:TextBox ID="txtDriverName" runat="server" CssClass="validate[custom[onlyNumberSp],maxSize[10],minSize[10]] TextBox" Width="150px"></asp:TextBox>
+                                        <asp:TextBox ID="txtDriverName" runat="server" CssClass=" TextBox" Width="150px"></asp:TextBox>
                                     </div>
                                     <div style="text-align: left; width: 26%; float: left;" class="label">
                                       Driver Contact No:
                                     </div>
                                     <div style="text-align: left; width: 27%; float: left; vertical-align: top;">
-                                        <asp:TextBox ID="txtDriverContactNo" runat="server" CssClass="validate[custom[email]] TextBox" Width="150px"></asp:TextBox>
+                                        <asp:TextBox ID="txtDriverContactNo" runat="server" CssClass="validate[custom[onlyNumberSp],maxSize[10],minSize[10]] TextBox" Width="150px"></asp:TextBox>
                                     </div>
                                 </div>
                             </asp:Panel>
@@ -1332,7 +1349,8 @@
                                     જાતિ :<span style="color: red">*</span>
                                 </div>
                                 <div style="text-align: left; width: 27%; float: left;">
-                                    <asp:RadioButtonList ID="rblGenderGuj" runat="server" RepeatDirection="Horizontal">
+                       <asp:RadioButtonList ID="rblGenderGuj" runat="server" RepeatDirection="Horizontal" onclick="OnChangeGenderGuj(this);">
+                              <%--  <asp:RadioButtonList ID="rblGenderGuj" runat="server" AutoPostBack="true"  onclick="OnChangeGenderGuj(this);"  RepeatDirection="Horizontal" OnSelectedIndexChanged="rblGenderGuj_SelectedIndexChanged">--%>
                                         <asp:ListItem Value="પુરૂષ">પુરૂષ</asp:ListItem>
                                         <asp:ListItem Value="સ્ત્રી">સ્ત્રી</asp:ListItem>
                                     </asp:RadioButtonList>
@@ -1373,7 +1391,8 @@
                                     જાતિ : <span style="color: red">*</span>
                                 </div>
                                 <div style="text-align: left; width: 81%; float: right; vertical-align: top;">
-                                    <asp:RadioButtonList ID="rblCategoryGuj" CssClass="CheckBoxList" runat="server" RepeatDirection="Horizontal" Font-Bold="false">
+                                    <asp:RadioButtonList ID="rblCategoryGuj" CssClass="CheckBoxList" 
+                                        runat="server" RepeatDirection="Horizontal" Font-Bold="false" onclick="onChangeCatGuj()">
                                         <asp:ListItem Value="સામાન્ય">સામાન્ય</asp:ListItem>
                                         <asp:ListItem Value="બક્ષીપંચ">બક્ષીપંચ</asp:ListItem>
                                         <asp:ListItem Value="SC">અનુસૂચિત જાતિ</asp:ListItem>
@@ -1597,7 +1616,7 @@
                                     runat="server" ID="btnCancel" Text="Cancel"
                                     CssClass="btn-blue btn-blue-medium Detach"
                                     OnClientClick="myFunction()" />--%>
-
+                                      <asp:HiddenField ID="hdfSaveStudent" runat="server" />
                                 &nbsp;&nbsp;
                                  <asp:Button runat="server" ID="btnSave" Text="Save"
                                      CssClass="btn-blue btn-blue-medium"
@@ -1613,14 +1632,14 @@
                             <div style="width: 100%;">
                                 <%--  <p style="font-size: 15px; margin-bottom: 10px; margin-left: 10px; font-weight: bold">
             Upload Files</p>--%>
-                                <div id="divGrid" style="width: 500px; background-color: #3b5998; height: 25px; clear: both; color: white;">
-                                    <div style="width: 175px; float: left; margin-left: 40px; margin-top: 4px;">
+                                <div id="divGrid" style="width: 700px; background-color: #3b5998; height: 25px; clear: both; color: white;">
+                                    <div style="width: 260px; float: left; margin-left: 40px; margin-top: 4px;">
                                         File Name
                                     </div>
-                                    <div style="width: 180px; float: left; margin-top: 4px;">
+                                    <div style="width: 300px; float: left; margin-top: 4px;">
                                         Description
                                     </div>
-                                    <div style="width: 50px; float: left; margin-top: 4px;">
+                                    <div style="width: 40px; float: left; margin-top: 4px;">
                                         Action
                                     </div>
                                 </div>
@@ -1639,7 +1658,7 @@
 
                                 <div id="divDocument" style="width: 100%; padding-top: 10px; clear: both">
                                     <div style="float: left; padding-top: 5px;">
-                                        <%--Show wrapper on above of fileUpload Control--%>
+                                        <%--Show wrapper on above of fileUpload Control--%> 
                                         <label class="file-upload">
                                             <%-- Set Text To be displayed inplace of Browse button--%>
                                             <span><strong>Select file</strong></span>
@@ -1722,7 +1741,6 @@
                 //alert("Upload1");
                 $("#aspnetForm").submit();
             }
-
         };
 
         jQuery("#aspnetForm").validationEngine('attach', {
@@ -1802,17 +1820,17 @@
                     }
                 });
                 if (i == 1) {
-               //     $('#tabs-1').height(1035);
+                    //     $('#tabs-1').height(1035);
                     $('#tabs-1').height(1162);
                 }
                 else if (i == 2) {
                     $("#divPercentage").show();
                     $("#divDefects").show();
-                //    $('#tabs-1').height(1075);
+                    //    $('#tabs-1').height(1075);
                     $('#tabs-1').height(1161);
                 }
                 else if (i == 0) {
-                   // $('#tabs-1').height(995);
+                    // $('#tabs-1').height(995);
                     $('#tabs-1').height(1121);
                 }
             });
@@ -1895,26 +1913,30 @@
             var tab = $(document.getElementById('<%= hfTab.ClientID %>')).val();
             // alert("Save");
             if (tab == "0") {
-                // alert("0");
+                //alert("0");
                 $(document.getElementById('<%= tabs.ClientID %>')).tabs();
-                    $(document.getElementById('<%= tabs.ClientID %>')).tabs("enable", 0);
-                    $(document.getElementById('<%= tabs.ClientID %>')).tabs({ disabled: [1, 2, 3, 4] });
-                    $(document.getElementById('<%= tabs.ClientID %>')).tabs({ active: 0 });
+                $(document.getElementById('<%= tabs.ClientID %>')).tabs("enable", 0);
+                $(document.getElementById('<%= tabs.ClientID %>')).tabs({ disabled: [1, 2, 3, 4] });
+                $(document.getElementById('<%= tabs.ClientID %>')).tabs({ active: 0 });
 
 
-                }
-                else if (tab == "4") {
-                    // alert("4");
-                    $(document.getElementById('<%= tabs.ClientID %>')).tabs();
-                    $(document.getElementById('<%= tabs.ClientID %>')).tabs("enable", 4);
-                    $(document.getElementById('<%= tabs.ClientID %>')).tabs({ disabled: [0, 1, 2, 3] });
-                    $(document.getElementById('<%= tabs.ClientID %>')).tabs({ active: 4 });
-
-
-                }
-                else if (tab == "1") {
-                    $(document.getElementById('<%= tabs.ClientID %>')).tabs();
             }
+            else if (tab == "4") {
+                //alert("4");
+                $(document.getElementById('<%= tabs.ClientID %>')).tabs();
+                $(document.getElementById('<%= tabs.ClientID %>')).tabs("enable", 4);
+                $(document.getElementById('<%= tabs.ClientID %>')).tabs({ disabled: [0, 1, 2, 3] });
+                $(document.getElementById('<%= tabs.ClientID %>')).tabs({ active: 4 });
+
+
+            }
+            else if (tab == "1") {
+                //alert("1");
+                $(document.getElementById('<%= tabs.ClientID %>')).tabs();
+            }
+          
+            ShowStudentDocuments();
+          
         });
 
 
@@ -2124,6 +2146,12 @@
         });
 
         $("#btnUploadDocument").click(function () {
+
+            ShowStudentDocuments();   
+
+        });
+
+        function ShowStudentDocuments() {
             // alert("hi");
             $("#btnStudentDetail").show();
             $("#btnUploadDocument").hide();
@@ -2313,8 +2341,8 @@
                 var lblfilename = 'lblfilename_' + count;
                 var path = $('#hdnUploadFilePath').val();
                 //alert("uploadedDiv");
-                $("#uploadedDiv").append("<div id='" + hdnid + "' style='clear:both; background-color:#d2e9ff; padding-top:5px; height:25px; width:500px'><span id='" + lblfilename + "' style='width:175px;float:left;margin-left:40px;overflow:hidden;'>" + fileName +
-                    "</span><span style='width:170px;float:left;margin-left:0px;'><input type='text' id='" + txtDocDescId + "' value='" + fileName +
+                $("#uploadedDiv").append("<div id='" + hdnid + "' style='clear:both; background-color:#d2e9ff; padding-top:5px; height:25px; width:700px'><span id='" + lblfilename + "' style='width:260px;float:left;margin-left:40px;overflow:hidden;'>" + fileName +
+                    "</span><span style='width:300px;float:left;margin-left:0px;'><input type='text' id='" + txtDocDescId + "' value='" + fileName +
                     "' /><input name='" + hdnid + "' id='" + hdnid + "' value='" + count + "' type='hidden'></span><span style='float:left; margin-left:10px; width:40px;' >" +
                     "<a href='#' class='dellink' onclick='deleterow(\"#" + hdnid + "," + file + "\")'>Delete</a></span>" + // for deleting file
                     "<span style='float:left; margin-left:10px; width:40px;' ><a class='dellink' href='FileUpload.ashx?filepath=" + path + "&file=" + file + "&SchoolID=" + SchoolID + "&TrustID=" + TrustID + "&StudentMID=" + StudentMID + "&EmployeeMID=" + EmployeeMID + "' >View</a></span></div>" // for downloading file
@@ -2352,8 +2380,7 @@
                 }
                 return false;
             }
-
-        });
+        }
 
         $(document.getElementById('<%= lnkViewList.ClientID %>')).click(function () {
             $("#btnUploadDocument").hide();
@@ -2364,8 +2391,112 @@
 
 
         });
+
+          
         function calendarShown(sender, args) {
             sender._popupBehavior._element.style.zIndex = 10005;
         }
     </script>
+      <script type="text/javascript">
+
+          /*
+          Added code on 20/10/2022 Bhandavi
+          When we change the gender radio button in english then automatically change the gender radio button in gujarati and viceversa
+           */
+
+          //on gender gujarati selected value changed
+        function OnChangeGenderGuj(myRadio) {
+            var rbG = document.getElementById("<%=rblGenderGuj.ClientID%>");
+            var rb = document.getElementById("<%=rblGender.ClientID%>");
+
+            var radioG = rbG.getElementsByTagName("input");
+            var radio = rb.getElementsByTagName("input");
+
+            var isChecked = false;
+            for (var i = 0; i < radioG.length; i++) {
+                if (radioG[i].checked) {
+                    radio[i].checked = true;
+                    isChecked = true;
+                    break;
+                }
+            }
+            return isChecked;
+        }
+
+             //on gender english selected value changed
+          function OnChangeGender(myRadio) {
+              var rbG = document.getElementById("<%=rblGenderGuj.ClientID%>");
+               var rb = document.getElementById("<%=rblGender.ClientID%>");
+
+               var radioG = rbG.getElementsByTagName("input");
+               var radio = rb.getElementsByTagName("input");
+
+               var isChecked = false;
+               for (var i = 0; i < radio.length; i++) {
+                   if (radio[i].checked) {
+                       radioG[i].checked = true;
+                       isChecked = true;
+                       break;
+                   }
+               }
+               return isChecked;
+          }         
+        </script>
+
+
+    <script type="text/javascript">
+        //21/10/2022 Bhandavi
+        //When we change category in english then automatically change in gugarati and vice versa
+        
+        function OnChangeCat() {         
+            var rbG = document.getElementById("<%=rblCategoryGuj.ClientID%>");
+             var rb = document.getElementById("<%=rblCategory.ClientID%>");
+
+              var radioG = rbG.getElementsByTagName("input");
+              var radio = rb.getElementsByTagName("input");
+            
+              var isChecked = false;
+              for (var i = 0; i < radio.length; i++) {
+                  if (radio[i].checked) {
+                      radioG[i].checked = true;
+                      isChecked = true;
+                      break;
+                  }
+              }
+              return isChecked;
+          }
+
+          function onChangeCatGuj() {           
+            var rbG = document.getElementById("<%=rblCategoryGuj.ClientID%>");
+            var rb = document.getElementById("<%=rblCategory.ClientID%>");
+
+            var radioG = rbG.getElementsByTagName("input");
+            var radio = rb.getElementsByTagName("input");
+
+            var isChecked = false;
+            for (var i = 0; i < radioG.length; i++) {
+                if (radioG[i].checked) {
+                    radio[i].checked = true;
+                    isChecked = true;
+                    break;
+                }
+            }
+            return isChecked;
+        }  
+    </script>
+     
+     
+    <script type="text/javascript">
+        //21/10/2022 Bhandavi
+        //displaying documents of student after saving student details
+        $(document).ready(function () {
+            var saveD = document.getElementById("<%=hdfSaveStudent.ClientID%>");
+            if (saveD.value == "Saved") {
+                ShowStudentDocuments();
+                $("#btnStudentDetail").hide();
+            }
+            hdfSaveStudent.value = "";
+        });
+    </script>
+       
 </asp:Content>

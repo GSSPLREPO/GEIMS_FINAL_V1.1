@@ -421,7 +421,7 @@ namespace GEIMS.PayRoll
             {
                 if (ddlMonth.SelectedIndex != 0)
                 {
-                    ddlYear.Items.Insert(0, new ListItem("-Select-", "-1"));
+                    //ddlYear.Items.Insert(0, new ListItem("-Select-", "-1"));
                     month = Convert.ToInt32(ddlMonth.SelectedValue);
                     year = Convert.ToInt32(ddlYear.SelectedValue.ToString());
                     txtPayTotalDays.Text = Convert.ToString(DateTime.DaysInMonth(year, month));
@@ -1247,7 +1247,7 @@ namespace GEIMS.PayRoll
             try
             {
                 LeaveBl objLeaveBl = new LeaveBl();
-                ApplicationResult objResult = new ApplicationResult();
+                 ApplicationResult objResult = new ApplicationResult();
 
                 if (Convert.ToInt32(strMonth) > 0 && Convert.ToInt32(intEmployeeMID) > 0 && Convert.ToInt32(intYear) > 0)
                 {

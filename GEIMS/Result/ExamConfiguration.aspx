@@ -43,7 +43,7 @@
 							</asp:BoundField>
 							<asp:BoundField DataField="ClassName" HeaderText="Class">
 								<HeaderStyle Width="20%" HorizontalAlign="left" VerticalAlign="Top" />
-								<ItemStyle HorizontalAlign="left" Width="25%" VerticalAlign="Top" Wrap="true" />
+								<ItemStyle HorizontalAlign="left" Width="10%" VerticalAlign="Top" Wrap="true" />
 							</asp:BoundField>
 							<asp:BoundField DataField="DivisionName" HeaderText="Division">
 								<HeaderStyle Width="10%" HorizontalAlign="left" VerticalAlign="Top" />
@@ -55,7 +55,7 @@
 							</asp:BoundField>
 							<asp:BoundField DataField="AcademicYear" HeaderText="Year">
 								<HeaderStyle Width="20%" HorizontalAlign="left" VerticalAlign="Top" />
-								<ItemStyle HorizontalAlign="left" Width="25%" VerticalAlign="Top" Wrap="true" />
+								<ItemStyle HorizontalAlign="left" Width="100%" VerticalAlign="Top" Wrap="true" />
 							</asp:BoundField>
 							<asp:TemplateField HeaderText="Edit">
 								<ItemTemplate>
