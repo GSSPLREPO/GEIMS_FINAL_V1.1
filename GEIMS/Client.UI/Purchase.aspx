@@ -436,7 +436,7 @@
                                                             <div style="text-align: right; float: left; vertical-align: bottom; width: 100%;">
                                                                 <asp:Button runat="server" ID="btnAdd" Text="Add" CssClass="btn-blue-new btn-blue-medium" ValidationGroup="g1" OnClick="btnAdd_Click" />
                                                                 <asp:Button runat="server" ID="btnUpdateMaterial" Text="Update" CssClass="btn-blue-new btn-blue-medium" Visible="False" OnClick="btnUpdateMaterial_OnClick" />&nbsp;
-                                                                <button id="btnCancel" type="button" class="Detach btn-blue-new btn-blue-medium">Cancel</button>
+                                                                <%--<button id="btnCancel" type="button" class="Detach btn-blue-new btn-blue-medium">Cancel</button>--%>
                                                             </div>
                                                         </div>
                                                     </div>

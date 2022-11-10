@@ -521,8 +521,12 @@ namespace GEIMS.Client.UI
 
                             txtChapterNameAndNoENG.Text = dtResult.Rows[0][SyllabusBO.SYLLABUS_CHAPTERNAMEANDNOENG].ToString();
                             txtChapterNameAndNoGUJ.Text = dtResult.Rows[0][SyllabusBO.SYLLABUS_CHAPTERNAMEANDNOGUJ].ToString();
-                            txtSyllabusDetailsENG.Text = dtResult.Rows[0][SyllabusBO.SYLLABUS_CHAPTERNAMEANDNOGUJ].ToString();
-                            txtSyllabusDetailsGUJ.Text = dtResult.Rows[0][SyllabusBO.SYLLABUS_CHAPTERNAMEANDNOENG].ToString();
+                            //txtSyllabusDetailsENG.Text = dtResult.Rows[0][SyllabusBO.SYLLABUS_CHAPTERNAMEANDNOGUJ].ToString();
+                            //txtSyllabusDetailsGUJ.Text = dtResult.Rows[0][SyllabusBO.SYLLABUS_CHAPTERNAMEANDNOENG].ToString();
+
+                            //Not displaying updated values Changed on 09/11/2022 Bhandavi
+                            txtSyllabusDetailsENG.Text = dtResult.Rows[0][SyllabusBO.SYLLABUS_SYLLABUSDETAILSENG].ToString();
+                            txtSyllabusDetailsGUJ.Text = dtResult.Rows[0][SyllabusBO.SYLLABUS_SYLLABUSDETAILSGUJ].ToString();
                             txtSyllabusRemark.Text = dtResult.Rows[0][SyllabusBO.SYLLABUS_SYLLABUSREMARKS].ToString();
 
                             PanelVisibility(2);
@@ -745,7 +749,7 @@ namespace GEIMS.Client.UI
 
                 }
                 //Added on 27/09/2022 Bhandavi
-                //when a school is not having subjects, then showing previos subjects along with select. So if 
+                //when a school is not having subjects, then showing previous subjects along with select. So if 
                 //School doesnot have subjects then clear subject dropdown
                 else
                 { 

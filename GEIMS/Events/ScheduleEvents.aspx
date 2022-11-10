@@ -259,7 +259,8 @@
                                         </div>
                                         
                                         <div style="text-align:right; padding-right:70px;">
-                                            <asp:CompareValidator ID="CompareValidator2" runat="server" ErrorMessage="From Time Cannot Be Greter then To Time" ControlToValidate="txtFromDateToTime" ControlToCompare="txtFromDateFromTime" Font-Overline="False" Operator="GreaterThan" ForeColor="#FF3300" SetFocusOnError="True" Font-Bold="False"></asp:CompareValidator>
+                                            <%--<asp:CompareValidator ID="CompareValidator2" runat="server" ErrorMessage="From Time Cannot Be Greter then To Time" ControlToValidate="txtFromDateToTime" ControlToCompare="txtFromDateFromTime" Font-Overline="False" Operator="GreaterThan" ForeColor="#FF3300" SetFocusOnError="True" Font-Bold="False"></asp:CompareValidator>--%>
+                                            <asp:CompareValidator ID="CompareValidator2" runat="server" ErrorMessage="From Time Cannot Be Greater than To Time" ControlToValidate="txtFromDateToTime" ControlToCompare="txtFromDateFromTime" Font-Overline="False" Operator="GreaterThan" ForeColor="#FF3300" SetFocusOnError="True" Font-Bold="False"></asp:CompareValidator>
                                         </div>
                                     </div>
 
@@ -275,7 +276,8 @@
                                             <div>
                                                  <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="txtToDate" MinimumValue="31/01/2020"
                                                 MaximumValue="31/12/2100" ErrorMessage="Enter Valid Date in DD/MM/YYYY Format" Type="Date" Display="Dynamic" ForeColor="#FF3300" />
-                                                <asp:CompareValidator ID="CompareValidator1" runat="server" Operator="LessThanEqual" ControlToValidate="txtFromDate" ControlToCompare="txtToDate" ErrorMessage="From Date cannot be greter then To Date" Font-Bold="False" ForeColor="#FF3300" SetFocusOnError="True" Type="Date"></asp:CompareValidator>
+                                                <%--<asp:CompareValidator ID="CompareValidator1" runat="server" Operator="LessThanEqual" ControlToValidate="txtFromDate" ControlToCompare="txtToDate" ErrorMessage="From Date cannot be greter then To Date" Font-Bold="False" ForeColor="#FF3300" SetFocusOnError="True" Type="Date"></asp:CompareValidator>--%>
+                                                <asp:CompareValidator ID="CompareValidator1" runat="server" Operator="LessThanEqual" ControlToValidate="txtFromDate" ControlToCompare="txtToDate" ErrorMessage="From Date cannot be greater than To Date" Font-Bold="False" ForeColor="#FF3300" SetFocusOnError="True" Type="Date"></asp:CompareValidator>
                                             </div>
                                         </div>
                                         <div style="text-align: left; width: 20%; float: left; height: 13px;" class="label">
@@ -297,7 +299,8 @@
                                                 ControlToValidate="txtToDateToTime" ValidationExpression="^([01]?[0-9]|2[0-3]):[0-5][0-9]$" CssClass="boldText" ForeColor="#FF3300" SetFocusOnError="True"></asp:RegularExpressionValidator>
                                         </div>
                                         <div style="text-align:right; padding-right:70px;">
-                                            <asp:CompareValidator ID="CompareValidator3" runat="server" ErrorMessage="From Time Cannot Be Greter then To Time" ControlToValidate="txtToDateToTime" ControlToCompare="txtToDateFromTime" Font-Overline="False" Operator="GreaterThan" ForeColor="#FF3300" SetFocusOnError="True" Font-Bold="False"></asp:CompareValidator>
+                                            <%--<asp:CompareValidator ID="CompareValidator3" runat="server" ErrorMessage="From Time Cannot Be Greter then To Time" ControlToValidate="txtToDateToTime" ControlToCompare="txtToDateFromTime" Font-Overline="False" Operator="GreaterThan" ForeColor="#FF3300" SetFocusOnError="True" Font-Bold="False"></asp:CompareValidator>--%>
+                                            <asp:CompareValidator ID="CompareValidator3" runat="server" ErrorMessage="From Time Cannot Be Greater than To Time" ControlToValidate="txtToDateToTime" ControlToCompare="txtToDateFromTime" Font-Overline="False" Operator="GreaterThan" ForeColor="#FF3300" SetFocusOnError="True" Font-Bold="False"></asp:CompareValidator>
                                         </div>
                                      
                                     </div>

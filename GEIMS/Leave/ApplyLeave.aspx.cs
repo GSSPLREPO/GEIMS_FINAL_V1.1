@@ -33,6 +33,7 @@ namespace GEIMS.Leave
                     BindLeaveBalance();
                     BindApplyLeave();
                     divDate.Visible = false;
+                    lnkBack.Visible = false;
                 }
                 catch (Exception ex)
                 {
@@ -122,6 +123,7 @@ namespace GEIMS.Leave
         #region Bind Apply Leaves
         private void BindApplyLeave()
         {
+            
             ApplicationResult objResult = new ApplicationResult();
             LeaveApplyBl objLeaveApplyBl = new LeaveApplyBl();
 
@@ -167,6 +169,7 @@ namespace GEIMS.Leave
                 }
                 else
                 {
+                    lnkBack.Visible = true;
                     TimeSpan tsdifference = dtToDate - dtFromDate;
                     var days = tsdifference.TotalDays;
                     days = days + 1;
@@ -290,7 +293,8 @@ namespace GEIMS.Leave
 
                 if (flag == 0)
                 {
-                    ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Leave can not applied this date.');</script>");
+                    ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Leaves can not be Applied on Selected Dates.');</script>");
+                   
                 }
                 else
                 {
@@ -445,6 +449,7 @@ namespace GEIMS.Leave
         {
             try
             {
+
                 divDate.Visible = true;
                 divLeaveApprove.Visible = false;
             }
@@ -621,5 +626,27 @@ namespace GEIMS.Leave
             }
         }
         #endregion
+
+        /// <summary>
+        /// Bhandavi 10/11/2022
+        /// The from date and to date for applying leave will be displayed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void lnkBack_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                divDate.Visible = true;
+                divLeaveApprove.Visible = false;
+                lnkBack.Visible = false;
+                PanelVisibilityMode(1);
+
+            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Oops! There is some technical issue. Please Contact to your administrator.');</script>");
+            }
+        }
     }
 }

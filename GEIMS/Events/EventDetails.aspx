@@ -216,7 +216,9 @@
                                         <asp:Button runat="server" ID="btnUpload" Text="Upload" CssClass="btn-blue-new btn-blue-medium" OnClick="UploadFile" />
                                         <div>
                                             <br />
-                                            <asp:Label ID="Label1" runat="server" Text="Note: Images formate .jpg, .jpeg, .png and .gif allow" Style="text-align: center" ForeColor="#FF3300"></asp:Label>
+                                            <%--<asp:Label ID="Label1" runat="server" Text="Note: Images formate .jpg, .jpeg, .png and .gif allow" Style="text-align: center" ForeColor="#FF3300"></asp:Label>--%>
+
+                                            <asp:Label ID="Label1" runat="server" Text="Note: Images of .jpg, .jpeg, .png and .gif formats only allowed" Style="text-align: center" ForeColor="#FF3300"></asp:Label>
                                         </div>
                                     </div>
 

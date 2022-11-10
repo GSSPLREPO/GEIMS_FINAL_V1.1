@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GEIMS.ReportUI {
-    
-    
-    public partial class EmployeePayrollReport {
-        
+namespace GEIMS.ReportUI
+{
+
+
+    public partial class EmployeePayrollReport
+    {
+
         /// <summary>
         /// btnPrintDetail control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnPrintDetail;
-        
+
         /// <summary>
         /// btnBack control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBack;
-        
+
         /// <summary>
         /// btnReport control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnReport;
-        
+
         /// <summary>
         /// tabs control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tabs;
-        
+
         /// <summary>
         /// divEmployee control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEmployee;
-        
+
         /// <summary>
         /// pnlEmployeePayrollInfo control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlEmployeePayrollInfo;
-        
+
         /// <summary>
         /// ddlMonth control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMonth;
-        
+
         /// <summary>
         /// ddlYear control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlYear;
-        
+
         /// <summary>
         /// btnGo control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGo;
-        
+
         /// <summary>
         /// divReport control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divReport;
-        
+
         /// <summary>
         /// lblTrustName control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTrustName;
-        
+
         /// <summary>
         /// lblMonth control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMonth;
-        
+
         /// <summary>
         /// lblYear control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblYear;
-        
+
         /// <summary>
         /// lblErrMsg control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblErrMsg;
-        
+
         /// <summary>
         /// gvReport control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvReport;
-        
+
         /// <summary>
         /// div1 control.
         /// </summary>
@@ -155,7 +157,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div1;
-        
+
         /// <summary>
         /// lblTrust control.
         /// </summary>
@@ -164,7 +166,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTrust;
-        
+
         /// <summary>
         /// lblMonth1 control.
         /// </summary>
@@ -173,7 +175,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMonth1;
-        
+
         /// <summary>
         /// lblYear1 control.
         /// </summary>
@@ -182,7 +184,7 @@ namespace GEIMS.ReportUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblYear1;
-        
+
         /// <summary>
         /// gvReport1 control.
         /// </summary>

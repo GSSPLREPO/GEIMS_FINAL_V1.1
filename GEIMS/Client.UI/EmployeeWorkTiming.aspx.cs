@@ -518,82 +518,97 @@ namespace GEIMS.Client.UI
                         objEmployeeWorkTimeBO.ShiftName =
                 (((DropDownList)row.FindControl("ddlShiftName")).Text);
 
-
-
-
-                        DateTime time1= Convert.ToDateTime(objEmployeeWorkTimeBO.StartTime);
-                        DateTime time2 = Convert.ToDateTime(objEmployeeWorkTimeBO.EndTime);
-
-                     
-
-
-                       // TimeSpan TimeSpan = time2.Subtract(time1).ToString("HH\\:mm");
-                        objEmployeeWorkTimeBO.TotalTime = time2.Subtract(time1).ToString(@"hh\:mm");
-                        // (((Label)row.FindControl("lblTime")).Text);
-
-
-
-
-
-
-                        //if (((CheckBox)row.FindControl("chkChild")).Checked)
-                        //{
-
-                        intCount += 1;
-                         if (objEmployeeWorkTimeBO.StartTime == "0" || objEmployeeWorkTimeBO.EndTime == "0" || objEmployeeWorkTimeBO.StartTime == "" || objEmployeeWorkTimeBO.EndTime == "")
+                        if (objEmployeeWorkTimeBO.StartTime == "0" || objEmployeeWorkTimeBO.EndTime == "0" || objEmployeeWorkTimeBO.StartTime == "0" || objEmployeeWorkTimeBO.EndTime == "0")
                         {
-                        objEmployeeWorkTimeBO.StartTime = "23:58";
-                        objEmployeeWorkTimeBO.EndTime = "23:59";
-                        ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp",
-                            "<script language='javascript'>alert('Please Fill Time " + row.Cells[0].Text +
-                           ".');</script>");
-                        break;
-                        }
-                    DateTime dtIntime = Convert.ToDateTime((((TextBox)row.FindControl("txtIntime")).Text));
-                        DateTime dtOutTime = Convert.ToDateTime((((TextBox)row.FindControl("txtOuttime")).Text));
-
-                       // DateTime dtRecOutTime = Convert.ToDateTime((((TextBox)row.FindControl("txtRecOuttime")).Text));
-                        //DateTime dtRecIntime = Convert.ToDateTime((((TextBox)row.FindControl("txtRecIntime")).Text));
-
-
-
-
-
-
-                        if ((dtIntime >= dtOutTime))
-                        {
+                            objEmployeeWorkTimeBO.StartTime = "23:58";
+                            objEmployeeWorkTimeBO.EndTime = "23:59";
+                            //ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp",
+                            //    "<script language='javascript'>alert('Please Fill Time " + row.Cells[0].Text +
+                            //   ".');</script>");
                             ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp",
-                                "<script language='javascript'>alert('Time Format Should be 24Hours Or OutTime Must be greater then InTime.');</script>");
-                            break;
-                        }
-                        else
-                        {
-                            ApplicationResult objResultsInsert = new ApplicationResult();
-                            if (ViewState["Mode"].ToString() == "Save")
+    "<script language='javascript'>alert('Please Fill The Timings For All Selected Employees');</script>");
+
+                            if ((ddlSchoolName.SelectedIndex > 0) && (ddlDepartment.SelectedIndex > 0))
                             {
-                            objEmployeeWorkTimeBO.CreatedModifiedDate = DateTime.UtcNow.AddHours(5.5).ToString();
-                            objEmployeeWorkTimeBO.CreateModifiedUserID = Convert.ToInt32(Session[ApplicationSession.USERID]);
-                                objResultsInsert =
-                                    objEmployeeWorkTimeBL.EmployeeWorkTime_Insert(objEmployeeWorkTimeBO);
-                                divGrid.Visible = false;
-                                btnSave.Enabled = false;
-                                k += 1;
+                                BindEmpolyeeGrid_DepartmentWise();
+                            }
+                            else if ((ddlSchoolName.SelectedIndex > 0) && (ddlDepartment.SelectedIndex == 0))
+                            {
+                                BindEmpolyeeGrid_SchoolWise();
                             }
                             else
                             {
-                            objEmployeeWorkTimeBO.LastModifiedDate = DateTime.UtcNow.AddHours(5.5).ToString();
-                            objEmployeeWorkTimeBO.LastModifiedUserID = Convert.ToInt32(Session[ApplicationSession.USERID]);
-                            objEmployeeWorkTimeBO.EmployeeMID = Convert.ToInt32(ViewState["EmployeeMID"].ToString());
-                                objResult = objEmployeeWorkTimeBL.EmployeeWorkTime_Update(objEmployeeWorkTimeBO);
-                                if (objResult.status == ApplicationResult.CommonStatusType.SUCCESS)
+                                BindEmpolyeeGrid();
+                            }
+                            divNote.Visible = true;
+
+
+                            goto select;
+                            //break;
+                        }
+                        else
+                        {
+                            //10/11/2022 Bhandavi getting oops error if starttime is 0
+                            DateTime time1 = Convert.ToDateTime(objEmployeeWorkTimeBO.StartTime);
+                            DateTime time2 = Convert.ToDateTime(objEmployeeWorkTimeBO.EndTime);
+                            // TimeSpan TimeSpan = time2.Subtract(time1).ToString("HH\\:mm");
+                            objEmployeeWorkTimeBO.TotalTime = time2.Subtract(time1).ToString(@"hh\:mm");
+                            // (((Label)row.FindControl("lblTime")).Text);
+                            //if (((CheckBox)row.FindControl("chkChild")).Checked)
+                            //{
+
+                            intCount += 1;
+                            //10/11/2022 Bhandavi getting oops error if starttime is 0 
+
+                            // if (objEmployeeWorkTimeBO.StartTime == "0" || objEmployeeWorkTimeBO.EndTime == "0" || objEmployeeWorkTimeBO.StartTime == "0" || objEmployeeWorkTimeBO.EndTime == "0")
+                            //{
+                            //objEmployeeWorkTimeBO.StartTime = "23:58";
+                            //objEmployeeWorkTimeBO.EndTime = "23:59";
+                            //ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp",
+                            //    "<script language='javascript'>alert('Please Fill Time " + row.Cells[0].Text +
+                            //   ".');</script>");
+                            //break;
+                            //}
+                            DateTime dtIntime = Convert.ToDateTime((((TextBox)row.FindControl("txtIntime")).Text));
+                            DateTime dtOutTime = Convert.ToDateTime((((TextBox)row.FindControl("txtOuttime")).Text));
+
+                            // DateTime dtRecOutTime = Convert.ToDateTime((((TextBox)row.FindControl("txtRecOuttime")).Text));
+                            //DateTime dtRecIntime = Convert.ToDateTime((((TextBox)row.FindControl("txtRecIntime")).Text));
+
+                            if ((dtIntime >= dtOutTime))
+                            {
+                                ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp",
+                                    "<script language='javascript'>alert('Time Format Should be 24Hours Or OutTime Must be greater then InTime.');</script>");
+                                break;
+                            }
+                            else
+                            {
+                                ApplicationResult objResultsInsert = new ApplicationResult();
+                                if (ViewState["Mode"].ToString() == "Save")
                                 {
-                                    k += 1;
+                                    objEmployeeWorkTimeBO.CreatedModifiedDate = DateTime.UtcNow.AddHours(5.5).ToString();
+                                    objEmployeeWorkTimeBO.CreateModifiedUserID = Convert.ToInt32(Session[ApplicationSession.USERID]);
+                                    objResultsInsert =
+                                        objEmployeeWorkTimeBL.EmployeeWorkTime_Insert(objEmployeeWorkTimeBO);
                                     divGrid.Visible = false;
                                     btnSave.Enabled = false;
+                                    k += 1;
+                                }
+                                else
+                                {
+                                    objEmployeeWorkTimeBO.LastModifiedDate = DateTime.UtcNow.AddHours(5.5).ToString();
+                                    objEmployeeWorkTimeBO.LastModifiedUserID = Convert.ToInt32(Session[ApplicationSession.USERID]);
+                                    objEmployeeWorkTimeBO.EmployeeMID = Convert.ToInt32(ViewState["EmployeeMID"].ToString());
+                                    objResult = objEmployeeWorkTimeBL.EmployeeWorkTime_Update(objEmployeeWorkTimeBO);
+                                    if (objResult.status == ApplicationResult.CommonStatusType.SUCCESS)
+                                    {
+                                        k += 1;
+                                        divGrid.Visible = false;
+                                        btnSave.Enabled = false;
+                                    }
                                 }
                             }
                         }
-
                     }
                 }
                 if (k == intCount)
@@ -606,6 +621,7 @@ namespace GEIMS.Client.UI
                 {
                     DatabaseTransaction.RollbackTransation();
                 }
+                select: ;
             }
             catch (Exception ex)
             {

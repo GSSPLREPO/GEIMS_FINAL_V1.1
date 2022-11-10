@@ -112,7 +112,8 @@
                                     School Name :<span style="color: red">*</span>
                                 </div>
                                 <div style="text-align: left; width: 30%; float: left;">
-                                    <asp:DropDownList ID="ddlSchoolName" runat="server" CssClass=" validate[required] Droptextarea" Width="260px" Enabled="true" AutoPostBack="True" OnSelectedIndexChanged="ddlSchoolName_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddlSchoolName" runat="server" 
+                                        CssClass=" validate[required] Droptextarea" Width="260px" Enabled="true" AutoPostBack="True" OnSelectedIndexChanged="ddlSchoolName_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </div>
                                 <div style="text-align: left; width: 20%; float: left;" class="label">

@@ -13,6 +13,9 @@
     <div id="divMain" style="width: 100%; text-align: left; padding-top: 5px;">
         <div id="divTitle" class="pageTitle" style="width: 100%;">
             Apply for Leave
+            &nbsp;
+            <%-- Added back button  --%>
+             <asp:LinkButton CausesValidation="false" ID="lnkBack" runat="server" CssClass="btn-blue btn-blue-medium Detach" OnClick="lnkBack_OnClick">Back</asp:LinkButton>
         </div>
         <div id="divContent" style="height: 100%; font-family: Verdana;">
             <div id="divContent1" style="width: 10%; float: left; height: 100%; color: white;">1</div>

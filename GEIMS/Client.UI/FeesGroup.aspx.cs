@@ -33,7 +33,11 @@ namespace GEIMS.Client.UI
                 //BindSection();
                 BindBudgetCategory();
                 BindBudgetHeading();
-                ddlBudgetSubHeading.Items.Insert(0, new ListItem("-Select-", "0"));
+                //ddlBudgetSubHeading.Items.Insert(0, new ListItem("-Select-", "0"));
+                //10/11/2022 Bhandavi
+                //Changed code to get validations for Budget Sub Heading
+
+                ddlBudgetSubHeading.Items.Insert(0, new ListItem("-Select-", ""));
             }
             if (!Page.IsPostBack)
             {
@@ -134,12 +138,20 @@ namespace GEIMS.Client.UI
                     if (objResult.resultDT.Rows.Count > 0)
                     {
                         objControls.BindDropDown_ListBox(objResult.resultDT, ddlBudgetHeading, "HeadingName", "BudgetHeadingMID");
-                        ddlBudgetHeading.Items.Insert(0, new ListItem("-Select-", "0"));
+                        //ddlBudgetHeading.Items.Insert(0, new ListItem("-Select-", "0"));
+                        //10/11/2022 Bhandavi
+                        //Changed code to get validations for Budget Heading
+
+                        ddlBudgetHeading.Items.Insert(0, new ListItem("-Select-", ""));
                     }
                     else
                     {
                         objControls.BindDropDown_ListBox(objResult.resultDT, ddlBudgetHeading, "HeadingName", "BudgetHeadingMID");
-                        ddlBudgetHeading.Items.Insert(0, new ListItem("-Select-", "0"));
+                        //ddlBudgetHeading.Items.Insert(0, new ListItem("-Select-", "0"));
+                        //10/11/2022 Bhandavi
+                        //Changed code to get validations for Budget Heading
+
+                        ddlBudgetHeading.Items.Insert(0, new ListItem("-Select-", ""));
                         ddlBudgetHeading.ClearSelection();
                     }
                 }
@@ -171,12 +183,20 @@ namespace GEIMS.Client.UI
                         if (objResult.resultDT.Rows.Count > 0)
                         {
                             objControls.BindDropDown_ListBox(objResult.resultDT, ddlBudgetSubHeading, "SubHeadingName", "BudgetSubHeadingMID");
-                            ddlBudgetSubHeading.Items.Insert(0, new ListItem("-Select-", "0"));
+                            //ddlBudgetSubHeading.Items.Insert(0, new ListItem("-Select-", "0"));
+                            //10/11/2022 Bhandavi
+                            //Changed code to get validations for Budget Sub Heading
+
+                            ddlBudgetSubHeading.Items.Insert(0, new ListItem("-Select-", ""));
                         }
                         else
                         {
                             objControls.BindDropDown_ListBox(objResult.resultDT, ddlBudgetSubHeading, "SubHeadingName", "BudgetSubHeadingMID");
-                            ddlBudgetSubHeading.Items.Insert(0, new ListItem("-Select-", "0"));
+                            //ddlBudgetSubHeading.Items.Insert(0, new ListItem("-Select-", "0"));
+                            //10/11/2022 Bhandavi
+                            //Changed code to get validations for Budget Sub Heading
+
+                            ddlBudgetSubHeading.Items.Insert(0, new ListItem("-Select-", ""));
                             ddlBudgetSubHeading.ClearSelection();
                         }
                     }
@@ -266,7 +286,10 @@ namespace GEIMS.Client.UI
             ddlLedger.Enabled = true;
             BindBudgetCategory();
             BindBudgetHeading();
-            ddlBudgetSubHeading.Items.Insert(0, new ListItem("-Select-", "0"));
+            //ddlBudgetSubHeading.Items.Insert(0, new ListItem("-Select-", "0"));
+            //10/11/2022 Bhandavi
+            //Changed code to get validations for Budget Sub Heading
+            ddlBudgetSubHeading.Items.Insert(0, new ListItem("-Select-", ""));
         }
         #endregion
 
@@ -520,7 +543,11 @@ namespace GEIMS.Client.UI
             ddlLedger.Enabled = true;
             BindBudgetCategory();
             BindBudgetHeading();
-            ddlBudgetSubHeading.Items.Insert(0, new ListItem("-Select-", "0"));
+            // ddlBudgetSubHeading.Items.Insert(0, new ListItem("-Select-", "0"));
+            //10/11/2022 Bhandavi
+            //Changed code to get validations for Budget Sub Heading
+
+            ddlBudgetSubHeading.Items.Insert(0, new ListItem("-Select-", ""));
         }
         #endregion
 

@@ -101,7 +101,7 @@ namespace GEIMS.Events
                 {
                     ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Record not updated.');</script>");
                 }
-
+                //Code to redirect to display events view list after saving
                 BindEventDetails(intMonth, intYear);
                 divImagesPnl.Visible = false;
                 PanelVisibility(1);

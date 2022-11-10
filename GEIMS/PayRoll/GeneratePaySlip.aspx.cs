@@ -431,8 +431,10 @@ namespace GEIMS.PayRoll
                     //Date: 22-12-2021
                     //Description : For Manual Days Calculation.
                     hftxtPayTotalDays.Value = Convert.ToString(DateTime.DaysInMonth(year, month));
-
+                    //clear total textbox when month changed 10/11/2022 Bhandavi
+                    txtTotal.Text = "0";
                     BindLeaveBalance(Convert.ToInt32(ViewState["EmployeeMID"].ToString()), ddlMonth.SelectedValue, Convert.ToInt32(ddlYear.SelectedValue));                   
+
                 }
                 else
                 {
@@ -1241,6 +1243,12 @@ namespace GEIMS.PayRoll
         //}
         //#endregion
 
+        /// <summary>
+        /// to bind leave balance, availed leaves to gridview
+        /// </summary>
+        /// <param name="intEmployeeMID"></param>
+        /// <param name="strMonth"></param>
+        /// <param name="intYear"></param>
         #region Bind GridView Leave Balance
         private void BindLeaveBalance(int intEmployeeMID, string strMonth,int intYear)
         {
@@ -1319,7 +1327,7 @@ namespace GEIMS.PayRoll
                         }
                     }
 
-                    //Find Balance [Arpit Shah] For new codding regarding Balance = Total - Availed
+                    //Find Balance [Arpit Shah] For new coding regarding Balance = Total - Availed
 
                     for (int i = 0; i < GDBalance.Rows.Count; i++)
                     {
@@ -1352,7 +1360,7 @@ namespace GEIMS.PayRoll
                             ((TextBox)(GDBalance.Rows[i].Cells[4].FindControl("textDays"))).Enabled = true;
                         }
                     }
-
+                    //to display absent days in selected month
                     var objResultAbsent = objLeaveBl.Leave_Select_ForAbsentDays(intEmployeeMID, strMonth);
                     if (objResultAbsent != null)
                     {
@@ -1383,6 +1391,44 @@ namespace GEIMS.PayRoll
                                 txtTotal.Enabled = false;
                                 btnCalculate.Enabled = true;
                             }
+                        }
+                    }
+                    //07/11/2022 Bhandavi
+                    //Check whether an employee is late for 1 hour with in a month
+                    //if late by 1 hour then need to apply leave of halfday
+                    var objResultLate = objLeaveBl.Leave_Select_Late(intEmployeeMID, strMonth, intYear);
+                    if (objResultLate != null)
+                    {
+                        if (objResultLate.resultDT.Rows.Count > 0)
+                        {
+                            DataTable dtLate = objResultLate.resultDT;
+                            double timeDiff = 0;
+                            for (int i=0;i< dtLate.Rows.Count;i++)
+                            {
+                                timeDiff +=Convert.ToDouble(dtLate.Rows[i]["timeDiff"].ToString());                                
+                            }
+                            
+                            //timeDiff = 30;
+                            //change minutes into hours
+                            if (timeDiff > 0)
+                            {       
+                                timeDiff = timeDiff / 60;
+                                txtPayAbsenceDay.Text = (Convert.ToDouble(txtPayAbsenceDay.Text) +  timeDiff).ToString();
+                                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please apply a leave');", true);
+                            }
+                        }                           
+                    }
+
+                    //Check number of leaves applied and absent days
+                    //check attendance table if present and applied for leave then consider for late hours (half day leave for 30 minutes late)
+                    var objResultAbsentLeave = objLeaveBl.Leave_Select_AbsentDays(intEmployeeMID, strMonth, intYear);
+                    if(objResultAbsentLeave != null)
+                    {
+                        if(objResultAbsentLeave.resultDT.Rows.Count > 0)
+                        {
+                            double countL = 0;
+                            countL = Convert.ToDouble(objResultAbsentLeave.resultDT.Rows[0]["CountA"]);
+                            txtPayAbsenceDay.Text = (Convert.ToDouble(txtPayAbsenceDay.Text) - countL).ToString();
                         }
                     }
                 }

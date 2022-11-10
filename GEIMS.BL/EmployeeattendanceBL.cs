@@ -351,7 +351,6 @@ namespace GEIMS.BL
             {
                 pSqlParameter = new SqlParameter[12];
 
-
                 pSqlParameter[0] = new SqlParameter("@TrustMID", SqlDbType.Int);
                 pSqlParameter[0].Direction = ParameterDirection.Input;
                 pSqlParameter[0].Value = objEmployeeattendanceBO.TrustMID;
@@ -376,7 +375,6 @@ namespace GEIMS.BL
                 pSqlParameter[5].Value = objEmployeeattendanceBO.InTime;
                 pSqlParameter[5].Direction = ParameterDirection.Input;
                 
-
                 pSqlParameter[6] = new SqlParameter("@OutTime", SqlDbType.VarChar);
                 pSqlParameter[6].Direction = ParameterDirection.Input;
                 pSqlParameter[6].Value = objEmployeeattendanceBO.OutTime;
@@ -400,7 +398,6 @@ namespace GEIMS.BL
                 pSqlParameter[11] = new SqlParameter("@TotalTime", SqlDbType.VarChar);
                 pSqlParameter[11].Direction = ParameterDirection.Input;
                 pSqlParameter[11].Value = objEmployeeattendanceBO.TotalTime;
-
 
                 sSql = "usp_tbl_EmployeeAttendance_M_Insert";
                 int iResult = Database.ExecuteNonQuery(CommandType.StoredProcedure, sSql, pSqlParameter);
@@ -443,7 +440,6 @@ namespace GEIMS.BL
             {
                 pSqlParameter = new SqlParameter[7];
 
-
                 pSqlParameter[0] = new SqlParameter("@TrustMID", SqlDbType.Int);
                 pSqlParameter[0].Direction = ParameterDirection.Input;
                 pSqlParameter[0].Value = objEmployeeattendanceBO.TrustMID;
@@ -474,7 +470,7 @@ namespace GEIMS.BL
 
                 sSql = "usp_tbl_EmployeeAttendance_M_Insert_ForBiomatric";
                 int iResult = Database.ExecuteNonQuery(CommandType.StoredProcedure, sSql, pSqlParameter);
-
+                
                 if (iResult > 0)
                 {
                     ApplicationResult objResults = new ApplicationResult();

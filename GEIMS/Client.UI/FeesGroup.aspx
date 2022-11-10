@@ -45,7 +45,9 @@
                                     <HeaderStyle Width="40%" HorizontalAlign="left" VerticalAlign="Top" />
                                     <ItemStyle HorizontalAlign="left" Width="40%" VerticalAlign="Top" Wrap="true" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="Description" HeaderText="Accounting Name">
+                                <%--<asp:BoundField DataField="Description" HeaderText="Accounting Name">--%>
+                                <%-- Changed header from Accounting Name to Description 10/11/2022 Bhandavi --%>
+                                <asp:BoundField DataField="Description" HeaderText="Description">
                                     <HeaderStyle Width="40%" HorizontalAlign="left" VerticalAlign="Top" />
                                     <ItemStyle HorizontalAlign="left" Width="40%" VerticalAlign="Top" Wrap="true" />
                                 </asp:BoundField>
@@ -91,7 +93,7 @@
                                 </div>--%>
                                 <div style="width: 100%" class="divclasswithfloat">
                                     <div style="text-align: left; width: 20%; float: left;" class="label">
-                                        Budget Category :<span style="color: red">*</span>
+                                         Category :<span style="color: red">*</span>
                                         <asp:HiddenField ID="hfBudgetCategoryId" runat="server" />
                                          <asp:HiddenField ID="hfBudgetCategoryName" runat="server" />
                                     </div>
@@ -104,7 +106,9 @@
                                        Budget Heading :<span style="color: red">*</span>
                                     </div>
                                     <div style="text-align: left; float: left; width: 80%;">
-                                        <asp:DropDownList ID="ddlBudgetHeading" runat="server" CssClass="validate[required] TextBox" Width="155px" Height="25px" AutoPostBack="True" OnSelectedIndexChanged="ddlBudgetHeading_SelectedIndexChanged"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlBudgetHeading" runat="server" 
+                                            CssClass="validate[required] TextBox" Width="155px" Height="25px" AutoPostBack="True" 
+                                            OnSelectedIndexChanged="ddlBudgetHeading_SelectedIndexChanged"></asp:DropDownList>
                                     </div>
                                 </div>
                                 <div style="width: 100%" class="divclasswithfloat">
@@ -112,7 +116,8 @@
                                         Budget Subheading :<span style="color: red">*</span>
                                     </div>
                                     <div style="text-align: left; float: left; width: 80%;">
-                                        <asp:DropDownList ID="ddlBudgetSubHeading" runat="server" CssClass="validate[required] TextBox" Width="155px" Height="25px"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlBudgetSubHeading" runat="server" 
+                                            CssClass="validate[required] TextBox" Width="155px" Height="25px"></asp:DropDownList>
                                     </div>
                                 </div>
 
@@ -121,7 +126,8 @@
                                         General Ledger Name :<span style="color: red">*</span>
                                     </div>
                                     <div style="text-align: left; float: left; width: 80%;">
-                                        <asp:DropDownList ID="ddlLedger" runat="server" CssClass="validate[required] TextBox" Width="155px" Height="25px"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlLedger" runat="server" 
+                                            CssClass="validate[required] TextBox" Width="155px" Height="25px"></asp:DropDownList>
                                     </div>
                                 </div>
                                 <div style="width: 100%" class="divclasswithfloat">

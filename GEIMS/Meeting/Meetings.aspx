@@ -265,11 +265,12 @@
                                             ControlToValidate="txtToTime" ValidationExpression="^([01]?[0-9]|2[0-3]):[0-5][0-9]$" CssClass="boldText" ForeColor="#FF3300" SetFocusOnError="True"></asp:RegularExpressionValidator>
 
                                     </div>
-                                    <div>
-
+                                    <div style="float: right; padding-right:20px;">
+                                          <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="From Time Cannot Be Greater than To Time" ControlToValidate="txtToTime" ControlToCompare="txtFromTime" Font-Overline="False" ValidationGroup="vg1" Operator="GreaterThan" ForeColor="#FF3300" SetFocusOnError="True"></asp:CompareValidator>
                                     </div>
                                     <div style="float: right; padding-right:20px;">
-                                        <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="From Time Cannot Be Greter then To Time" ControlToValidate="txtToTime" ControlToCompare="txtFromTime" Font-Overline="False" ValidationGroup="vg1" Operator="GreaterThan" ForeColor="#FF3300" SetFocusOnError="True"></asp:CompareValidator>
+                                        <%--<asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="From Time Cannot Be Greter then To Time" ControlToValidate="txtToTime" ControlToCompare="txtFromTime" Font-Overline="False" ValidationGroup="vg1" Operator="GreaterThan" ForeColor="#FF3300" SetFocusOnError="True"></asp:CompareValidator>--%>
+                                      
                                     </div>
 
                                 </div>

@@ -160,7 +160,10 @@
                     <div id="div1" runat="server" style="width: 100%; float: left; padding-top: 0px;" class="label">
                         <div style="width: 100%; float: left; padding-top: 0px;" class="label">
                             <div style="padding: 10px; padding-right: 20px;">
-                                <div style="float: left; text-align: center; width: 100%; padding-bottom: 10px;">
+                                <div style="float: left; text-align: left; width: 25%; padding-bottom: 10px;">
+<img src="../Images/FERTILIZER NAGAR SCHOOL LOGO COLOUR copy.jpg" width="100" height="100" />
+                                    </div>
+                                <div style="float: left; text-align: center; width: 75%; padding-bottom: 10px;">
                                     <b>Trust :</b>
                                     <asp:Label runat="server" ID="lblTrust"></asp:Label>
                                     &nbsp; &nbsp; &nbsp; &nbsp;

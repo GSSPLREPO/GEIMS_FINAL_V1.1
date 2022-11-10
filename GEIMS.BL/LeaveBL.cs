@@ -310,7 +310,10 @@ namespace GEIMS.Bl
                 pSqlParameter[0].Direction = ParameterDirection.Input;
                 pSqlParameter[0].Value = intEmployeeMID;
 
-                strStoredProcName = "usp_tbl_Leave_M_Select_ForBalance";
+                //strStoredProcName = "usp_tbl_Leave_M_Select_ForBalance";
+                //09/11/2022 Bhandavi
+                //Changed sp (getting error when opening apply leave page if employee is applied multiple halfday leaves)
+                strStoredProcName = "[usp_tbl_Leave_M_Select_ForBalance_New]";
 
                 DataTable dtResult = new DataTable(); 
                 dtResult = Database.ExecuteDataTable(CommandType.StoredProcedure, strStoredProcName, pSqlParameter);
@@ -927,5 +930,87 @@ namespace GEIMS.Bl
             }
         }
         #endregion
-	}
+
+
+        /// <summary>
+        /// 07/11/2022 Bhandavi
+        /// To check late timing of an emplloyee(if >30 minuts with in selected month)
+        /// </summary>
+        /// <param name="intEmployeeMID"></param>
+        /// <param name="strMonth"></param>
+        /// <param name="intYear"></param>
+        /// <returns></returns>
+        public ApplicationResult Leave_Select_Late(int intEmployeeMID, string strMonth, int intYear)
+        {
+            try
+            {
+                pSqlParameter = new SqlParameter[3];
+
+                pSqlParameter[0] = new SqlParameter("@EmployeeMID", SqlDbType.Int);
+                pSqlParameter[0].Direction = ParameterDirection.Input;
+                pSqlParameter[0].Value = intEmployeeMID;
+
+                pSqlParameter[1] = new SqlParameter("@Month", SqlDbType.Int);
+                pSqlParameter[1].Direction = ParameterDirection.Input;
+                pSqlParameter[1].Value = strMonth;
+
+                pSqlParameter[2] = new SqlParameter("@Year", SqlDbType.Int);
+                pSqlParameter[2].Direction = ParameterDirection.Input;
+                pSqlParameter[2].Value = intYear;
+
+                strStoredProcName = "usp_tbl_Leave_M_Select_Late";
+
+                DataTable dtTable = new DataTable();
+                dtTable = Database.ExecuteDataTable(CommandType.StoredProcedure, strStoredProcName, pSqlParameter);
+                ApplicationResult objResults = new ApplicationResult(dtTable);
+                objResults.status = ApplicationResult.CommonStatusType.SUCCESS;
+                return objResults;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 09/11/2022 Bhandavi
+        /// If leve applied on present day in a month then deduct from absent days
+        /// </summary>
+        /// <param name="intEmployeeMID"></param>
+        /// <param name="strMonth"></param>
+        /// <param name="intYear"></param>
+        /// <returns></returns>
+        public ApplicationResult Leave_Select_AbsentDays(int intEmployeeMID, string strMonth, int intYear)//
+        {
+            try
+            {
+                pSqlParameter = new SqlParameter[3];
+
+                pSqlParameter[0] = new SqlParameter("@EmployeeMID", SqlDbType.Int);
+                pSqlParameter[0].Direction = ParameterDirection.Input;
+                pSqlParameter[0].Value = intEmployeeMID;
+
+                pSqlParameter[1] = new SqlParameter("@Month", SqlDbType.Int);
+                pSqlParameter[1].Direction = ParameterDirection.Input;
+                pSqlParameter[1].Value = strMonth;
+
+                pSqlParameter[2] = new SqlParameter("@Year", SqlDbType.Int);
+                pSqlParameter[2].Direction = ParameterDirection.Input;
+                pSqlParameter[2].Value = intYear;
+
+                strStoredProcName = "usp_tbl_LeaveOnAbsentDays_M";
+
+                DataTable dtTable = new DataTable();
+                dtTable = Database.ExecuteDataTable(CommandType.StoredProcedure, strStoredProcName, pSqlParameter);
+                ApplicationResult objResults = new ApplicationResult(dtTable);
+                objResults.status = ApplicationResult.CommonStatusType.SUCCESS;
+                return objResults;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+    }
 }

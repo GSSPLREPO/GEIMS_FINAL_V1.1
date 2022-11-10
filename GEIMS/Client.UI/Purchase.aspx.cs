@@ -299,7 +299,9 @@ namespace GEIMS.Client.UI
                     objPurchaseBo.PaymentType = ddlPaymentType.SelectedItem.Text;
                     objPurchaseBo.PaymentMode = ddlPaymentMode.SelectedItem.Text;
                     objPurchaseBo.VAT = !string.IsNullOrEmpty(txtVAT.Text) ? Convert.ToDouble(txtVAT.Text) : 0.0;
-                    objPurchaseBo.AddVAT = !string.IsNullOrEmpty(txtCST.Text) ? Convert.ToDouble(txtCST.Text) : 0.0;
+                    //objPurchaseBo.AddVAT = !string.IsNullOrEmpty(txtCST.Text) ? Convert.ToDouble(txtCST.Text) : 0.0;
+ //10/11/2022 Bhandavi Saving cst in addvat field changed code
+                    objPurchaseBo.AddVAT = !string.IsNullOrEmpty(txtAddVAT.Text) ? Convert.ToDouble(txtAddVAT.Text) : 0.0;
                     objPurchaseBo.CST = !string.IsNullOrEmpty(txtCST.Text) ? Convert.ToDouble(txtCST.Text) : 0.0;
                     objPurchaseBo.Discount = !string.IsNullOrEmpty(txtDiscount.Text)
                         ? Convert.ToDouble(txtDiscount.Text)
@@ -437,6 +439,9 @@ namespace GEIMS.Client.UI
                     }
 
                     hfMode.Value = "Save";
+                    //10/11/2022 Bhandavi
+                    //To display updated values of purchase after saving
+                    BindPurchaseGrid(txtFromDate.Text, txtToDate.Text, 1, 0);
                 }
                 else
                 {

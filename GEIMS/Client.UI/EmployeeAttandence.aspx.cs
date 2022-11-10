@@ -349,7 +349,17 @@ namespace GEIMS.Client.UI
         #endregion
 
         #region View Button Click Event
+        /// <summary>
+        /// To show employees list with timings to enter manually
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnViewGrid_Click(object sender, EventArgs e)
+        {
+            DisplayGrid();
+        }
+
+        private void DisplayGrid()
         {
             try
             {
@@ -389,9 +399,16 @@ namespace GEIMS.Client.UI
                 ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Oops! There is some technical issue. Please Contact to your administrator.');</script>");
             }
         }
+
+
         #endregion
 
         #region Save Button Event
+        /// <summary>
+        /// Saving entered attendance details of employees on selected date for selected school
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnSave_Click(object sender, EventArgs e)
         {
             EmployeeattendanceBl objEmployeeAttendenceBL = new EmployeeattendanceBl();
@@ -474,11 +491,19 @@ namespace GEIMS.Client.UI
                         intCount += 1;
                         if (objEmployeeAttendenceBO.InTime == "0" || objEmployeeAttendenceBO.OutTime == "0" || objEmployeeAttendenceBO.InTime == "" || objEmployeeAttendenceBO.OutTime == "")
                         {
+                            //ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp",
+                            //    "<script language='javascript'>alert('Please Fill` Time " + row.Cells[0].Text +
+                            //    ".');</script>");
+                            //bug 465
+                            //09//11/2022 Bhandavi
+                            //changes alert message for selecting times of employees
                             ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp",
-                                "<script language='javascript'>alert('Please Fill Time " + row.Cells[0].Text +
-                                ".');</script>");
+                               "<script language='javascript'>alert('Please Fill Times For All Selected Employees');</script>");
+                            DisplayGrid();
                             break;
                         }
+                        //when we get above alert message, gridview is not displaying
+
                         DateTime dtIntime = Convert.ToDateTime((((TextBox)row.FindControl("txtIntime")).Text));
                         DateTime dtOutTime = Convert.ToDateTime((((TextBox)row.FindControl("txtOuttime")).Text));
                         
@@ -489,6 +514,7 @@ namespace GEIMS.Client.UI
                         {
                             ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp",
                                 "<script language='javascript'>alert('Time Format Should be 24Hours Or OutTime Must be greater then InTime.');</script>");
+                            DisplayGrid();
                             break;
                         }
                         else
@@ -531,6 +557,12 @@ namespace GEIMS.Client.UI
                     txtdate.Attributes.Add("readonly", "readonly");
                     ViewState["Mode"] = "Save";
                     divNote.Visible = false;
+
+                    //10/11/2022 Bhandavi (Bug number 218)
+                    //Added cocde to clear Date, School and Department after saving attendance
+                    txtdate.Text = "";
+                    ddlSchoolName.SelectedIndex = 0;
+                    ddlDepartment.SelectedIndex = 0;
                 }
                 else
                 {
@@ -548,6 +580,11 @@ namespace GEIMS.Client.UI
         #endregion
 
         #region button Upload Click Event
+        /// <summary>
+        /// to upload attendance file .ddd format
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnUpload_OnClick(object sender, EventArgs e)
         {
             try
@@ -560,52 +597,63 @@ namespace GEIMS.Client.UI
                     ApplicationResult objBiomatric = new ApplicationResult();
 
                     string filename = Path.GetFileName(FileUpload1.FileName);
-                    //System.IO.File.Delete(Server.MapPath("../Attendance/" + filename)); 
-                    FileUpload1.SaveAs(Server.MapPath("../Attendance/") + filename);
-                    StreamReader objInput = new StreamReader(Server.MapPath("../Attendance/" + filename),
-                        System.Text.Encoding.Default);
-                    string contents = objInput.ReadToEnd().Replace(' ', '0');
-                    string[] split = System.Text.RegularExpressions.Regex.Split(contents, "\r\n", RegexOptions.None);
 
-                    //  string[] split = System.Text.RegularExpression.Regex.Replace(contents, @"\\s+", "");
-                    // System.Text.RegularExpressions.Regex.Split(contents, "\\s+", RegexOptions.None);
-                    var Attendance = string.Empty;
-                    foreach (string row in split)
+                    string ext = Path.GetExtension(filename);
+                    //09/11/2022 Bhandavi
+                    //Changed code to give message if selected file is with extension other than .ddd 
+                    if (ext.ToLower() != ".ddd")
                     {
-                        if (Attendance == "")
-                            Attendance = row.Replace("X", "");
-                        else
-                            Attendance = Attendance + "," + row.Replace("X", "");
+                        ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Only files with extension .ddd is allowed');</script>");
                     }
-                    if (Attendance != "")
+                    else
                     {
-                        objEmployeeAttendenceBO.TrustMID =
-                            Convert.ToInt32(Session[ApplicationSession.TRUSTID].ToString());
-                        objEmployeeAttendenceBO.SchoolMID =
-                            Convert.ToInt32(Session[ApplicationSession.SCHOOLID].ToString());
-                        objEmployeeAttendenceBO.IsManual = 0; // 0 for Biomatric and 1 for Manual attendance.
-                        objEmployeeAttendenceBO.CreateModifiedUserID =
-                            Convert.ToInt32(Session[ApplicationSession.USERID]);
-                        objEmployeeAttendenceBO.CreatedModifiedDate = DateTime.UtcNow.AddHours(5.5).ToString();
+                        //System.IO.File.Delete(Server.MapPath("../Attendance/" + filename)); 
+                        FileUpload1.SaveAs(Server.MapPath("../Attendance/") + filename);
+                        StreamReader objInput = new StreamReader(Server.MapPath("../Attendance/" + filename),
+                            System.Text.Encoding.Default);
+                        string contents = objInput.ReadToEnd().Replace(' ', '0');
+                        string[] split = System.Text.RegularExpressions.Regex.Split(contents, "\r\n", RegexOptions.None);
 
-                        //objBiomatric = objEmployeeAttendenceBL.Employeeattendance_Select_ForBiomatric(Attendance,
-                        //    filename);
-                        //if (objBiomatric != null)
-                        //{
-                        //    if (objBiomatric.resultDT.Rows.Count > 0)
-                        //    {
-                        //       ScriptManager.RegisterStartupScript(this, this.GetType(), "CallConfirmBox", "CallConfirmBox();", true);
-                        //    }
-                        //}
-                        //else
-                        //{
-                        //}
-                        objResults = objEmployeeAttendenceBL.Employeeattendance_Insert_ForBioMatric(
-                            objEmployeeAttendenceBO, Attendance, filename);
+                        //  string[] split = System.Text.RegularExpression.Regex.Replace(contents, @"\\s+", "");
+                        // System.Text.RegularExpressions.Regex.Split(contents, "\\s+", RegexOptions.None);
+                        var Attendance = string.Empty;
+                        foreach (string row in split)
+                        {
+                            if (Attendance == "")
+                                Attendance = row.Replace("X", "");
+                            else
+                                Attendance = Attendance + "," + row.Replace("X", "");
+                        }
+                        if (Attendance != "")
+                        {
+                            objEmployeeAttendenceBO.TrustMID =
+                                Convert.ToInt32(Session[ApplicationSession.TRUSTID].ToString());
+                            objEmployeeAttendenceBO.SchoolMID =
+                                Convert.ToInt32(Session[ApplicationSession.SCHOOLID].ToString());
+                            objEmployeeAttendenceBO.IsManual = 0; // 0 for Biomatric and 1 for Manual attendance.
+                            objEmployeeAttendenceBO.CreateModifiedUserID =
+                                Convert.ToInt32(Session[ApplicationSession.USERID]);
+                            objEmployeeAttendenceBO.CreatedModifiedDate = DateTime.UtcNow.AddHours(5.5).ToString();
+
+                            //objBiomatric = objEmployeeAttendenceBL.Employeeattendance_Select_ForBiomatric(Attendance,
+                            //    filename);
+                            //if (objBiomatric != null)
+                            //{
+                            //    if (objBiomatric.resultDT.Rows.Count > 0)
+                            //    {
+                            //       ScriptManager.RegisterStartupScript(this, this.GetType(), "CallConfirmBox", "CallConfirmBox();", true);
+                            //    }
+                            //}
+                            //else
+                            //{
+                            //}
+                            objResults = objEmployeeAttendenceBL.Employeeattendance_Insert_ForBioMatric(
+                                objEmployeeAttendenceBO, Attendance, filename);
+                        }
+                        objInput.Close();
+                        System.IO.File.Delete(Server.MapPath("../Attendance/" + filename));
+                        ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Employee Attendance Updated Successfully.');</script>");
                     }
-                    objInput.Close();
-                    System.IO.File.Delete(Server.MapPath("../Attendance/" + filename));
-                    ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Employee Attendance Updated Successfully.');</script>");
                 }
                 else
                 {
