@@ -10,7 +10,7 @@ using GEIMS.DataAccess;
 using System.Collections.Generic;
 using GEIMS.Bl;
 using GEIMS.Bo;
-
+using System.Globalization;
 
 namespace GEIMS.PayRoll
 {
@@ -1075,7 +1075,7 @@ namespace GEIMS.PayRoll
                                 {
                                     GDBalance.Enabled = false;
                                     btnClear.Visible = true;
-                                    lblerror.Text = "More then requested Absence Days";
+                                    lblerror.Text = "More than requested Absence Days";
                                     txtTotal.Text = i.ToString();
                                     lblerror.Visible = true;
                                 }
@@ -1402,18 +1402,21 @@ namespace GEIMS.PayRoll
                         if (objResultLate.resultDT.Rows.Count > 0)
                         {
                             DataTable dtLate = objResultLate.resultDT;
-                            double timeDiff = 0;
+                            decimal timeDiff = 0;
                             for (int i=0;i< dtLate.Rows.Count;i++)
                             {
-                                timeDiff +=Convert.ToDouble(dtLate.Rows[i]["timeDiff"].ToString());                                
+                                timeDiff +=Convert.ToDecimal(dtLate.Rows[i]["timeDiff"].ToString());                                
                             }
-                            
-                            //timeDiff = 30;
+                           
                             //change minutes into hours
-                            if (timeDiff > 0)
-                            {       
-                                timeDiff = timeDiff / 60;
-                                txtPayAbsenceDay.Text = (Convert.ToDouble(txtPayAbsenceDay.Text) +  timeDiff).ToString();
+                            if (timeDiff >= 60)
+                            {                              
+                                timeDiff = timeDiff / 60;                              
+                                //decimal d = 467.75M;
+                                int lateHour = (int)timeDiff;    
+                                decimal lateHours = (decimal)lateHour / 2;
+
+                                txtPayAbsenceDay.Text = (Convert.ToDecimal(txtPayAbsenceDay.Text) + lateHours).ToString();
                                 //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please apply a leave');", true);
                             }
                         }                           
@@ -1421,16 +1424,21 @@ namespace GEIMS.PayRoll
 
                     //Check number of leaves applied and absent days
                     //check attendance table if present and applied for leave then consider for late hours (half day leave for 30 minutes late)
-                    var objResultAbsentLeave = objLeaveBl.Leave_Select_AbsentDays(intEmployeeMID, strMonth, intYear);
-                    if(objResultAbsentLeave != null)
+                    //for every 
+                    if(txtPayAbsenceDay.Text != "0")
                     {
-                        if(objResultAbsentLeave.resultDT.Rows.Count > 0)
+                        var objResultAbsentLeave = objLeaveBl.Leave_Select_AbsentDays(intEmployeeMID, strMonth, intYear);
+                        if (objResultAbsentLeave != null)
                         {
-                            double countL = 0;
-                            countL = Convert.ToDouble(objResultAbsentLeave.resultDT.Rows[0]["CountA"]);
-                            txtPayAbsenceDay.Text = (Convert.ToDouble(txtPayAbsenceDay.Text) - countL).ToString();
+                            if (objResultAbsentLeave.resultDT.Rows.Count > 0)
+                            {
+                                double countL = 0;
+                                countL = Convert.ToDouble(objResultAbsentLeave.resultDT.Rows[0]["CountA"]);
+                                txtPayAbsenceDay.Text = (Convert.ToDouble(txtPayAbsenceDay.Text) - countL).ToString();
+                            }
                         }
                     }
+                   
                 }
                 else
                 {

@@ -98,6 +98,27 @@
                                     </div>
 
                                 <div id="divReport" runat="server" style="width: 100%; float: left; padding-top: 0px;" class="label">
+                                      <div style="width: 100%; float: left; padding-top: 0px;" class="label">
+                                <div style="padding: 10px; padding-right: 30px;">
+                                    <div style="float:left;text-align:left; width: 20%; padding-bottom: 10px;"">
+                                        <img src="../Images/Logo1.jpg" style="height:100px;width:100px"/>
+                                    </div>
+                                     <div style="float: left; text-align: right; width: 20%; padding-bottom: 10px;">
+                                         </div>
+                                    <div style="float: left; text-align: right; width: 20%; padding-bottom: 10px;">
+                                       
+                                        <asp:ImageButton ID="btnExportPDF" runat="server" ImageUrl="~/Images/adobe.PNG"
+                                            ToolTip="Export to PDF" />
+
+                                        &nbsp;
+                    <asp:ImageButton ID="btnExportExcel" runat="server" ImageUrl="~/Images/excel.PNG"
+                        ToolTip="Export to Excel"  />
+                                        &nbsp;
+                    <asp:ImageButton ID="btnExportWord" runat="server" ImageUrl="~/Images/word.PNG"
+                        ToolTip="Export to Word" />
+                                    </div>
+                                </div>
+                            </div>
                                     <div style="width: 100%; float: left; padding-top: 0px;" class="label">
                                         <div style="padding: 10px; padding-right: 20px;">
                                             <div style="float: left; text-align: center; width: 100%; padding-bottom: 10px;">
@@ -137,7 +158,7 @@
                                             </div>
                                         </div>
                                     </div>--%>
-                                    <div style="padding: 10px; padding-right: 30px; overflow: scroll; width: 1100px">
+                                    <div style="padding: 10px; padding-right: 30px; overflow: scroll; width: 1450px">
                                          <asp:Label ID="lblErrMsg" runat="server" ForeColor="red" style="text-align: center"></asp:Label>
                                         <asp:GridView ID="gvReport" Visible="true" runat="server" BackColor="White" BorderColor="Black" AutoGenerateColumns="true"
                                             CellPadding="4" Font-Names="Verdana" Font-Size="11px" AllowSorting="false" Width="100%" OnRowDataBound="gvReport_RowDataBound">
@@ -182,7 +203,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div style="padding: 10px; padding-right: 30px; width: 1100px; float :left ">
+                        <div style="padding: 10px; padding-right: 30px; width: 1450px; float :left ">
                             <asp:GridView ID="gvReport1" Visible="true" runat="server" BackColor="White" BorderColor="Black" AutoGenerateColumns="True"
                                           CellPadding="4" Font-Names="Verdana" Font-Size="11px" AllowSorting="false" Width="100%" OnRowDataBound ="gvReport1_RowDataBound"/>
                                 <RowStyle BackColor="White" />
