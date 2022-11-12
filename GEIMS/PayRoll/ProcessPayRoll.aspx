@@ -38,12 +38,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div style="width: 100%; float: left; padding-bottom: 10px" class="label">
+                                            <div style="width: 100%; float: left ; text-align:center; padding-bottom: 10px" class="label">
                                                 <div style="padding: 0px 0 10px 10px;">
                                                     <div style="float: left; width: 15%;">
                                                         Month :
-                                                    </div>
-                                                    <div style="float: left; width: 35%;">
+                                                    <%--</div>
+                                                    <div style="float: left; width: 35%;">--%>
                                                         <asp:DropDownList ID="ddlMonth" runat="server" CssClass="TextBox" AutoPostBack="true" OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged">
                                                             <asp:ListItem Value=" ">--Select--</asp:ListItem>
                                                             <asp:ListItem Value="1">Jan</asp:ListItem>
@@ -62,8 +62,8 @@
                                                     </div>
                                                     <div style="float: left; width: 15%;">
                                                         Year :
-                                                    </div>
-                                                    <div style="float: left; width: 35%;">
+                                                    <%--</div>
+                                                    <div style="float: left; width: 35%;">--%>
                                                         <asp:DropDownList ID="ddlYear" runat="server" CssClass="TextBox" AutoPostBack="true" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>

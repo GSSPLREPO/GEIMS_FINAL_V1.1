@@ -47,10 +47,19 @@ namespace GEIMS.PayRoll
         #endregion
 
         #region btnGo Event
+        /// <summary>
+        /// to display employee grid based on selected name
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnGo_OnClick(object sender, EventArgs e)
         {
             try
             {
+                //Added below code 12/11/2022 Bhandavi
+                //When we change name of employee and click on Go button then form of payslip should invisible
+                divForm.Visible = false;
+
                 EmployeeMBL objEmployeeBL = new EmployeeMBL();
                 EmployeeMBO objEmployeeBO = new EmployeeMBO();
 
@@ -69,6 +78,7 @@ namespace GEIMS.PayRoll
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('No Record Found.');", true);
                         gvEmployee.Visible = false;
                     }
+                   
                 }
             }
             catch (Exception ex)
@@ -1245,6 +1255,7 @@ namespace GEIMS.PayRoll
 
         /// <summary>
         /// to bind leave balance, availed leaves to gridview
+        /// and to calculate late hours (For a hour late half day leave to be applied)
         /// </summary>
         /// <param name="intEmployeeMID"></param>
         /// <param name="strMonth"></param>
@@ -1373,16 +1384,19 @@ namespace GEIMS.PayRoll
 
                         //Chnage Code : Arpit Shah [21-12-2021] 
                         //Note : When AbesnceDay show (-) minus value, so Total Textbox can change edit mode.
-
+                        
                         if (objResultAbsent.resultDT.Rows.Count > 0)
                         {
                             //txtPayAbsenceDay.Text = objResultAbsent.resultDT.Rows[0]["AbsentDays"].ToString();
-                            //Getting error when objResultAbsent.resultDT.Rows[0]["AbsentDays"].ToString() value is empty string so changed following code 11/10/2022  Bhandvai
+                            //Getting error when objResultAbsent.resultDT.Rows[0]["AbsentDays"].ToString() value is empty string
+                            //so changed following code 11/10/2022  Bhandvai
+                            //Getting minus(-) values when there is record in employee attendance table and leave applied on taht day
                             txtPayAbsenceDay.Text = objResultAbsent.resultDT.Rows[0]["AbsentDays"].ToString() == "" ? "0" : objResultAbsent.resultDT.Rows[0]["AbsentDays"].ToString();
                             double PayAbsenceDay = Convert.ToDouble(txtPayAbsenceDay.Text);
 
                             if(PayAbsenceDay < 0)
                             {
+                                txtPayAbsenceDay.Text="0";
                                 txtTotal.Enabled = true;
                                 btnCalculate.Enabled = false;
                             }
@@ -1407,37 +1421,39 @@ namespace GEIMS.PayRoll
                             {
                                 timeDiff +=Convert.ToDecimal(dtLate.Rows[i]["timeDiff"].ToString());                                
                             }
-                           
+                            decimal lateHours = 0;
                             //change minutes into hours
                             if (timeDiff >= 60)
                             {                              
                                 timeDiff = timeDiff / 60;                              
                                 //decimal d = 467.75M;
                                 int lateHour = (int)timeDiff;    
-                                decimal lateHours = (decimal)lateHour / 2;
+                                 lateHours = (decimal)lateHour / 2;
 
                                 txtPayAbsenceDay.Text = (Convert.ToDecimal(txtPayAbsenceDay.Text) + lateHours).ToString();
                                 //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please apply a leave');", true);
                             }
+
+                            //Check number of leaves applied and absent days
+                            //check attendance table if present and applied for leave then consider for late hours (half day leave for 30 minutes late)
+                            //for every 
+                            if (lateHours > 0)
+                            {
+                                var objResultAbsentLeave = objLeaveBl.Leave_Select_AbsentDays(intEmployeeMID, strMonth, intYear);
+                                if (objResultAbsentLeave != null)
+                                {
+                                    if (objResultAbsentLeave.resultDT.Rows.Count > 0)
+                                    {
+                                        double countL = 0;
+                                        countL = Convert.ToDouble(objResultAbsentLeave.resultDT.Rows[0]["CountA"]);
+                                        txtPayAbsenceDay.Text = (Convert.ToDouble(txtPayAbsenceDay.Text) - countL).ToString();
+                                    }
+                                }
+                            }
                         }                           
                     }
 
-                    //Check number of leaves applied and absent days
-                    //check attendance table if present and applied for leave then consider for late hours (half day leave for 30 minutes late)
-                    //for every 
-                    if(txtPayAbsenceDay.Text != "0")
-                    {
-                        var objResultAbsentLeave = objLeaveBl.Leave_Select_AbsentDays(intEmployeeMID, strMonth, intYear);
-                        if (objResultAbsentLeave != null)
-                        {
-                            if (objResultAbsentLeave.resultDT.Rows.Count > 0)
-                            {
-                                double countL = 0;
-                                countL = Convert.ToDouble(objResultAbsentLeave.resultDT.Rows[0]["CountA"]);
-                                txtPayAbsenceDay.Text = (Convert.ToDouble(txtPayAbsenceDay.Text) - countL).ToString();
-                            }
-                        }
-                    }
+                  
                    
                 }
                 else

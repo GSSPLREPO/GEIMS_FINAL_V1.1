@@ -103,9 +103,21 @@
                                     <div style="float:left;text-align:left; width: 20%; padding-bottom: 10px;"">
                                         <img src="../Images/Logo1.jpg" style="height:100px;width:100px"/>
                                     </div>
-                                     <div style="float: left; text-align: right; width: 20%; padding-bottom: 10px;">
+                                     <div style="float: left; text-align: center; width: 60%; padding-bottom: 10px;">
+                                          <b>Trust :</b>
+                                                <asp:Label runat="server" ID="lblTrustName"></asp:Label>
+                                                &nbsp; &nbsp; &nbsp;
+                                         <br /><br /><br />
+                                                  <b>Month :</b>
+                                                <asp:Label runat="server" ID="lblMonth"></asp:Label>
+                                                &nbsp; &nbsp; &nbsp;
+                                               
+                                                
+                                                <b>Year :</b>
+                                                <asp:Label runat="server" ID="lblYear"></asp:Label>
+                                               
                                          </div>
-                                    <div style="float: left; text-align: right; width: 20%; padding-bottom: 10px;">
+                                    <div style="float: right; text-align: right; width: 20%; padding-bottom: 10px;">
                                        
                                         <asp:ImageButton ID="btnExportPDF" runat="server" ImageUrl="~/Images/adobe.PNG"
                                             ToolTip="Export to PDF" />
@@ -119,17 +131,7 @@
                                     </div>
                                 </div>
                             </div>
-                                    <div style="width: 100%; float: left; padding-top: 0px;" class="label">
-                                        <div style="padding: 10px; padding-right: 20px;">
-                                            <div style="float: left; text-align: center; width: 100%; padding-bottom: 10px;">
-                                                <b>Trust :</b>
-                                                <asp:Label runat="server" ID="lblTrustName"></asp:Label>
-                                                &nbsp; &nbsp; &nbsp;
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                   
                                     <%-- <div style="width: 100%; float: left; padding-top: 0px;" class="label">
                                         <div style="padding: 10px; padding-right: 30px;">
                                             <div style="float: left; text-align: center; width: 100%; padding-bottom: 10px;">
@@ -141,13 +143,6 @@
                                     <div style="width: 100%; float: left; padding-top: 0px;" class="label">
                                         <div style="padding: 10px; padding-right: 30px;">
                                             <div style="float: left; text-align: center; width: 100%; padding-bottom: 10px;">
-                                                  <b>Month :</b>
-                                                <asp:Label runat="server" ID="lblMonth"></asp:Label>
-                                                &nbsp; &nbsp; &nbsp;
-                                               
-                                                
-                                                <b>Year :</b>
-                                                <asp:Label runat="server" ID="lblYear"></asp:Label>
                                             </div>
                                         </div>
                                     </div>
@@ -158,7 +153,7 @@
                                             </div>
                                         </div>
                                     </div>--%>
-                                    <div style="padding: 10px; padding-right: 30px; overflow: scroll; width: 1450px">
+                                    <div style="padding: 10px; padding-right: 30px; overflow: scroll; width: 1100px">
                                          <asp:Label ID="lblErrMsg" runat="server" ForeColor="red" style="text-align: center"></asp:Label>
                                         <asp:GridView ID="gvReport" Visible="true" runat="server" BackColor="White" BorderColor="Black" AutoGenerateColumns="true"
                                             CellPadding="4" Font-Names="Verdana" Font-Size="11px" AllowSorting="false" Width="100%" OnRowDataBound="gvReport_RowDataBound">

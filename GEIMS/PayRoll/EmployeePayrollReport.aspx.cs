@@ -105,6 +105,9 @@ namespace GEIMS.ReportUI
     #endregion
 
         #region Bind GridView
+        /// <summary>
+        /// to show employee payroll report for selected month and year
+        /// </summary>
         public void BindgvReport()
         {
             PaySlipBl objPaySlipBl = new PaySlipBl();

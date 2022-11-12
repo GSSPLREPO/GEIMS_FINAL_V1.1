@@ -529,11 +529,12 @@ namespace GEIMS.BL
         /// </summary>
         /// <param name="strPaySlipName"></param>
         /// <returns></returns>
-        public ApplicationResult PayRollProcess_ExportTOExcel(int intTrustMID, int intMonth, int intYear)
+        public ApplicationResult PayRollProcess_ExportTOExcel(int intTrustMID, int intMonth, int intYear,
+            int intSchoolId) //added schoolid parameter
         {
             try
             {
-                pSqlParameter = new SqlParameter[3];
+                pSqlParameter = new SqlParameter[4];
 
                 pSqlParameter[0] = new SqlParameter("@TrustMID", SqlDbType.Int);
                 pSqlParameter[0].Direction = ParameterDirection.Input;
@@ -547,7 +548,14 @@ namespace GEIMS.BL
                 pSqlParameter[2].Direction = ParameterDirection.Input;
                 pSqlParameter[2].Value = intYear;
 
-                strStoredProcName = "usp_ProcessPayroll_ExcelExport";
+                //added schoolid parameter (getting pivot error on 12/11/2022 Bhandavi
+                //query is returning basic for 3 times as 3 three schools are there
+                pSqlParameter[3] = new SqlParameter("@SchoolId", SqlDbType.Int);
+                pSqlParameter[3].Direction = ParameterDirection.Input;
+                pSqlParameter[3].Value = intSchoolId;
+
+                //strStoredProcName = "usp_ProcessPayroll_ExcelExport";
+                strStoredProcName = "usp_ProcessPayroll_ExcelExport1";
 
                 DataTable dtResult = new DataTable();
                 dtResult = Database.ExecuteDataTable(CommandType.StoredProcedure, strStoredProcName, pSqlParameter);

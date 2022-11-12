@@ -172,13 +172,22 @@ namespace GEIMS.PayRoll
         #endregion
 
         #region btnExport Click Event
+        /// <summary>
+        /// export all payslips to excel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnExport_Click(object sender, EventArgs e)
         {
             DataSet ds = new DataSet();
             PaySlipBl objPaySlipBl = new PaySlipBl();
             ApplicationResult objResultsExpoert = new ApplicationResult();
             //PayRollProcess_ExportTOExcel
-            objResultsExpoert = objPaySlipBl.PayRollProcess_ExportTOExcel(Convert.ToInt32(Session[ApplicationSession.TRUSTID]), Convert.ToInt32(ddlMonth.SelectedValue), Convert.ToInt32(ddlYear.SelectedValue));
+           //objResultsExpoert = objPaySlipBl.PayRollProcess_ExportTOExcel(Convert.ToInt32(Session[ApplicationSession.TRUSTID]), Convert.ToInt32(ddlMonth.SelectedValue), Convert.ToInt32(ddlYear.SelectedValue)
+             //    ,Convert.ToInt32(Session[ApplicationSession.SCHOOLID])); //Added schoolid parameter 12/11/2022 Bhandavi
+            //by calling above data is coming wrong 
+            
+            objResultsExpoert = objPaySlipBl.Select_Employee_ForPaySlip((Session[ApplicationSession.TRUSTID]).ToString(), ddlMonth.SelectedValue, ddlYear.SelectedValue, 0, (Session[ApplicationSession.SCHOOLID]).ToString());
 
             if (objResultsExpoert.resultDT.Rows.Count > 0)
             {

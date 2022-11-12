@@ -974,7 +974,7 @@ namespace GEIMS.Bl
 
         /// <summary>
         /// 09/11/2022 Bhandavi
-        /// If leve applied on present day in a month then deduct from absent days
+        /// If leave applied on present day in a month then deduct from absent days
         /// </summary>
         /// <param name="intEmployeeMID"></param>
         /// <param name="strMonth"></param>
