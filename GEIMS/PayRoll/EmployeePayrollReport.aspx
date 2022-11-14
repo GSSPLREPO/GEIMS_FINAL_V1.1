@@ -120,14 +120,14 @@
                                     <div style="float: right; text-align: right; width: 20%; padding-bottom: 10px;">
                                        
                                         <asp:ImageButton ID="btnExportPDF" runat="server" ImageUrl="~/Images/adobe.PNG"
-                                            ToolTip="Export to PDF" />
+                                            ToolTip="Export to PDF"  OnClick="btnExportPDF_Click" />
 
                                         &nbsp;
                     <asp:ImageButton ID="btnExportExcel" runat="server" ImageUrl="~/Images/excel.PNG"
-                        ToolTip="Export to Excel"  />
+                        ToolTip="Export to Excel" OnClick="btnExportExcel_Click" />
                                         &nbsp;
                     <asp:ImageButton ID="btnExportWord" runat="server" ImageUrl="~/Images/word.PNG"
-                        ToolTip="Export to Word" />
+                        ToolTip="Export to Word"  OnClick="btnExportWord_Click" />
                                     </div>
                                 </div>
                             </div>

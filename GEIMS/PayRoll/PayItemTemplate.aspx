@@ -318,7 +318,9 @@
                                             <asp:CompareValidator ID="intValidator" runat="server" ControlToValidate="txtPercentage" Operator="DataTypeCheck" Type="Double" ErrorMessage="Value must be a integer or float" ForeColor="Red"></asp:CompareValidator>
                                             <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="0 to 200" ForeColor="Red" MaximumValue="200" MinimumValue="0" Type="Double" ControlToValidate="txtPercentage"></asp:RangeValidator>                               
                                         </div>
-                                         <asp:Label ID="lblNote" runat="server" Text="Note : When create Professional Tax, so select Depends On Gross and enter to Percentage or Amount column put only Zero value!!!!!" ForeColor="Red"></asp:Label>
+                                        <br /><br /><br />
+                                         <asp:Label ID="lblNote" runat="server" Text="Note : To Add Professional Tax, select Depends On Gross and 
+                                                        enter only zero in Percentage or Amount column!" ForeColor="Red"></asp:Label>
                                     </div>
                                     <div style="height: 30px; margin-top: 10px; float: left; width: 100%;">
                                         <asp:Label ID="lblDependent" runat="server" Text="" ForeColor="red" Font-Size="Small"></asp:Label>
