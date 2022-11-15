@@ -63,6 +63,7 @@ namespace GEIMS.ReportUI
         #endregion
 
         #region Exportpdf button Click Event
+        [Obsolete]
         protected void btnExportPDF_Click(object sender, ImageClickEventArgs e)
         {
             try

@@ -75,8 +75,8 @@ namespace GEIMS.ReportUI
         protected void btnGo_OnClick(object sender, EventArgs e)
         {
             LeaveBl objLeaveBl = new LeaveBl();
-            var objResult =
-                objLeaveBl.Leave_Select_ForBalance(Convert.ToInt32(hfEmployeeID.Value));
+            var objResult =  objLeaveBl.Leave_Select_ForBalance(Convert.ToInt32(hfEmployeeID.Value));
+
             if (objResult != null)
             {
                 if (objResult.resultDT.Rows.Count > 0)

@@ -502,7 +502,7 @@ namespace GEIMS.Bl
                 pSqlParameter[1].Direction = ParameterDirection.Input;
                 pSqlParameter[1].Value = objLeaveApprovalBo.LastModifiedBy;
 
-                pSqlParameter[2] = new SqlParameter("@LastModifiedDate", SqlDbType.VarChar);
+                pSqlParameter[2] = new SqlParameter("@LastModifiedDate", SqlDbType.NVarChar);
                 pSqlParameter[2].Direction = ParameterDirection.Input;
                 pSqlParameter[2].Value = objLeaveApprovalBo.LastModifiedDate;
 

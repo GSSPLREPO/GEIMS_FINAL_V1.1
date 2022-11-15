@@ -836,7 +836,7 @@ namespace GEIMS.Bl
 
                 pSqlParameter[3] = new SqlParameter("@LastModifiedDate", SqlDbType.NVarChar);
                 pSqlParameter[3].Direction = ParameterDirection.Input;
-                pSqlParameter[3].Value = objLeaveApplyBo.LastModifiedDate;
+                pSqlParameter[3].Value = objLeaveApplyBo.ApprovedDate;
 
 
                 sSql = "usp_tbl_LeaveApply_Update_ForApproval";

@@ -70,7 +70,7 @@ namespace GEIMS.Leave
         /// Comments on 29/09/2022 Bhandavi
         /// To approve or reject a leave
         /// If we reject a leave [IsApproved] flag to 2 and isDeleted flag is set to 1 in tbl_LeaveApply table.
-        /// </summary>
+        /// </summarybtnSave
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void btnSave_OnClick(object sender, EventArgs e)
@@ -105,7 +105,9 @@ namespace GEIMS.Leave
                         objLeaveApprovalBo.NAReason = txtReason.Text;
                         objLeaveApprovalBo.LastModifiedBy =
                             Convert.ToInt32(Session[ApplicationSession.USERID].ToString());
-                        objLeaveApprovalBo.LastModifiedDate = DateTime.UtcNow.AddHours(5.5).ToString();
+                       // objLeaveApprovalBo.LastModifiedDate = DateTime.UtcNow.AddHours(5.5).ToString();
+                        objLeaveApprovalBo.LastModifiedDate = DateTime.UtcNow.ToString("dd/MM/yyyy");
+
                         if (((CheckBox)row.FindControl("cbApprove")).Checked)
                         {
                             objResult = objLeaveApprovalBl.LeaveApproval_Update_ForApproval(objLeaveApprovalBo);
@@ -116,6 +118,7 @@ namespace GEIMS.Leave
                         }
                         else
                         {
+
                             objResult = objLeaveApprovalBl.LeaveApproval_Update_ForReject(objLeaveApprovalBo);
                             if (objResult.status == ApplicationResult.CommonStatusType.SUCCESS)
                             {
