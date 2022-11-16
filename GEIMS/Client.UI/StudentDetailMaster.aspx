@@ -775,7 +775,7 @@
                                 </div>
                                 <div style="text-align: left; width: 31%; float: right; vertical-align: top;">
                                     <%--<asp:TextBox ID="txtweight" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
-                                    <asp:TextBox ID="txtweight" runat="server" CssClass="validate[custom[number],max[250.00],min[1.00]] TextBox" Width="150px"></asp:TextBox>
+                                    <asp:TextBox ID="txtweight" runat="server" CssClass="validate[custom[number],max[250.00],min[4.00]] TextBox" Width="150px"></asp:TextBox>
                                 </div>
                             </div>
                             <div style="height: 30px; margin-top: 10px; float: left; width: 100%;">
@@ -1170,7 +1170,7 @@
                                     </div>
                                     <div style="text-align: left; width: 27%; float: left; vertical-align: top;">
                                         <asp:TextBox ID="txtVehicleNo" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
-                                    </div>
+                                    </div>`
                                 </div>
 
                                 <div style="height: 30px; margin-top: 10px; width: 100%;">
@@ -1657,7 +1657,7 @@
                             </div>
                         </div>
 
-                        <div id="tabs-5" style="height: 300px; padding: 10px 10px 10px 10px;" class="gradientBoxesWithOuterShadows">
+                        <div id="tabs-5" style="height: 700px; padding: 10px 10px 10px 10px;" class="gradientBoxesWithOuterShadows">
                             <asp:Label ID="lblMessage" runat="server" CssClass="message"></asp:Label>
                             <div style="width: 100%;">
                                 <%--  <p style="font-size: 15px; margin-bottom: 10px; margin-left: 10px; font-weight: bold">
@@ -1673,7 +1673,7 @@
                                         Action
                                     </div>
                                 </div>
-                                <div id="uploadedDiv" runat="server" style="width: 500px; clear: both" clientidmode="Static">
+                                <div id="uploadedDiv" runat="server" style="width: 700px; clear: both" clientidmode="Static">
                                 </div>
                                 <asp:HiddenField ID="hdnFileFolder" runat="server" ClientIDMode="Static" />
                                 <asp:HiddenField ID="hdnCountFiles" runat="server" Value="0" ClientIDMode="Static" />
@@ -2371,7 +2371,8 @@
                 var lblfilename = 'lblfilename_' + count;
                 var path = $('#hdnUploadFilePath').val();
                 //alert("uploadedDiv");
-                $("#uploadedDiv").append("<div id='" + hdnid + "' style='clear:both; background-color:#d2e9ff; padding-top:5px; height:25px; width:700px'><span id='" + lblfilename + "' style='width:260px;float:left;margin-left:40px;overflow:hidden;'>" + fileName +
+                $("#uploadedDiv").append("<div id='" + hdnid + "' style='clear:both; background-color:#d2e9ff; padding-top:5px; height:25px; width:700px'><span id='" + lblfilename +
+                      "'style='width:260px;float:left;margin-left:40px;overflow:hidden;'>" + fileName +
                     "</span><span style='width:300px;float:left;margin-left:0px;'><input type='text' id='" + txtDocDescId + "' value='" + fileName +
                     "' /><input name='" + hdnid + "' id='" + hdnid + "' value='" + count + "' type='hidden'></span><span style='float:left; margin-left:10px; width:40px;' >" +
                     "<a href='#' class='dellink' onclick='deleterow(\"#" + hdnid + "," + file + "\")'>Delete</a></span>" + // for deleting file

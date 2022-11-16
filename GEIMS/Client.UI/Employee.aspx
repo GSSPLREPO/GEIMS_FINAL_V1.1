@@ -255,8 +255,8 @@
                     var txtDocDescId = 'txtDocDesc_' + count;
                     var lblfilename = 'lblfilename_' + count;
                     var path = $('#hdnUploadFilePath').val();
-                    $("#uploadedDiv").append("<div id='" + hdnid + "' style='clear:both; background-color:#d2e9ff; padding-top:5px; height:25px; width:500px'><span id='" + lblfilename + "' style='width:175px;float:left;margin-left:40px;overflow:hidden;'>" + fileName +
-                        "</span><span style='width:170px;float:left;margin-left:0px;'><input type='text' id='" + txtDocDescId + "' value='" + fileName +
+                    $("#uploadedDiv").append("<div id='" + hdnid + "' style='clear:both; background-color:#d2e9ff; padding-top:5px; height:25px; width:700px'><span id='" + lblfilename + "' style='width:260px;float:left;margin-left:40px;overflow:hidden;'>" + fileName +
+                        "</span><span style='width:300px;float:left;margin-left:0px;'><input type='text' id='" + txtDocDescId + "' value='" + fileName +
                         "' /><input name='" + hdnid + "' id='" + hdnid + "' value='" + count + "' type='hidden'></span><span style='float:left; margin-left:10px; width:40px;' >" +
                         "<a href='#' class='dellink' onclick='deleterow(\"#" + hdnid + "," + file + "\")'>Delete</a></span>" + // for deleting file
                         "<span style='float:left; margin-left:10px; width:40px;' ><a class='dellink' href='FileUpload.ashx?filepath=" + path + "&file=" + file + "&SchoolID=" + SchoolID + "&TrustID=" + TrustID + "&StudentMID=" + StudentMID + "&EmployeeMID=" + EmployeeMID + "' >View</a></span></div>" // for downloading file
@@ -388,8 +388,8 @@
                     var txtDocDescId = 'txtDocDesc_' + count;
                     var lblfilename = 'lblfilename_' + count;
                     var path = $('#hdnUploadFilePath').val();
-                    $("#uploadedDiv").append("<div id='" + hdnid + "' style='clear:both; background-color:#d2e9ff; padding-top:5px; height:25px; width:500px'><span id='" + lblfilename + "' style='width:175px;float:left;margin-left:40px;overflow:hidden;'>" + fileName +
-                        "</span><span style='width:170px;float:left;margin-left:0px;'><input type='text' id='" + txtDocDescId + "' value='" + fileName +
+                    $("#uploadedDiv").append("<div id='" + hdnid + "' style='clear:both; background-color:#d2e9ff; padding-top:5px; height:25px; width:700px'><span id='" + lblfilename + "' style='width:260px;float:left;margin-left:40px;overflow:hidden;'>" + fileName +
+                        "</span><span style='width:300px;float:left;margin-left:0px;'><input type='text' id='" + txtDocDescId + "' value='" + fileName +
                         "' /><input name='" + hdnid + "' id='" + hdnid + "' value='" + count + "' type='hidden'></span><span style='float:left; margin-left:10px; width:40px;' >" +
                         "<a href='#' class='dellink' onclick='deleterow(\"#" + hdnid + "," + file + "\")'>Delete</a></span>" + // for deleting file
                         "<span style='float:left; margin-left:10px; width:40px;' ><a class='dellink' href='FileUpload.ashx?filepath=" + path + "&file=" + file + "&SchoolID=" + SchoolID + "&TrustID=" + TrustID + "&StudentMID=" + StudentMID + "&EmployeeMID=" + EmployeeMID + "' >View</a></span></div>" // for downloading file
@@ -576,11 +576,15 @@
                                             Employee Name : <span style="color: red">*</span>
                                         </div>
                                         <div style="text-align: left; width: 79%; float: left;">
-                                            <asp:TextBox ID="txtEmployeeFirstName" runat="server" CssClass="validate[required,custom[onlyLetterSp]] TextBox" placeholder="First Name" Width="150px"></asp:TextBox>
+                                            <%--<asp:TextBox ID="txtEmployeeFirstName" runat="server" CssClass="validate[required,custom[onlyLetterSp]] TextBox" placeholder="First Name" Width="150px"></asp:TextBox>--%>
+                                            <%-- To allow letters and number for name --%>
+                                            <asp:TextBox ID="txtEmployeeFirstName" runat="server" CssClass="validate[required,custom[onlyLetterNumber]] TextBox" placeholder="First Name" Width="150px"></asp:TextBox>
                                             &nbsp;
-								<asp:TextBox ID="txtEmployeeMiddleName" runat="server" CssClass="validate[custom[onlyLetterSp]] TextBox" placeholder="Middle Name" Width="150px"></asp:TextBox>
+								<%--<asp:TextBox ID="txtEmployeeMiddleName" runat="server" CssClass="validate[custom[onlyLetterSp]] TextBox" placeholder="Middle Name" Width="150px"></asp:TextBox>--%>
+								<asp:TextBox ID="txtEmployeeMiddleName" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" placeholder="Middle Name" Width="150px"></asp:TextBox>
                                             &nbsp;
-								<asp:TextBox ID="txtEmployeeLastName" runat="server" CssClass="validate[required,custom[onlyLetterSp]] TextBox" placeholder="Last Name" Width="150px"></asp:TextBox>
+								<%--<asp:TextBox ID="txtEmployeeLastName" runat="server" CssClass="validate[required,custom[onlyLetterSp]] TextBox" placeholder="Last Name" Width="150px"></asp:TextBox>--%>
+								<asp:TextBox ID="txtEmployeeLastName" runat="server" CssClass="validate[required,custom[onlyLetterNumber]] TextBox" placeholder="Last Name" Width="150px"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div style="width: 100%" class="divclasswithfloat">
@@ -588,11 +592,14 @@
                                             Mother Maiden Name :<%--Remarks Tab Start--%>
                                         </div>
                                         <div style="text-align: left; width: 79%; float: left;">
-                                            <asp:TextBox ID="txtMMFirstName" runat="server" CssClass="validate[custom[onlyLetterSp]] TextBox" placeholder="First Name" Width="150px"></asp:TextBox>
+                                            <%--<asp:TextBox ID="txtMMFirstName" runat="server" CssClass="validate[custom[onlyLetterSp]] TextBox" placeholder="First Name" Width="150px"></asp:TextBox>--%>
+                                            <asp:TextBox ID="txtMMFirstName" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" placeholder="First Name" Width="150px"></asp:TextBox>
                                             &nbsp;
-								<asp:TextBox ID="txtMMMiddleName" runat="server" CssClass="validate[custom[onlyLetterSp]] TextBox" placeholder="Middle Name" Width="150px"></asp:TextBox>
+								<%--<asp:TextBox ID="txtMMMiddleName" runat="server" CssClass="validate[custom[onlyLetterSp]] TextBox" placeholder="Middle Name" Width="150px"></asp:TextBox>--%>
+								<asp:TextBox ID="txtMMMiddleName" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" placeholder="Middle Name" Width="150px"></asp:TextBox>
                                             &nbsp;
-								<asp:TextBox ID="txtMMLastName" runat="server" CssClass="validate[custom[onlyLetterSp]] TextBox" placeholder="Last Name" Width="150px"></asp:TextBox>
+								<%--<asp:TextBox ID="txtMMLastName" runat="server" CssClass="validate[custom[onlyLetterSp]] TextBox" placeholder="Last Name" Width="150px"></asp:TextBox>--%>
+								<asp:TextBox ID="txtMMLastName" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" placeholder="Last Name" Width="150px"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div style="width: 100%;" class="divclasswithfloat">
@@ -611,7 +618,9 @@
                                                     Employee Code: <span style="color: red">*</span>
                                                 </div>
                                                 <div style="text-align: left; width: 70%; float: right; vertical-align: top;">
-                                                    <asp:TextBox ID="txtEmployeeCode" runat="server" CssClass="validate[required] TextBox" Width="150px"></asp:TextBox>
+                                                    <%--<asp:TextBox ID="txtEmployeeCode" runat="server" CssClass="validate[required] TextBox" Width="150px"></asp:TextBox>--%>
+                                                   <%--Bug number 470 only allow numbers for employee code --%>
+                                                    <asp:TextBox ID="txtEmployeeCode" runat="server" CssClass="validate[custom[onlyNumberSp] TextBox" Width="150px"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <div style="width: 100%;" class="divclasswithfloat">
@@ -640,7 +649,8 @@
                                                     Nationality:
                                                 </div>
                                                 <div style="text-align: left; width: 70%; float: right; vertical-align: top;">
-                                                    <asp:TextBox ID="txtNationality" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                                    <%--<asp:TextBox ID="txtNationality" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                                    <asp:TextBox ID="txtNationality" runat="server" CssClass="validate[custom[onlyLetterSp]] TextBox" Width="150px"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -704,7 +714,8 @@
                                                         Mother Tongue:  
                                                     </div>
                                                     <div style="text-align: left; width: 30%; float: left;">
-                                                        <asp:TextBox ID="txtMotherToungue" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                                        <%--<asp:TextBox ID="txtMotherToungue" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                                        <asp:TextBox ID="txtMotherToungue" runat="server" CssClass="validate[custom[onlyLetterSp]] TextBox" Width="150px"></asp:TextBox>
 
                                                     </div>
                                                     <div style="text-align: left; width: 20%; float: left;" class="label">
@@ -771,7 +782,8 @@
                                                         Aadhar Card No:
                                                     </div>
                                                     <div style="text-align: left; width: 30%; float: left;">
-                                                        <asp:TextBox ID="txtAadharCardNo" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                                        <%--<asp:TextBox ID="txtAadharCardNo" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                                        <asp:TextBox ID="txtAadharCardNo" runat="server" CssClass="validate[custom[onlyNumberSp],maxSize[12],minSize[12] TextBox" Width="150px"></asp:TextBox>
 
                                                     </div>
                                                     <div style="text-align: left; width: 20%; float: left;" class="label">
@@ -829,7 +841,8 @@
                                                         Weight(In Kgs):
                                                     </div>
                                                     <div style="text-align: left; width: 30%; float: left;">
-                                                        <asp:TextBox ID="txtWeight" runat="server" CssClass="validate[custom[number]] TextBox" Width="150px"></asp:TextBox>
+                                                        <%--<asp:TextBox ID="txtWeight" runat="server" CssClass="validate[custom[number]] TextBox" Width="150px"></asp:TextBox>--%>
+                                                        <asp:TextBox ID="txtWeight" runat="server" CssClass="validate[custom[number],max[400.00],min[4.00]] TextBox" Width="150px"></asp:TextBox> 
                                                     </div>
                                                 </div>
                                                 <div style="width: 100%;" class="divclasswithfloat">
@@ -866,7 +879,8 @@
                                                         Mobile No: 
                                                     </div>
                                                     <div style="text-align: left; width: 30%; float: left;">
-                                                        <asp:TextBox ID="txtMobileNo" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                                        <%--<asp:TextBox ID="txtMobileNo" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>--%>
+                                                        <asp:TextBox ID="txtMobileNo" runat="server" CssClass="validate[custom[onlyNumberSp],maxSize[10],minSize[10]] TextBox" Width="150px"></asp:TextBox>
 
                                                     </div>
                                                     <div style="text-align: left; width: 20%; float: left;" class="label">
@@ -2059,20 +2073,20 @@
 
                             </div>
 
-                            <div id="tabs-7" style="padding: 5px 5px 5px 5px;" class="gradientBoxesWithOuterShadows">
+                            <div id="tabs-7" style="height: 300px;padding: 5px 5px 5px 5px;" class="gradientBoxesWithOuterShadows">
                                 <div style="width: 100%;">
-                                    <div id="divGrid" style="width: 500px; background-color: #3b5998; height: 25px; clear: both; color: white;">
-                                        <div style="width: 175px; float: left; margin-left: 40px; margin-top: 4px;">
+                                    <div id="divGrid" style="width: 700px; background-color: #3b5998; height: 25px; clear: both; color: white;">
+                                        <div style="width: 260px; float: left; margin-left: 40px; margin-top: 4px;">
                                             File Name
                                         </div>
-                                        <div style="width: 180px; float: left; margin-top: 4px;">
+                                        <div style="width: 300px; float: left; margin-top: 4px;">
                                             Description
                                         </div>
-                                        <div style="width: 50px; float: left; margin-top: 4px;">
+                                        <div style="width: 40px; float: left; margin-top: 4px;">
                                             Action
                                         </div>
                                     </div>
-                                    <div id="uploadedDiv" runat="server" style="width: 500px; clear: both" clientidmode="Static">
+                                    <div id="uploadedDiv" runat="server" style="width: 700px; clear: both" clientidmode="Static">
                                     </div>
                                     <asp:HiddenField ID="hfEmployeeMID" runat="server" ClientIDMode="Static" />
                                     <asp:HiddenField ID="hdnLastUserID" runat="server" ClientIDMode="Static" />
@@ -2658,11 +2672,13 @@
             var lblfilename = 'lblfilename_' + count;
             var path = $('#hdnUploadFilePath').val();
             //alert("uploadedDiv");
-            $("#uploadedDiv").append("<div id='" + hdnid + "' style='clear:both; background-color:#d2e9ff; padding-top:5px; height:25px; width:500px'><span id='" + lblfilename + "' style='width:175px;float:left;margin-left:40px;overflow:hidden;'>" + fileName +
-                "</span><span style='width:170px;float:left;margin-left:0px;'><input type='text' id='" + txtDocDescId + "' value='" + fileName +
-                "' /><input name='" + hdnid + "' id='" + hdnid + "' value='" + count + "' type='hidden'></span><span style='float:left; margin-left:10px; width:40px;' >" +
+            $("#uploadedDiv").append("<div id='" + hdnid + "' style='clear:both; background-color:#d2e9ff; padding-top:5px; height:25px; width:700px'><span id='" +
+                   lblfilename + "' style='width:260px;float:left;margin-left:40px;overflow:hidden;'>" + fileName +
+                "</span><span style='width:300px;float:left;margin-left:0px;'><input type='text' id='" + txtDocDescId + "' value='" + fileName +
+                "' /><input name='" + hdnid + "' id='" + hdnid + "' value='" + count + "' type='hidden'></span><span style='float:left; margin-left:10px; width:30px;' >" +
                 "<a href='#' class='dellink' onclick='deleterow(\"#" + hdnid + "," + file + "\")'>Delete</a></span>" + // for deleting file
-                "<span style='float:left; margin-left:300px; width:40px;' ><a class='dellink' href='FileUpload.ashx?filepath=" + path + "&file=" + file + "&SchoolID=" + SchoolID + "&TrustID=" + TrustID + "&StudentMID=" + StudentMID + "&EmployeeMID=" + EmployeeMID + "' >View</a></span></div>" // for downloading file
+                "<span style='float:left; margin-left:300px; width:40px;' ><a class='dellink' href='FileUpload.ashx?filepath=" + path + "&file=" + file + "&SchoolID=" +
+                 SchoolID + "&TrustID=" + TrustID + "&StudentMID=" + StudentMID + "&EmployeeMID=" + EmployeeMID + "' >View</a></span></div>" // for downloading file
             );
             //update file counter
             $("#hdnCountFiles").val(count);
