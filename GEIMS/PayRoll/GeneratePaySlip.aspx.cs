@@ -551,6 +551,7 @@ namespace GEIMS.PayRoll
             Controls objControl = new Controls();
             btnSendForApproval.Enabled = true;
             btnCalculate.Enabled = false;
+            btnCalculate.Enabled = true;
             btnRedo.Enabled = true;
 
             lblerror.Visible = false;
@@ -564,6 +565,7 @@ namespace GEIMS.PayRoll
                 //string abc = txt.Text.ToString();
                 try
                 {
+                    txtPayEarnedDays.Text = (Convert.ToDouble(txtPayTotalDays.Text) - Convert.ToDouble(txtTotal.Text)).ToString();
                     //if (j == 0)
                     //{
                     //    LWP = Convert.ToDouble(txt.Text);
@@ -608,6 +610,8 @@ namespace GEIMS.PayRoll
                             }
                         }
                     }
+
+                   
                 }
                 catch (Exception ex)
                 {
@@ -619,16 +623,20 @@ namespace GEIMS.PayRoll
            // double TD = Convert.ToDouble(txtPayTotalDays.Text.ToString());
             double TD = Convert.ToDouble(hftxtPayTotalDays.Value);
             //double TD = Convert.ToDouble(30);
-
-            txtPayEarnedDays.Text = (TD - LWP).ToString();
+            //LWP = Convert.ToDouble(txtPayEarnedDays.Text);
+            //txtPayEarnedDays.Text = (TD - LWP).ToString();
             int a = 0;
             int c = 0;
             double GrossValue = 0;
             foreach (GridViewRow rowItem in gvEarnings.Rows)
             {
+                //17/11/2022 Bhandavi
+                //Check whether basic check box is selected or not (if not give alert)
+                Label lblBasic = (Label)rowItem.Cells[1].FindControl("lblName");
+
                 CheckBox ckb = new CheckBox();
                 ckb = (CheckBox)rowItem.Cells[4].FindControl("ckbAmount");
-                if (ckb.Checked == true)
+                //if (ckb.Checked == true) //If check box is not checked then not calculating amount of LWP 
                 {
                     Double amt = 0;
                     txt = (TextBox)rowItem.Cells[2].FindControl("textAmount");
@@ -640,7 +648,18 @@ namespace GEIMS.PayRoll
                     GrossValue = GrossValue + Convert.ToDouble(txt.Text);
                     c = c + 1;
                 }
+                //else
+                //{
+                //    //17/11/2022 Bhandavi
+                //    //Check whether basic check box is selected or not (if not give alert)
+                //    if (lblBasic.Text == "Basic")
+                //    {
+                //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please Select Check Box of Basic.');", true);
+                //    }
+                //}
             }
+
+
             //Find Basic Total
             //txtBasicTotal.Text =
             //    Convert.ToString(
@@ -847,7 +866,10 @@ namespace GEIMS.PayRoll
                                         ObjPaySlipBo.Excemption = 0;
                                         //ObjPaySlipBo.TotalDaysofMonth = Convert.ToInt32(txtPayTotalDays.Text);
                                         ObjPaySlipBo.TotalDaysofMonth = Convert.ToDouble(txtPayTotalDays.Text);
-                                        ObjPaySlipBo.EarnedDaysofMonth = Convert.ToDouble(txtPayEarnedDays.Text);
+                                        //ObjPaySlipBo.EarnedDaysofMonth = Convert.ToDouble(txtPayEarnedDays.Text);
+                                        
+                                        
+                                        ObjPaySlipBo.EarnedDaysofMonth = Convert.ToDouble(txtPayTotalDays.Text)- Convert.ToDouble(txtTotal.Text);
                                         ObjPaySlipBo.CreatedDate = DateTime.UtcNow.AddHours(5.5).ToString();
                                         ObjPaySlipBo.CreatedUserID = Convert.ToInt32(Session[ApplicationSession.USERID]);
                                         ObjPaySlipBo.LastModifiedDate = DateTime.UtcNow.AddHours(5.5).ToString();
@@ -966,6 +988,7 @@ namespace GEIMS.PayRoll
                 else
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Select Employee New or not.');", true);
+                    txtPayEarnedDays.Text = (Convert.ToDouble(txtPayTotalDays.Text) - Convert.ToDouble(txtTotal.Text)).ToString();
                 }
                 //Response.Redirect("GeneratePaySlip.aspx");
             }
@@ -1390,7 +1413,7 @@ namespace GEIMS.PayRoll
                             //txtPayAbsenceDay.Text = objResultAbsent.resultDT.Rows[0]["AbsentDays"].ToString();
                             //Getting error when objResultAbsent.resultDT.Rows[0]["AbsentDays"].ToString() value is empty string
                             //so changed following code 11/10/2022  Bhandvai
-                            //Getting minus(-) values when there is record in employee attendance table and leave applied on taht day
+                            
                             txtPayAbsenceDay.Text = objResultAbsent.resultDT.Rows[0]["AbsentDays"].ToString() == "" ? "0" : objResultAbsent.resultDT.Rows[0]["AbsentDays"].ToString();
                             double PayAbsenceDay = Convert.ToDouble(txtPayAbsenceDay.Text);
 
@@ -1453,8 +1476,8 @@ namespace GEIMS.PayRoll
                         }                           
                     }
 
-                  
-                   
+                  txtPayEarnedDays.Text= (Convert.ToDouble(txtPayTotalDays.Text) - Convert.ToDouble(txtPayAbsenceDay.Text)).ToString();
+
                 }
                 else
                 {

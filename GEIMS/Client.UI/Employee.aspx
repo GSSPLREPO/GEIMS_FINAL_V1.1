@@ -937,7 +937,7 @@
                                                             Pin Code :  
                                                         </div>
                                                         <div style="text-align: left; width: 59%; float: left;">
-                                                            <asp:TextBox ID="txtCurPinCode" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                                            <asp:TextBox ID="txtCurPinCode" runat="server" CssClass="validate[custom[onlyNumberSp],maxSize[6],minSize[6]] TextBox" Width="150px"></asp:TextBox>
                                                         </div>
                                                     </div>
 
@@ -990,7 +990,7 @@
                                                             Pin Code :  
                                                         </div>
                                                         <div style="text-align: left; width: 67%; float: left;">
-                                                            <asp:TextBox ID="txtPermenantPinCode" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                                            <asp:TextBox ID="txtPermenantPinCode" runat="server" CssClass="validate[custom[onlyNumberSp],maxSize[6],minSize[6]] TextBox" Width="150px"></asp:TextBox>
                                                         </div>
                                                     </div>
 

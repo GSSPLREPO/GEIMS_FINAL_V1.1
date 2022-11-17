@@ -263,6 +263,12 @@ namespace GEIMS.ReportUI
        
 
         #region ExportExcel button Click Event
+        /// <summary>
+        /// Bhandavi 16/11/2022
+        /// Export data to excel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         protected void btnExportExcel_Click(object sender, ImageClickEventArgs e)
         {
@@ -353,20 +359,18 @@ namespace GEIMS.ReportUI
                     gvReport.RenderControl(hw);
 
 
-                    string strSubTitle = "Employee Payroll Report (Monthly) ";
+                    string strSubTitle = "Report Name :Employee Payroll Report (Monthly) ";
                     string strPath = Request.Url.GetLeftPart(UriPartial.Authority) + "/images/Logo1.jpg";
 
                     string content = "<div align='center' style='font-family:verdana;font-size:16px; width:800px;'>" +
                   "<table style='display: table; width: 800px; clear:both;'>" +
                   "<tr> </tr>" +
                   "<tr><th></th><th><img height='100' width='100' src='" + strPath + "'/></th>" +
-                  "<th colspan='" + colh + "' style='width: 600px; float: left; font-weight:bold;font-size:16px;color:Maroon;'>" + Session[ApplicationSession.TRUSTNAME] +
-
-                     "</tr>" +
+                  "<th colspan='" + colh + "' style='width: 600px; float: left; font-weight:bold;font-size:16px;color:Maroon;'>" + strSubTitle + "</tr>" +
                      "<tr><th colspan='2'></th><th colspan='" + colh + "' style='font-size:13px;font-weight:bold;color:Black;'>Month :" + ddlMonth.SelectedItem.Text 
                      + "&nbsp;&nbsp; Year :" + ddlYear.SelectedItem.Text  + "</th></tr>" +
                      "<tr><th colspan='2'></th><th colspan='" + colh + "'></th></tr>" +
-                     "<tr><th colspan='2'></th><th colspan='" + colh + "' style='font-size:22px;color:Maroon;'><b>" + strSubTitle + "</b></th></tr>" +
+                     "<tr><th colspan='2'></th><th colspan='" + colh + "' style='font-size:13px;'><b>Trust Name :" + Session[ApplicationSession.TRUSTNAME] + "</b></th></tr>" +
                      "<tr></tr>" +
                 "</table>" +
 
@@ -381,14 +385,23 @@ namespace GEIMS.ReportUI
                     Response.End();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Error("Error", ex);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Oops! There is some technical issue. Please Contact to your administrator.');", true);
             }
         }
-       
+
         #endregion
 
         #region ExportWord button Click Event
+        /// <summary>
+        /// Bhandavi 16/11/2022
+        /// Export data to word
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
         protected void btnExportWord_Click(object sender, ImageClickEventArgs e)
         {
 

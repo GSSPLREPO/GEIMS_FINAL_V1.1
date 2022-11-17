@@ -308,6 +308,7 @@ namespace GEIMS.Client.UI
                     {
                         divDetails.Visible = false;
                         ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script language='javascript'>alert('Student Education Details Saved Successfully.');</script>");
+                        //27/10/2022 Bhandavi
                         //added code here because after pasing exam/passing year already exists message comes also clear all fields of divDetails
                         ClearPastEducationDetails();
 

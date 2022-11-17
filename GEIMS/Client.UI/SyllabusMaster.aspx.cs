@@ -355,6 +355,9 @@ namespace GEIMS.Client.UI
         #endregion
 
         #region Clear All Method
+        /// <summary>
+        /// To clear all fields
+        /// </summary>
         public void ClearAll()
         {
             Controls objControl = new Controls();
@@ -524,7 +527,7 @@ namespace GEIMS.Client.UI
                             //txtSyllabusDetailsENG.Text = dtResult.Rows[0][SyllabusBO.SYLLABUS_CHAPTERNAMEANDNOGUJ].ToString();
                             //txtSyllabusDetailsGUJ.Text = dtResult.Rows[0][SyllabusBO.SYLLABUS_CHAPTERNAMEANDNOENG].ToString();
 
-                            //Not displaying updated values Changed on 09/11/2022 Bhandavi
+                            //Not displaying updated values Changed on 09/11/2022 Bhandavi (Issue no 178)
                             txtSyllabusDetailsENG.Text = dtResult.Rows[0][SyllabusBO.SYLLABUS_SYLLABUSDETAILSENG].ToString();
                             txtSyllabusDetailsGUJ.Text = dtResult.Rows[0][SyllabusBO.SYLLABUS_SYLLABUSDETAILSGUJ].ToString();
                             txtSyllabusRemark.Text = dtResult.Rows[0][SyllabusBO.SYLLABUS_SYLLABUSREMARKS].ToString();

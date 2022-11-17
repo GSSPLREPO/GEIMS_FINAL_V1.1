@@ -111,7 +111,7 @@ namespace GEIMS.Client.UI
                 objSectionBO.Description = txtSectionDesc.Text;
                 objSectionBO.LastModifiedDate = DateTime.UtcNow.AddHours(5.5).ToString();
                 objSectionBO.LastModifiedUserID = Convert.ToInt32(Session[ApplicationSession.USERID]);
-                if (ValidateName() == true)
+                if (ValidateName() == true) //To check if entered section name or abbreviation is already exists(Bug no 158)
                 {
                     ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script language='javascript'>alert('Section Name or/and Section Abbrev " + txtSectionName.Text + "/" + txtAbbreviation.Text + " Already Exists.');</script>");
                     goto Exit;
