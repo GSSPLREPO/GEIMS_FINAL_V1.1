@@ -1389,7 +1389,7 @@ namespace GEIMS.PayRoll
                         }
                         if (GDBalance.Rows[i].Cells[1].Text == "1")
                         {
-                            //Whose Leave using IsDeduction so textbox can be enable mode regarding user input manuualy leavae 
+                            //Whose Leave using IsDeduction so textbox can be enable mode regarding user input manuualy leave
                             GDBalance.Rows[i].Cells[5].Text = (GDBalance.Rows[i].Cells[3].Text.ToString());
                             ((TextBox)(GDBalance.Rows[i].Cells[4].FindControl("textDays"))).Enabled = true;
                         }

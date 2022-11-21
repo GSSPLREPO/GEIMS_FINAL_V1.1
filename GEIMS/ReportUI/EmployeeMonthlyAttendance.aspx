@@ -79,7 +79,24 @@
 
                                 <div id="divButtons" runat="server" style="width: 100%; float: left; padding-top: 0px;" class="label">
                                     <div style="padding: 10px; padding-right: 30px;">
-                                        <div style="float: left; text-align: center; width: 100%; padding-bottom: 10px;">
+                                          <div style="float:left;text-align:left; width: 20%; padding-bottom: 10px;"">
+                                        <img src="../Images/Logo1.jpg" style="height:100px;width:100px"/>
+                                    </div>
+                                         <div style="float: left; text-align: center; width: 60%; padding-bottom: 10px;">
+                                           <b>School :</b>
+                                                <asp:Label runat="server" ID="lblSchoolName"></asp:Label>
+                                                &nbsp; &nbsp; &nbsp;
+                                         <br /><br /><br />
+                                                  <b>Month :</b>
+                                                <asp:Label runat="server" ID="lblMonth"></asp:Label>
+                                                &nbsp; &nbsp; &nbsp;
+                                               
+                                                
+                                                <b>Year :</b>
+                                                <asp:Label runat="server" ID="lblYear"></asp:Label>
+                                               
+                                         </div>
+                                              <div style="float: right; text-align: right; width: 20%; padding-bottom: 10px;">
                                             <asp:ImageButton ID="btnExportPDF" runat="server" ImageUrl="~/Images/adobe.PNG"
                                                 ToolTip="Export to PDF" OnClick="btnExportPDF_Click" />
 
@@ -95,21 +112,7 @@
 
                                 <div id="divReport" runat="server" style="width: 100%; float: left; padding-top: 0px;" class="label">
 
-                                    <div style="width: 100%; float: left; padding-top: 0px;" class="label">
-                                        <div style="padding: 10px; padding-right: 20px;">
-                                            <div style="float: left; text-align: center; width: 100%; padding-bottom: 10px;">
-                                                <b>Report : Employee Monthly Attendance</b>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="width: 100%; float: left; padding-top: 0px;" class="label">
-                                        <div style="padding: 10px; padding-right: 20px;">
-                                            <div style="float: left; text-align: center; width: 100%; padding-bottom: 10px;">
-                                                <b>School :</b>
-                                                <asp:Label runat="server" ID="lblSchoolName"></asp:Label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                  
 
                                     <%-- <div style="width: 100%; float: left; padding-top: 0px;" class="label">
                                         <div style="padding: 10px; padding-right: 30px;">
@@ -121,13 +124,13 @@
 
                                     <div style="width: 100%; float: left; padding-top: 0px;" class="label">
                                         <div style="padding: 10px; padding-right: 30px;">
-                                            <div style="float: left; text-align: center; width: 100%; padding-bottom: 10px;">
+                                        <%--    <div style="float: left; text-align: center; width: 100%; padding-bottom: 10px;">
                                                 <b>Year :</b>
                                                 <asp:Label runat="server" ID="lblYear"></asp:Label>
                                                 &nbsp; &nbsp; &nbsp;
                                                  <b>Month :</b>
                                                 <asp:Label runat="server" ID="lblMonth"></asp:Label>
-                                            </div>
+                                            </div>--%>
                                             <asp:Label ForeColor="red" runat="server">Note *:  'A' Considered as <strong>Absent</strong></asp:Label>  <br/>
                                             <asp:Label ForeColor="red" runat="server">Note *:  'P' Considered as <strong>Present</strong></asp:Label>  <br/>
                                             <asp:Label ForeColor="red" runat="server">Note *:  '+' Considered as <strong>Half Day</strong></asp:Label>  <br/>

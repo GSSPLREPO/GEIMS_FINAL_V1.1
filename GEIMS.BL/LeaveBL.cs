@@ -309,6 +309,9 @@ namespace GEIMS.Bl
                 pSqlParameter[0] = new SqlParameter("@EmployeeMID", SqlDbType.Int);
                 pSqlParameter[0].Direction = ParameterDirection.Input;
                 pSqlParameter[0].Value = intEmployeeMID;
+                //pSqlParameter[1] = new SqlParameter("@Month", SqlDbType.VarChar);
+                //pSqlParameter[1].Direction = ParameterDirection.Input;
+                //pSqlParameter[1].Value = intEmployeeMID;
 
                 //strStoredProcName = "usp_tbl_Leave_M_Select_ForBalance";
                 //09/11/2022 Bhandavi

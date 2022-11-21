@@ -394,7 +394,7 @@ namespace GEIMS.PayRoll
                     string content = "<div align='center' style='font-family:verdana;font-size:16px; width:800px;'>" +
                   "<table style='display: table; width: 800px; clear:both;'>" +
                   "<tr> </tr>" +
-                  "<tr><th></th><th style='text-align:left'><img height='100' width='100' src='" + strPath + "'/></th>" +
+                  "<tr><th></th><th colspan='1' style='text-align:left'><img height='100' width='100' src='" + strPath + "'/></th>" +
                   "<th colspan='" + colh + "' style='width: 600px; float: left; font-weight:bold;font-size:16px;color:Maroon;'>" + strSubTitle + "</tr>" +
                      "<tr><th colspan='2'></th><th colspan='" + colh + "' style='font-size:13px;font-weight:bold;color:Black;'>Month :" + ddlMonth.SelectedItem.Text
                      + "&nbsp;&nbsp; Year :" + ddlYear.SelectedItem.Text + "</th></tr>" +
@@ -508,18 +508,17 @@ namespace GEIMS.PayRoll
                     string strPath = Request.Url.GetLeftPart(UriPartial.Authority) + "/images/Logo1.jpg";
 
                     string content = "<div align='center' style='font-family:verdana;font-size:16px; width:800px;'>" +
-                  "<table style='display: table; width: 800px; clear:both;'>" +
-                  "<tr> </tr>" +
-                  "<tr><th></th><th style='text-align:left'><img height='100' width='100' src='" + strPath + "'/></th>" +
-                  "<th colspan='" + colh + "' style='width: 600px; float: left; font-weight:bold;font-size:16px;color:Maroon;'>" + strSubTitle + "</tr>" +
-                     "<tr><th colspan='2'></th><th colspan='" + colh + "' style='font-size:13px;font-weight:bold;color:Black;'>Month :" + ddlMonth.SelectedItem.Text
-                     + "&nbsp;&nbsp; Year :" + ddlYear.SelectedItem.Text + "</th></tr>" +
-                     "<tr><th colspan='2'></th><th colspan='" + colh + "'></th></tr>" +
-                     "<tr><th colspan='2'></th><th colspan='" + colh + "' style='font-size:13px;'><b>Trust Name :" + Session[ApplicationSession.TRUSTNAME] + "</b></th></tr>" +
-                     "<tr></tr>" +
-                "</table>" +
-
-                      "<br/>" + sw.ToString() + "<br/></div>";
+                "<table style='display: table; width: 800px; clear:both;'>" +
+                "<tr> </tr>" +
+                "<tr><th></th><th><img height='100' width='100' src='" + strPath + "'/></th>" +
+                "<th colspan='" + colh + "' style='width: 600px; float: left; font-weight:bold;font-size:16px;color:Maroon;'>" + strSubTitle + "</tr>" +
+                   "<tr><th colspan='2'></th><th colspan='" + colh + "' style='font-size:13px;font-weight:bold;color:Black;'>Month :" + ddlMonth.SelectedItem.Text
+                   + "&nbsp;&nbsp; Year :" + ddlYear.SelectedItem.Text + "</th></tr>" +
+                   "<tr><th colspan='2'></th><th colspan='" + colh + "'></th></tr>" +
+                   "<tr><th colspan='2'></th><th colspan='" + colh + "' style='font-size:13px;'><b>Trust Name :" + Session[ApplicationSession.TRUSTNAME] + "</b></th></tr>" +
+                   "<tr></tr>" +
+              "</table>" +
+                    "<br/>&nbsp;&nbsp;&nbsp;" + sw.ToString() + "<br/></div>";
 
                     string style = @"<!--mce:2-->";
                     Response.Write(style);
@@ -618,7 +617,7 @@ namespace GEIMS.PayRoll
         /// <summary>
         /// On back to menu button click
         /// Back to payroll reports in school portal
-        /// (Added comment on 07 10 2022 Bhandavi
+        /// 07 10 2022 Bhandavi
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -642,11 +641,13 @@ namespace GEIMS.PayRoll
             ApplicationResult objResult = new ApplicationResult();
             EmployeeBL objEmployeeBl = new EmployeeBL();
             objResult = objEmployeeBl.Employee_PFRegister(Convert.ToInt32(Session[ApplicationSession.TRUSTID]), Convert.ToInt32(ddlMonth.SelectedValue), Convert.ToInt32(ddlYear.SelectedValue), 1,Convert.ToInt32(Session[ApplicationSession.SCHOOLID]));
-
+          
             if (objResult != null)
             {
                 gvReport.DataSource = null;
-              
+                lblTrustName.Text = "Fertilizer Nagar English and Gujarati Medium School.";
+                lblYear.Text = ddlYear.SelectedItem.Text;
+                lblMonth.Text = ddlMonth.SelectedItem.Text;
 
                 gvReport.DataSource = objResult.resultDT;
                

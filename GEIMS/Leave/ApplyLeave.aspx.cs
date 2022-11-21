@@ -98,6 +98,8 @@ namespace GEIMS.Leave
         private void BindLeaveBalance()
         {
             LeaveBl objLeaveBl = new LeaveBl();
+            //int month= txtFromDate.Text
+           
             var objResult = objLeaveBl.Leave_Select_ForBalance(Convert.ToInt32(Session[ApplicationSession.USERID].ToString()));
             if (objResult != null)
             {

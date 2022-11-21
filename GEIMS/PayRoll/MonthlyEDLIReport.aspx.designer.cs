@@ -114,6 +114,33 @@ namespace GEIMS.PayRoll
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divReport;
 
         /// <summary>
+        /// lblTrustName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTrustName;
+
+        /// <summary>
+        /// lblMonth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMonth;
+
+        /// <summary>
+        /// lblYear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblYear;
+
+        /// <summary>
         /// btnExportPDF control.
         /// </summary>
         /// <remarks>

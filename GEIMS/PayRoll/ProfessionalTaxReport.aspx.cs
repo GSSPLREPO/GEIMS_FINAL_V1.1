@@ -14,6 +14,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.text.html;
 using iTextSharp.text.html.simpleparser;
+using System.Drawing;
 
 namespace GEIMS.PayRoll
 {
@@ -245,49 +246,119 @@ namespace GEIMS.PayRoll
         {
             try
             {
+
                 Response.Clear();
                 Response.Buffer = true;
 
-                Response.AddHeader("content-disposition", "attachment;filename= ProfessionalTax" + "_" + Session[ApplicationSession.TRUSTNAME] + "_" + DateTime.Now.Date.ToString("yyyy-MM-dd") + ".xls");
-                Response.Charset = "";
+                int count = 0;
+                Response.Clear();
+                Response.Buffer = true;
                 Response.ContentType = "application/vnd.ms-excel";
                 Response.ContentEncoding = System.Text.Encoding.Unicode;
                 Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
-                StringWriter sw = new StringWriter();
-                HtmlTextWriter hw = new HtmlTextWriter(sw);
+                string filename = "ProfessionalTax" + "_" + Session[ApplicationSession.TRUSTNAME] + "_" + DateTime.Now.ToString("dd/MM/yyyy") + "_" + DateTime.Now.ToString("HH:mm:ss") + ".xls";
 
-                gvReport.AllowPaging = false;
-                // gvReport.DataBind();
+                Response.AddHeader("content-disposition", "attachment;filename=" + filename);
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
-                //Change the Header Row back to white color
-                //gvReport.HeaderRow.Style.Add("background-color", "#67A3D1");
-                gvReport.HeaderRow.Style.Add("ForeColor", "#000000");
+                using (StringWriter sw = new StringWriter())
+                {
+                    HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+                    StringWriter sw1 = new StringWriter();
+                    HtmlTextWriter hw1 = new HtmlTextWriter(sw1);
+
+                    //To Export all pages
+                    gvReport.AllowPaging = false;
+
+                    gvReport.HeaderRow.BackColor = Color.White;
+
+                    foreach (TableCell cell in gvReport.HeaderRow.Cells)
+                    {
+                        cell.BackColor = gvReport.HeaderStyle.BackColor;
+                        count++;
+                    }
+                    foreach (GridViewRow row in gvReport.Rows)
+                    {
+                        row.BackColor = Color.White;
+                        foreach (TableCell cell in row.Cells)
+                        {
+                            if (row.RowIndex % 2 == 0)
+                            {
+                                cell.BackColor = gvReport.AlternatingRowStyle.BackColor;
+                            }
+                            else
+                            {
+                                cell.BackColor = gvReport.RowStyle.BackColor;
+                            }
+                            cell.CssClass = "textmode";
+                            cell.HorizontalAlign = HorizontalAlign.Center;
+                            List<Control> controls = new List<Control>();
+
+                            //Add controls to be removed to Generic List
+                            foreach (Control control in cell.Controls)
+                            {
+                                controls.Add(control);
+                            }
+
+                            //Loop through the controls to be removed and replace then with Literal
+                            foreach (Control control in controls)
+                            {
+                                switch (control.GetType().Name)
+                                {
+                                    case "HyperLink":
+                                        cell.Controls.Add(new Literal { Text = (control as HyperLink).Text });
+                                        break;
+                                    case "TextBox":
+                                        cell.Controls.Add(new Literal { Text = (control as TextBox).Text });
+                                        break;
+                                    case "LinkButton":
+                                        cell.Controls.Add(new Literal { Text = (control as LinkButton).Text });
+                                        break;
+                                    case "CheckBox":
+                                        cell.Controls.Add(new Literal { Text = (control as CheckBox).Text });
+                                        break;
+                                    case "RadioButton":
+                                        cell.Controls.Add(new Literal { Text = (control as RadioButton).Text });
+                                        break;
+                                }
+                                cell.Controls.Remove(control);
+                            }
+                        }
+                    }
+                    int colh, cold;
+                    colh = count - 4;
+                    cold = count - 8;
+
+                    gvReport.RenderControl(hw);
 
 
-                gvReport.RenderControl(hw);
+                    string strSubTitle = "Report : Professional Tax ";
+                    string strPath = Request.Url.GetLeftPart(UriPartial.Authority) + "/images/Logo1.jpg";
 
-                // string content = "<div align='center' style='font-family:verdana;font-size:13px'><span style='font-size:13px:font-weight:bold'>" + ReportTitle + "</span><br/><br/>" + sw.ToString() + "</div>";
-                //string content = "<div align='center' style='font-family:verdana;font-size:13px'><span style='font-size:16px:font-weight:bold;color:Maroon;'>" + lblTitle.Text + "</span><br/><br/><span style='font-size:13px:font-weight:bold'>" + ReportTitle + "</span><br/><br/><div align='right' style='font-family:verdana;font-size:11px'><strong>Date :</strong>" + Date + "</div><br/>" + sw.ToString() + "<br/><br/><br/><div align='left'><span style='font-size:11px:font-weight:bold:padding-left:2px'>" + lblText.Text + "</span></div>";
-                //string content = "<div align='center' style='font-family:verdana;font-size:13px'><span style='font-size:16px:font-weight:bold;color:Maroon;'>Report : Professional Tax</span><br/><span style='font-size:13px:font-weight:bold'></span><br/><span align='center' style='font-family:verdana;font-size:11px'><strong>Date :</strong>" + System.DateTime.Now.ToShortDateString() + "</span><br/><span align='center' style='font-family:verdana;font-size:11px'><strong>Trust Name :</strong>" + Session[ApplicationSession.TRUSTNAME].ToString() + "</span><br/><span align='center' style='font-family:verdana;font-size:11px'><br/>" + sw.ToString() + "<br/><strong>";
-                string content = "<div align='center' style='font-family:verdana;font-size:13px'>" +
-                  "</br>" +
-                  "<span style='font-size:16px:font-weight:bold;color:Maroon;'>FERTILIZER NAGAR SCHOOL</span>" +
-                  "</br>" +
-                  "<span style='font-size:13px:font-weight:bold'></span>" +
-                  "<br/>" +
-                  "<span align='center' style='font-family:verdana;font-size:11px'><strong>PROFESSIONAL TAX</strong></span>" +
-                  "<br/>" +
-                  "<span align='center' style='font-family:verdana;font-size:11px'><strong> Month:</strong>" + ddlMonth.SelectedItem.ToString() + "-" + ddlYear.Text + "</span>" +
-                  "<br/>" +
-                  "<span align='center' style='font-family:verdana;font-size:11px'><br/>" + sw.ToString() + "<br/><strong>";
-                Response.Output.Write(content);
-                //style to format numbers to string
-                string style = @"<style> .textmode { mso-number-format:\@; } </style>";
-                Response.Write(style);
-                // Response.Output.Write(sw.ToString());
-                Response.Flush();
-                //HttpContext.Current.ApplicationInstance.CompleteRequest();
-                Response.End();
+                    string content = "<div align='center' style='font-family:verdana;font-size:16px; width:800px;'>" +
+                  "<table style='display: table; width: 800px; clear:both;'>" +
+                  "<tr> </tr>" +
+                  "<tr><th></th><th colspan='1' style='text-align:left'><img height='100' width='100' src='" + strPath + "'/></th>" +
+                  "<th colspan='" + colh + "' style='width: 600px; float: left; font-weight:bold;font-size:16px;color:Maroon;'>" + strSubTitle + "</tr>" +
+                     "<tr><th colspan='2'></th><th colspan='" + colh + "' style='font-size:13px;font-weight:bold;color:Black;'>Month :" + ddlMonth.SelectedItem.Text
+                     + "&nbsp;&nbsp; Year :" + ddlYear.SelectedItem.Text + "</th></tr>" +
+                     "<tr><th colspan='2'></th><th colspan='" + colh + "'></th></tr>" +
+                     "<tr><th colspan='4'></th><th colspan='" + colh + "' style='font-size:13px;'><b>Trust Name :" + Session[ApplicationSession.TRUSTNAME] + "</b></th></tr>" +
+                     "<tr></tr>" +
+                "</table>" +
+
+                      "<br/>" + sw.ToString() + "<br/></div>";
+
+                    string style = @"<!--mce:2-->";
+                    Response.Write(style);
+                    Response.Output.Write(content);
+                    gvReport.GridLines = GridLines.None;
+                    Response.Flush();
+                    Response.Clear();
+                    Response.End();
+                }
+               
             }
             catch (Exception ex)
             {
@@ -304,40 +375,122 @@ namespace GEIMS.PayRoll
             try
             {
 
-                Response.AddHeader("content-disposition", "attachment;filename=ProfessionalTax" + "_" + DateTime.Now.Date.ToString("yyyy-MM-dd") + ".doc");
-                Response.Charset = "";
-                Response.ContentType = "application/vnd.ms-word ";
+                Response.Clear();
+                Response.Buffer = true;
+
+                int count = 0;
+                Response.Clear();
+                Response.Buffer = true;
+                Response.ContentType = "application/vnd.ms-excel";
                 Response.ContentEncoding = System.Text.Encoding.Unicode;
                 Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
-                StringWriter sw = new StringWriter();
-                HtmlTextWriter hw = new HtmlTextWriter(sw);
+                string filename = "ProfessionalTax" + "_" + Session[ApplicationSession.TRUSTNAME] + "_" + DateTime.Now.ToString("dd/MM/yyyy") + "_" + DateTime.Now.ToString("HH:mm:ss") + ".doc";
 
-                gvReport.AllowPaging = false;
-                // gvReport.DataBind();
-                gvReport.RenderControl(hw);
+                Response.AddHeader("content-disposition", "attachment;filename=" + filename);
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
-                //   string content1 = "";
-                //string content = "<div align='center' style='font-family:verdana;font-size:13px'><span style='font-size:16px:font-weight:bold;color:Maroon;'>Report : Professional Tax</span><br/><br/><span style='font-size:13px:font-weight:bold'></span><br/><br/><div align='center' style='font-family:verdana;font-size:11px'><strong>Date :</strong>" + System.DateTime.Now.ToShortDateString() + "</div><br/><div align='center' style='font-family:verdana;font-size:11px'><strong>Trust Name :</strong>" + Session[ApplicationSession.TRUSTNAME].ToString() + "</div><br/><div align='center' style='font-family:verdana;font-size:11px'></div><br/><br/>" + sw.ToString() + "<br/><strong></span></div>";
-                string content = "<div align='center' style='font-family:verdana;font-size:13px'>" +
-                  "</br>" +
-                  "<span style='font-size:16px:font-weight:bold;color:Maroon;'>FERTILIZER NAGAR SCHOOL</span>" +
-                  "</br>" +
-                  "<span style='font-size:13px:font-weight:bold'></span>" +
-                  "<br/>" +
-                  "<span align='center' style='font-family:verdana;font-size:11px'><strong>PROFESSIONAL TAX</strong></span>" +
-                  "<br/>" +
-                  "<span align='center' style='font-family:verdana;font-size:11px'><strong> Month:</strong>" + ddlMonth.SelectedItem.ToString() + "-" + ddlYear.Text + "</span>" +
-                  "<br/>" +
-                  "<span align='center' style='font-family:verdana;font-size:11px'><br/>" + sw.ToString() + "<br/><strong>";
-                Response.Output.Write(content);
+                using (StringWriter sw = new StringWriter())
+                {
+                    HtmlTextWriter hw = new HtmlTextWriter(sw);
 
-                Response.Flush();
-                //HttpContext.Current.ApplicationInstance.CompleteRequest();
-                Response.End();
+                    StringWriter sw1 = new StringWriter();
+                    HtmlTextWriter hw1 = new HtmlTextWriter(sw1);
+
+                    //To Export all pages
+                    gvReport.AllowPaging = false;
+
+                    gvReport.HeaderRow.BackColor = Color.White;
+
+                    foreach (TableCell cell in gvReport.HeaderRow.Cells)
+                    {
+                        cell.BackColor = gvReport.HeaderStyle.BackColor;
+                        count++;
+                    }
+                    foreach (GridViewRow row in gvReport.Rows)
+                    {
+                        row.BackColor = Color.White;
+                        foreach (TableCell cell in row.Cells)
+                        {
+                            if (row.RowIndex % 2 == 0)
+                            {
+                                cell.BackColor = gvReport.AlternatingRowStyle.BackColor;
+                            }
+                            else
+                            {
+                                cell.BackColor = gvReport.RowStyle.BackColor;
+                            }
+                            cell.CssClass = "textmode";
+                            cell.HorizontalAlign = HorizontalAlign.Center;
+                            List<Control> controls = new List<Control>();
+
+                            //Add controls to be removed to Generic List
+                            foreach (Control control in cell.Controls)
+                            {
+                                controls.Add(control);
+                            }
+
+                            //Loop through the controls to be removed and replace then with Literal
+                            foreach (Control control in controls)
+                            {
+                                switch (control.GetType().Name)
+                                {
+                                    case "HyperLink":
+                                        cell.Controls.Add(new Literal { Text = (control as HyperLink).Text });
+                                        break;
+                                    case "TextBox":
+                                        cell.Controls.Add(new Literal { Text = (control as TextBox).Text });
+                                        break;
+                                    case "LinkButton":
+                                        cell.Controls.Add(new Literal { Text = (control as LinkButton).Text });
+                                        break;
+                                    case "CheckBox":
+                                        cell.Controls.Add(new Literal { Text = (control as CheckBox).Text });
+                                        break;
+                                    case "RadioButton":
+                                        cell.Controls.Add(new Literal { Text = (control as RadioButton).Text });
+                                        break;
+                                }
+                                cell.Controls.Remove(control);
+                            }
+                        }
+                    }
+                    int colh, cold;
+                    colh = count - 4;
+                    cold = count - 8;
+
+                    gvReport.RenderControl(hw);
+
+
+                    string strSubTitle = "Report : Professional Tax ";
+                    string strPath = Request.Url.GetLeftPart(UriPartial.Authority) + "/images/Logo1.jpg";
+
+                    string content = "<div align='center' style='font-family:verdana;font-size:16px; width:800px;'>" +
+                  "<table style='display: table; width: 800px; clear:both;'>" +
+                  "<tr> </tr>" +
+                  "<tr><th></th><th colspan='1' style='text-align:left'><img height='100' width='100' src='" + strPath + "'/></th>" +
+                  "<th colspan='" + colh + "' style='width: 600px; float: left; font-weight:bold;font-size:16px;color:Maroon;'>" + strSubTitle + "</tr>" +
+                     "<tr><th colspan='2'></th><th colspan='" + colh + "' style='font-size:13px;font-weight:bold;color:Black;'>Month :" + ddlMonth.SelectedItem.Text
+                     + "&nbsp;&nbsp; Year :" + ddlYear.SelectedItem.Text + "</th></tr>" +
+                     "<tr><th colspan='2'></th><th colspan='" + colh + "'></th></tr>" +
+                     "<tr><th colspan='4'></th><th colspan='" + colh + "' style='font-size:13px;'><b>Trust Name :" + Session[ApplicationSession.TRUSTNAME] + "</b></th></tr>" +
+                     "<tr></tr>" +
+                "</table>" +
+
+                      "<br/>" + sw.ToString() + "<br/></div>";
+
+                    string style = @"<!--mce:2-->";
+                    Response.Write(style);
+                    Response.Output.Write(content);
+                    gvReport.GridLines = GridLines.None;
+                    Response.Flush();
+                    Response.Clear();
+                    Response.End();
+                }
+
             }
-            catch (System.Threading.ThreadAbortException lException)
+            catch (Exception ex)
             {
-                // logger.Error("Error", ex);
+                logger.Error("Error", ex);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Oops! There is some technical issue. Please Contact to your administrator.');", true);
             }
         }
@@ -448,6 +601,9 @@ namespace GEIMS.PayRoll
             if (objResult != null)
             {
                 gvReport.DataSource = null;
+                lblTrustName.Text = "Fertilizer Nagar English and Gujarati Medium School.";
+                lblYear.Text = ddlYear.SelectedItem.Text;
+                lblMonth.Text = ddlMonth.SelectedItem.Text;
 
 
                 gvReport.DataSource = objResult.resultDT;

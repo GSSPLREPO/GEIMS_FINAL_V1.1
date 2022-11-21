@@ -620,7 +620,7 @@
                                                 <div style="text-align: left; width: 70%; float: right; vertical-align: top;">
                                                     <%--<asp:TextBox ID="txtEmployeeCode" runat="server" CssClass="validate[required] TextBox" Width="150px"></asp:TextBox>--%>
                                                    <%--Bug number 470 only allow numbers for employee code --%>
-                                                    <asp:TextBox ID="txtEmployeeCode" runat="server" CssClass="validate[custom[onlyNumberSp] TextBox" Width="150px"></asp:TextBox>
+                                                    <asp:TextBox ID="txtEmployeeCode" runat="server" CssClass="validate[required,custom[onlyNumberSp] TextBox" Width="150px"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <div style="width: 100%;" class="divclasswithfloat">
@@ -834,7 +834,7 @@
                                                         Height(In cms):
                                                     </div>
                                                     <div style="text-align: left; width: 30%; float: left;">
-                                                        <asp:TextBox ID="txtHeight" runat="server" CssClass="validate[custom[number]] TextBox" Width="150px"></asp:TextBox>
+                                                        <asp:TextBox ID="txtHeight" runat="server" CssClass="validate[custom[number],max[350.00],min[1.00]]  TextBox" Width="150px"></asp:TextBox>
 
                                                     </div>
                                                     <div style="text-align: left; width: 20%; float: left;" class="label">
@@ -966,7 +966,7 @@
                                                             City/Town :  
                                                         </div>
                                                         <div style="text-align: left; width: 67%; float: left;">
-                                                            <asp:TextBox ID="txtPermenantCity" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                                            <asp:TextBox ID="txtPermenantCity" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <div style="width: 100%;" class="divclasswithfloat">
@@ -982,7 +982,7 @@
                                                             State :  
                                                         </div>
                                                         <div style="text-align: left; width: 67%; float: left;">
-                                                            <asp:TextBox ID="txtPermenantState" runat="server" CssClass="TextBox" Width="150px"></asp:TextBox>
+                                                            <asp:TextBox ID="txtPermenantState" runat="server" CssClass="validate[custom[onlyLetterNumber]] TextBox" Width="150px"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <div style="width: 100%;" class="divclasswithfloat">

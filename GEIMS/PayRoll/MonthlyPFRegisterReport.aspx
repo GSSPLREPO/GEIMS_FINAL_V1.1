@@ -248,9 +248,20 @@
                                      <div style="float:left;text-align:left; width: 20%; padding-bottom: 10px;"">
                                         <img src="../Images/Logo1.jpg" style="height:100px;width:100px"/>
                                     </div>
-                                     <div style="float: left; text-align: center; width: 60%; padding-bottom: 10px;">
-                                       <b> Report : Monthly PF Register</b>
-                                    </div> 
+                                      <div style="float: left; text-align: center; width: 60%; padding-bottom: 10px;">
+                                          <b>Trust :</b>
+                                                <asp:Label runat="server" ID="lblTrustName"></asp:Label>
+                                                &nbsp; &nbsp; &nbsp;
+                                         <br /><br /><br />
+                                                  <b>Month :</b>
+                                                <asp:Label runat="server" ID="lblMonth"></asp:Label>
+                                                &nbsp; &nbsp; &nbsp;
+                                               
+                                                
+                                                <b>Year :</b>
+                                                <asp:Label runat="server" ID="lblYear"></asp:Label>
+                                               
+                                         </div>
                                       <div style="float: right; text-align: right; width: 20%; padding-bottom: 10px;">
                                         <asp:ImageButton ID="btnExportPDF" runat="server" ImageUrl="~/Images/adobe.PNG"
                                             ToolTip="To export data in this format selected fields is maximum 10." OnClick="btnExportPDF_Click" />
