@@ -324,15 +324,21 @@ namespace GEIMS.PayRoll
             Double TotalDedction = 0;
 
             //Pension and GPF Calcualtion
-            //Double pf = 0;
-            //Double Pension = 0;
+            Double pf = 0;
+            Double Pension = 0;
             foreach (GridViewRow rowItem in gvDeduction.Rows)
             {
                 txt = (TextBox)rowItem.Cells[2].FindControl("textAmount");
                 //string strAmount = Convert.ToString(Math.Round(Convert.ToDouble(ObjUserTempleteOne.resultDT.Rows[l]["Amount"].ToString(),0), 0));
                 TotalDedction = TotalDedction + Convert.ToDouble(txt.Text.ToString());
                 //j = j + 1;
-                //if (Convert.ToInt32(rowItem.Cells[0].Text) == 8)
+
+                //Pension = Math.Round(TotalSalary * Convert.ToDouble(8.3333) / 100, 0);
+                //txtPension.Text = objControl.ConvertToCurrancy(Pension.ToString());
+                //pf = Math.Round(TotalSalary * Convert.ToDouble(3.6667) / 100, 0);
+                //txtGpf.Text = objControl.ConvertToCurrancy(pf.ToString());
+
+                // if (Convert.ToInt32(rowItem.Cells[0].Text) == 8)
                 //{
                 //    Pension = Math.Round(TotalSalary * Convert.ToDouble(8.3333) / 100, 2);
                 //    if (Pension >= 542)
@@ -443,8 +449,8 @@ namespace GEIMS.PayRoll
                     hftxtPayTotalDays.Value = Convert.ToString(DateTime.DaysInMonth(year, month));
                     //clear total textbox when month changed 10/11/2022 Bhandavi
                     txtTotal.Text = "0";
-                    BindLeaveBalance(Convert.ToInt32(ViewState["EmployeeMID"].ToString()), ddlMonth.SelectedValue, Convert.ToInt32(ddlYear.SelectedValue));                   
-
+                    BindLeaveBalance(Convert.ToInt32(ViewState["EmployeeMID"].ToString()), ddlMonth.SelectedValue, Convert.ToInt32(ddlYear.SelectedValue));
+                  
                 }
                 else
                 {
@@ -608,6 +614,8 @@ namespace GEIMS.PayRoll
                                     GDBalance.Rows[j].Cells[5].Text = (AvailDays - Convert.ToDouble(txt.Text)).ToString();
                                 }
                             }
+
+                            GDBalance.Rows[j].Cells[1].Enabled = true;
                         }
                     }
 
@@ -620,8 +628,9 @@ namespace GEIMS.PayRoll
 
                 j = j + 1;
             }
-           // double TD = Convert.ToDouble(txtPayTotalDays.Text.ToString());
-            double TD = Convert.ToDouble(hftxtPayTotalDays.Value);
+           
+            double TD = Convert.ToDouble(txtPayTotalDays.Text.ToString()); //tota ldays in a month
+            //double TD = Convert.ToDouble(hftxtPayTotalDays.Value);
             //double TD = Convert.ToDouble(30);
             //LWP = Convert.ToDouble(txtPayEarnedDays.Text);
             //txtPayEarnedDays.Text = (TD - LWP).ToString();
@@ -630,8 +639,8 @@ namespace GEIMS.PayRoll
             double GrossValue = 0;
             foreach (GridViewRow rowItem in gvEarnings.Rows)
             {
-                //17/11/2022 Bhandavi
-                //Check whether basic check box is selected or not (if not give alert)
+              
+              
                 Label lblBasic = (Label)rowItem.Cells[1].FindControl("lblName");
 
                 CheckBox ckb = new CheckBox();
@@ -640,12 +649,13 @@ namespace GEIMS.PayRoll
                 {
                     Double amt = 0;
                     txt = (TextBox)rowItem.Cells[2].FindControl("textAmount");
-                    amt = Math.Round(Convert.ToDouble(txt.Text.ToString()), 0);
-                    Double iTotal = Convert.ToDouble(txtPayEarnedDays.Text) / Convert.ToDouble(TD);
-                    amt = (amt * Convert.ToDouble(txtPayEarnedDays.Text)) / Convert.ToDouble(TD);
-                    txt.Text = Convert.ToString(Math.Round(Convert.ToDouble(amt.ToString()), 0));
+                    amt = Math.Round(Convert.ToDouble(txt.Text.ToString()), 0); //
+                    Double iTotal = Convert.ToDouble(txt.Text.ToString()) / Convert.ToDouble(TD); //salary perday
+                    amt = (iTotal * Convert.ToDouble(txtPayEarnedDays.Text));
+                    //amt = (amt * Convert.ToDouble(txtPayEarnedDays.Text)) / Convert.ToDouble(TD);
+                    txt.Text = Convert.ToString(Math.Round(Convert.ToDouble(amt.ToString()), 0)); 
 
-                    GrossValue = GrossValue + Convert.ToDouble(txt.Text);
+                    GrossValue = GrossValue + Convert.ToDouble(amt);
                     c = c + 1;
                 }
                 //else
@@ -674,7 +684,7 @@ namespace GEIMS.PayRoll
             {
                 CheckBox ckb = new CheckBox();
                 ckb = (CheckBox)rowItem.Cells[3].FindControl("ckbAmount");
-                if (ckb.Checked == true)
+                //if (ckb.Checked == true)
                 {
                     //Note : Find PayItem Name because this logic is used to calculate Professional Tax
                     //Name : Arpit Shah
@@ -693,7 +703,7 @@ namespace GEIMS.PayRoll
                     //For Amount
                     txt = (TextBox)rowItem.Cells[2].FindControl("textAmount");
                     amt = Math.Round(Convert.ToDouble(txt.Text.ToString()), 0);
-                    
+
                     if (payname == "P.TAX")
                     {
                         //Apply Professional Tax Slab
@@ -708,7 +718,7 @@ namespace GEIMS.PayRoll
                             txt.Text = Convert.ToString(Math.Round(Convert.ToDouble(200)));
                             c = c + 1;
                         }
-                        
+
                         //if (GrossValue <= 6000)
                         //{
                         //    txt.Text = Convert.ToString(Math.Round(Convert.ToDouble(0)));
@@ -735,11 +745,13 @@ namespace GEIMS.PayRoll
                     //Date : 23-06-2022
                     else if (payname != "P.TAX")
                     {
-                        
-                        Double iTotal = Convert.ToDouble(txtPayEarnedDays.Text) / Convert.ToDouble(TD);
-                        amt = (amt * Convert.ToDouble(txtPayEarnedDays.Text)) / Convert.ToDouble(TD)- Convert.ToDouble(iTotal);// Added ITotal To substact itotal valcue from PF amount
-                        txt.Text = Convert.ToString(Math.Round(Convert.ToDouble(amt.ToString()), 0));
-                        c = c + 1;
+                        if (txt.Text != "0")
+                        {
+                            Double iTotal = Convert.ToDouble(txtPayEarnedDays.Text) / Convert.ToDouble(TD);
+                            amt = (amt * Convert.ToDouble(txtPayEarnedDays.Text)) / Convert.ToDouble(TD) - Convert.ToDouble(iTotal);// Added ITotal To substact itotal valcue from PF amount
+                            txt.Text = Convert.ToString(Math.Round(Convert.ToDouble(amt.ToString()), 0));
+                            c = c + 1;
+                        }
                     }
 
                     //Old Code
@@ -773,35 +785,50 @@ namespace GEIMS.PayRoll
 
             //Pension and GPF Calcualtion 
             Double pf = 0;
-            //Double Pension = 0;
+            Double Pension = 0;
             foreach (GridViewRow rowItem in gvDeduction.Rows)
             {
                 txt = (TextBox)rowItem.Cells[2].FindControl("textAmount");
                 TotalDedction = TotalDedction + Convert.ToDouble(txt.Text.ToString());
                 j = j + 1;
 
+                //Pension = Math.Round(TotalSalary * Convert.ToDouble(8.3333) / 100, 0);
+                //txtPension.Text = objControl.ConvertToCurrancy(Pension.ToString());
+                //pf = Math.Round(TotalSalary * Convert.ToDouble(3.6667) / 100, 0);
+                //txtGpf.Text = objControl.ConvertToCurrancy(pf.ToString());
+
                 //-----------------------------------------------------------------------------------------------------------------
                 //if (Convert.ToInt32(rowItem.Cells[0].Text) == 8)
+                // {
+
+                //if (Pension >= 542)
                 //{
-                //    Pension = Math.Round(TotalSalary * Convert.ToDouble(8.3333) / 100, 0);
-                //    if (Pension >= 542)
-                //    {
-                //        txtPension.Text = objControl.ConvertToCurrancy("542");
-                //        pf = Math.Round((Convert.ToDouble(txt.Text.ToString())) - Convert.ToDouble(542));
-                //        txtGpf.Text = objControl.ConvertToCurrancy(pf.ToString());
-                //    }
-                //    else
-                //    {
-                //        txtPension.Text = objControl.ConvertToCurrancy(Pension.ToString());
-                //        pf = Math.Round(Convert.ToDouble(txt.Text.ToString()), 0) - Math.Round(Convert.ToDouble(Pension), 0);
-                //        txtGpf.Text = Convert.ToString(pf);
-                //    }
+                //    txtPension.Text = objControl.ConvertToCurrancy("542");
+                //    pf = Math.Round((Convert.ToDouble(txt.Text.ToString())) - Convert.ToDouble(542));
+                //    txtGpf.Text = objControl.ConvertToCurrancy(pf.ToString());
                 //}
+                //else
+                //{
+                //    txtPension.Text = objControl.ConvertToCurrancy(Pension.ToString());
+                //    pf = Math.Round(Convert.ToDouble(txt.Text.ToString()), 0) - Math.Round(Convert.ToDouble(Pension), 0);
+                //    txtGpf.Text = Convert.ToString(pf);
+                //}
+                // }
                 //-----------------------------------------------------------------------------------------------------------------
             }
+
+
+            //Calculating net salary based on present days
+
+            //perday salary
+            double perDaysalary = Convert.ToDouble(TotalEarnings) / TD;
+            double earnings = perDaysalary * Convert.ToDouble(txtPayEarnedDays.Text);
+
             txtPayTotalDeduction.Text = objControl.ConvertToCurrancy(TotalDedction.ToString());
             txtPayNetSalary.Text = objControl.ConvertToCurrancy((TotalEarnings - TotalDedction).ToString());
+            //txtPayNetSalary.Text = objControl.ConvertToCurrancy((earnings - TotalDedction).ToString());
             txtPayNetSalaryRoundOf.Text = Convert.ToString(Math.Round(Convert.ToDouble(objControl.ConvertToCurrancy((TotalEarnings - TotalDedction).ToString())), 2));
+            //txtPayNetSalaryRoundOf.Text = Convert.ToString(Math.Round(Convert.ToDouble(objControl.ConvertToCurrancy((earnings- TotalDedction).ToString())), 2));
         }
         #endregion
 
@@ -1007,7 +1034,7 @@ namespace GEIMS.PayRoll
             CalculatePayslip();
             btnRedo.Enabled = false;
             btnSendForApproval.Enabled = true;
-            btnCalculate.Enabled = false;
+            //btnCalculate.Enabled = false;
         }
         #endregion
 
@@ -1313,7 +1340,7 @@ namespace GEIMS.PayRoll
                     var objResultLeave = objLeaveBl.Leave_Select_ForPayrollLeave(intEmployeeMID, strMonth,intYear);
                     for (int i = 0; i < GDBalance.Rows.Count; i++)
                     {
-                        ((TextBox)(GDBalance.Rows[i].Cells[4].FindControl("textDays"))).Enabled = false;
+                        //((TextBox)(GDBalance.Rows[i].Cells[4].FindControl("textDays"))).Enabled = false;
                         //if(GDBalance.Rows[i].Cells[0].Text == objResultLeave.resutlDS.Tables[0].Rows)
                         for (int k = 0; k < objResultLeave.resultDT.Rows.Count; k++)
                         {
@@ -1359,13 +1386,15 @@ namespace GEIMS.PayRoll
                             GDBalance.Rows[i].Cells[5].Text = (GDBalance.Rows[i].Cells[3].Text.ToString());
                             ((TextBox)(GDBalance.Rows[i].Cells[4].FindControl("textDays"))).Enabled = true;
                         }
+                        else
+                            ((TextBox)(GDBalance.Rows[i].Cells[4].FindControl("textDays"))).Enabled = false;
                     }
 
                     //Find Balance [Arpit Shah] For new coding regarding Balance = Total - Availed
 
                     for (int i = 0; i < GDBalance.Rows.Count; i++)
                     {
-                        ((TextBox)(GDBalance.Rows[i].Cells[4].FindControl("textDays"))).Enabled = false;
+                        //((TextBox)(GDBalance.Rows[i].Cells[4].FindControl("textDays"))).Enabled = false;
                         for (int k = 0; k < objResultLeave.resultDT.Rows.Count; k++)
                         {
                             double dbFullDay = 0.0;
@@ -1393,6 +1422,8 @@ namespace GEIMS.PayRoll
                             GDBalance.Rows[i].Cells[5].Text = (GDBalance.Rows[i].Cells[3].Text.ToString());
                             ((TextBox)(GDBalance.Rows[i].Cells[4].FindControl("textDays"))).Enabled = true;
                         }
+                        else
+                            ((TextBox)(GDBalance.Rows[i].Cells[4].FindControl("textDays"))).Enabled = false;
                     }
                     //to display absent days in selected month
                     var objResultAbsent = objLeaveBl.Leave_Select_ForAbsentDays(intEmployeeMID, strMonth);
@@ -1475,6 +1506,9 @@ namespace GEIMS.PayRoll
                             }
                         }                           
                     }
+
+                    //if(Convert.ToDecimal(txtPayAbsenceDay.Text.ToString()) < 0)
+
 
                   txtPayEarnedDays.Text= (Convert.ToDouble(txtPayTotalDays.Text) - Convert.ToDouble(txtPayAbsenceDay.Text)).ToString();
 
