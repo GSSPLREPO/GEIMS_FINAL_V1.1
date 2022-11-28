@@ -272,7 +272,6 @@ namespace GEIMS.ReportUI
 
         protected void btnExportExcel_Click(object sender, ImageClickEventArgs e)
         {
-
             try
             {
                 int count = 0;

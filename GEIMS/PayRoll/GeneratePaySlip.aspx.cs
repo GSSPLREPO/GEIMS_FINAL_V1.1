@@ -92,272 +92,279 @@ namespace GEIMS.PayRoll
         #region CalculatePaySlip function
         public void CalculatePayslip()
         {
-
-            UserTemplateTBl objUserTemplateBl = new UserTemplateTBl();
-            UserPayItemTemplateTBl objUserPayItemTemplateBl = new UserPayItemTemplateTBl();
-            EmployeeMBL objEmployeeBl = new EmployeeMBL();
-            LeaveMBl ObjLeaveMBl = new LeaveMBl();
-            ApplicationResult objResult = new ApplicationResult();
-            ApplicationResult objResultPayslip = new ApplicationResult();
-            ApplicationResult objLeaveRequest = new ApplicationResult();
-            ApplicationResult objLeaveGenerate = new ApplicationResult();
-            ApplicationResult objLeaveGenerateEmployeeMID = new ApplicationResult();
-            ApplicationResult objLeaveFinal = new ApplicationResult();
-            ApplicationResult objEmployee = new ApplicationResult();
-            ApplicationResult objTemplateZero = new ApplicationResult();
-            Controls objControl = new Controls();
-
-            divForm.Visible = true;
-            Controls objControls = new Controls();
-            objControls.EnableControls(Master.FindControl("ContentPlaceHolder1"));
-
-            txtPayAbsenceDay.Text = "0";
-            txtTotal.Text = "0";
-            
-            GDBalance.Enabled = true;
-            btnSendForApproval.Enabled = true;
-
-            //Last Payslip Check
-            objResult = objUserTemplateBl.UserTemplateT_SelectLeaveID_ByEmployeeMID(Convert.ToInt32(ViewState["EmployeeMID"].ToString()));
-
-            objResultPayslip = objUserPayItemTemplateBl.EmployeeTemplate_SelectEarnDays(Convert.ToInt32(ViewState["EmployeeMID"].ToString()));
-            if (objResultPayslip.resultDT.Rows.Count > 0)
+            try
             {
-                ddlMonth.SelectedIndex = Convert.ToInt32(objResultPayslip.resultDT.Rows[0]["Month"].ToString());
-                ddlYear.SelectedValue = objResultPayslip.resultDT.Rows[0]["Year"].ToString();
-                txtPayTotalDays.Text = objResultPayslip.resultDT.Rows[0]["TotalDaysofMonth"].ToString();
-                txtPayEarnedDays.Text = objResultPayslip.resultDT.Rows[0]["EarnedDaysofMonth"].ToString();
+                UserTemplateTBl objUserTemplateBl = new UserTemplateTBl();
+                UserPayItemTemplateTBl objUserPayItemTemplateBl = new UserPayItemTemplateTBl();
+                EmployeeMBL objEmployeeBl = new EmployeeMBL();
+                LeaveMBl ObjLeaveMBl = new LeaveMBl();
+                ApplicationResult objResult = new ApplicationResult();
+                ApplicationResult objResultPayslip = new ApplicationResult();
+                ApplicationResult objLeaveRequest = new ApplicationResult();
+                ApplicationResult objLeaveGenerate = new ApplicationResult();
+                ApplicationResult objLeaveGenerateEmployeeMID = new ApplicationResult();
+                ApplicationResult objLeaveFinal = new ApplicationResult();
+                ApplicationResult objEmployee = new ApplicationResult();
+                ApplicationResult objTemplateZero = new ApplicationResult();
+                Controls objControl = new Controls();
 
-                objLeaveRequest = ObjLeaveMBl.PayRollLeaveRequestM_SelectbyEmployeeMID(Convert.ToInt32(ViewState["EmployeeMID"].ToString()));
-                if (objLeaveRequest.resultDT.Rows.Count > 0)
+                divForm.Visible = true;
+                Controls objControls = new Controls();
+                objControls.EnableControls(Master.FindControl("ContentPlaceHolder1"));
+
+                txtPayAbsenceDay.Text = "0";
+                txtTotal.Text = "0";
+
+                GDBalance.Enabled = true;
+                btnSendForApproval.Enabled = true;
+
+                //Last Payslip Check
+                objResult = objUserTemplateBl.UserTemplateT_SelectLeaveID_ByEmployeeMID(Convert.ToInt32(ViewState["EmployeeMID"].ToString()));
+
+                objResultPayslip = objUserPayItemTemplateBl.EmployeeTemplate_SelectEarnDays(Convert.ToInt32(ViewState["EmployeeMID"].ToString()));
+                if (objResultPayslip.resultDT.Rows.Count > 0)
                 {
-                    BindLeaveBalance(Convert.ToInt32(ViewState["EmployeeMID"].ToString()), ddlMonth.SelectedValue,Convert.ToInt32(ddlYear.SelectedValue));
-                    //ABC
-                    //GDBalance.DataSource = objLeaveRequest.resultDT;
-                    //GDBalance.DataBind();
+                    ddlMonth.SelectedIndex = Convert.ToInt32(objResultPayslip.resultDT.Rows[0]["Month"].ToString());
+                    ddlYear.SelectedValue = objResultPayslip.resultDT.Rows[0]["Year"].ToString();
+                    txtPayTotalDays.Text = objResultPayslip.resultDT.Rows[0]["TotalDaysofMonth"].ToString();
+                    txtPayEarnedDays.Text = objResultPayslip.resultDT.Rows[0]["EarnedDaysofMonth"].ToString();
 
-                   // objLeaveGenerate = ObjLeaveMBl.LeaveGenerate_Select(Convert.ToInt32(ViewState["EmployeeMID"].ToString()));
+                    objLeaveRequest = ObjLeaveMBl.PayRollLeaveRequestM_SelectbyEmployeeMID(Convert.ToInt32(ViewState["EmployeeMID"].ToString()));
+                    if (objLeaveRequest.resultDT.Rows.Count > 0)
+                    {
+                        BindLeaveBalance(Convert.ToInt32(ViewState["EmployeeMID"].ToString()), ddlMonth.SelectedValue, Convert.ToInt32(ddlYear.SelectedValue));
+                        //ABC
+                        //GDBalance.DataSource = objLeaveRequest.resultDT;
+                        //GDBalance.DataBind();
 
-                    //for (int k = 0; k < objLeaveGenerate.resultDT.Rows.Count; k++)
-                    //{
+                        // objLeaveGenerate = ObjLeaveMBl.LeaveGenerate_Select(Convert.ToInt32(ViewState["EmployeeMID"].ToString()));
 
-                    //    GDBalance.Rows[k].Cells[3].Text = objLeaveGenerate.resultDT.Rows[k]["LeaveBalance"].ToString();
-                    //    GDBalance.Rows[k].Cells[5].Text = GDBalance.Rows[k].Cells[2].Text.ToString();
+                        //for (int k = 0; k < objLeaveGenerate.resultDT.Rows.Count; k++)
+                        //{
 
-                    //}
+                        //    GDBalance.Rows[k].Cells[3].Text = objLeaveGenerate.resultDT.Rows[k]["LeaveBalance"].ToString();
+                        //    GDBalance.Rows[k].Cells[5].Text = GDBalance.Rows[k].Cells[2].Text.ToString();
+
+                        //}
+                    }
+                    else
+                    {
+                        month = ddlMonth.SelectedIndex;
+                        year = Convert.ToInt32(ddlYear.SelectedValue.ToString());
+
+                        objLeaveFinal = ObjLeaveMBl.UserLeave_M_Select_Final(month, year, Convert.ToInt32(ViewState["EmployeeMID"].ToString()));
+                        BindLeaveBalance(Convert.ToInt32(ViewState["EmployeeMID"].ToString()), ddlMonth.SelectedValue, Convert.ToInt32(ddlYear.SelectedValue));
+                        //ABC
+                        //GDBalance.DataSource = objLeaveFinal.resultDT;
+                        //GDBalance.DataBind();
+
+                        //int k = 0;
+                        //foreach (GridViewRow rowItem in GDBalance.Rows)
+                        //{
+                        //    //txt = (TextBox)rowItem.Cells[4].FindControl("textDays");
+                        //    //txt.Text = "0";
+                        //    // GDBalance.Rows[k].Cells[5].Text = GDBalance.Rows[k].Cells[3].Text.ToString();
+
+                        //    k = k + 1;
+                        //}
+                    }
+                    if (objResult.resultDT.Rows.Count > 0 && objResult.resultDT.Rows[0]["LastPaySlipGenerated"].ToString() != "0")
+                    {
+                        ViewState["PaySlipID"] = Convert.ToInt32(objResult.resultDT.Rows[0]["LastPaySlipGenerated"].ToString());
+                        objResult.resultDT = null;
+                        objResult = ObjLeaveMBl.LeaveRequestM_SelectLeaveID(Convert.ToInt32(ViewState["PaySlipID"].ToString()));
+                        //ABC
+                        //if (objResult.resultDT.Rows.Count > 0)
+                        //{
+                        //    foreach (GridViewRow rowItem in GDBalance.Rows)
+                        //    {
+                        //        txt = (TextBox)rowItem.FindControl("textDays");
+
+                        //        // txt.Text = "0";
+                        //    }
+                        //}
+                    }
                 }
                 else
                 {
-                    month = ddlMonth.SelectedIndex;
-                    year = Convert.ToInt32(ddlYear.SelectedValue.ToString());
+                    ddlMonth.SelectedIndex = 0;
+                    ddlYear.SelectedValue = Convert.ToString(DateTime.Now.Year);
+                    txtPayTotalDays.Text = "0";
+                    txtPayEarnedDays.Text = "0";
+                    objLeaveRequest = ObjLeaveMBl.UserLeaveM_Select_ByTrustMID(Convert.ToInt32(Session[ApplicationSession.TRUSTID]));
 
-                    objLeaveFinal = ObjLeaveMBl.UserLeave_M_Select_Final(month, year, Convert.ToInt32(ViewState["EmployeeMID"].ToString()));
-                    BindLeaveBalance(Convert.ToInt32(ViewState["EmployeeMID"].ToString()), ddlMonth.SelectedValue,Convert.ToInt32(ddlYear.SelectedValue));
-                    //ABC
-                    //GDBalance.DataSource = objLeaveFinal.resultDT;
-                    //GDBalance.DataBind();
+                    if (objLeaveRequest.resultDT.Rows.Count > 0)
+                    {
+                        BindLeaveBalance(Convert.ToInt32(ViewState["EmployeeMID"].ToString()), ddlMonth.SelectedValue, Convert.ToInt32(ddlYear.SelectedValue));
+                        //ABC
+                        //GDBalance.DataSource = objLeaveRequest.resultDT;
+                        //GDBalance.DataBind();
 
-                    //int k = 0;
-                    //foreach (GridViewRow rowItem in GDBalance.Rows)
-                    //{
-                    //    //txt = (TextBox)rowItem.Cells[4].FindControl("textDays");
-                    //    //txt.Text = "0";
-                    //    // GDBalance.Rows[k].Cells[5].Text = GDBalance.Rows[k].Cells[3].Text.ToString();
+                        //int k = 0;
+                        //foreach (GridViewRow rowItem in GDBalance.Rows)
+                        //{
+                        //    //txt = (TextBox)rowItem.FindControl("textDays");
+                        //    ////txt.Text = "0";
+                        //    //  GDBalance.Rows[k].Cells[5].Text = GDBalance.Rows[k].Cells[3].Text.ToString();
+                        //    k = k + 1;
+                        //}
+                    }
+                    else
+                    {
+                        month = ddlMonth.SelectedIndex;
+                        year = Convert.ToInt32(ddlYear.SelectedValue.ToString());
 
-                    //    k = k + 1;
-                    //}
+                        objLeaveFinal = ObjLeaveMBl.UserLeave_M_Select_Final(month, year, Convert.ToInt32(ViewState["EmployeeMID"].ToString()));
+                        BindLeaveBalance(Convert.ToInt32(ViewState["EmployeeMID"].ToString()), ddlMonth.SelectedValue, Convert.ToInt32(ddlYear.SelectedValue));
+                        //ABC
+                        //GDBalance.DataSource = objLeaveFinal.resultDT;
+                        //GDBalance.DataBind();
+
+                        //int k = 0;
+                        //foreach (GridViewRow rowItem in GDBalance.Rows)
+                        //{
+                        //    txt = (TextBox)rowItem.FindControl("textDays");
+                        //    // txt.Text = "0";
+                        //    //  GDBalance.Rows[k].Cells[5].Text = GDBalance.Rows[k].Cells[3].Text.ToString();
+
+                        //    k = k + 1;
+                        //}
+
+                    }
+                    if (objResult.resultDT.Rows.Count > 0 && objResult.resultDT.Rows[0]["LastPaySlipGenerated"].ToString() != "0")
+                    {
+                        ViewState["PaySlipID"] = Convert.ToInt32(objResult.resultDT.Rows[0]["LastPaySlipGenerated"].ToString());
+                        objResult.resultDT = null;
+                        objResult = ObjLeaveMBl.LeaveRequestM_SelectLeaveID(Convert.ToInt32(ViewState["PaySlipID"].ToString()));
+                        //ABC
+                        // if (objResult.resultDT.Rows.Count > 0)
+                        //{
+                        //    foreach (GridViewRow rowItem in GDBalance.Rows)
+                        //    {
+                        //        txt = (TextBox)rowItem.FindControl("textDays");
+
+                        //        // txt.Text = "0";
+                        //    }
+                        //}
+                    }
                 }
-                if (objResult.resultDT.Rows.Count > 0 && objResult.resultDT.Rows[0]["LastPaySlipGenerated"].ToString() != "0")
+
+                //ABC
+                //foreach (GridViewRow rowItem in GDBalance.Rows)
+                //{
+                //    TextBox txt = (TextBox)rowItem.FindControl("textDays");
+                //    //txt.Enabled = true;
+                //}
+
+                //txtTotal.Enabled = true;
+
+                objEmployee = objEmployeeBl.SelectEmployee_For_ProcessPayRoll(Convert.ToInt32(ViewState["EmployeeMID"].ToString()));
+
+                if (objEmployee.resultDT.Rows.Count > 0)
                 {
-                    ViewState["PaySlipID"] = Convert.ToInt32(objResult.resultDT.Rows[0]["LastPaySlipGenerated"].ToString());
-                    objResult.resultDT = null;
-                    objResult = ObjLeaveMBl.LeaveRequestM_SelectLeaveID(Convert.ToInt32(ViewState["PaySlipID"].ToString()));
-                    //ABC
-                    //if (objResult.resultDT.Rows.Count > 0)
-                    //{
-                    //    foreach (GridViewRow rowItem in GDBalance.Rows)
-                    //    {
-                    //        txt = (TextBox)rowItem.FindControl("textDays");
-
-                    //        // txt.Text = "0";
-                    //    }
-                    //}
+                    txtPayEmpCode.Text = objEmployee.resultDT.Rows[0]["EmployeeCode"].ToString();
+                    txtEmpName.Text = objEmployee.resultDT.Rows[0]["EmployeeLNameEng"].ToString() + " " + objEmployee.resultDT.Rows[0]["EmployeeFNameEng"].ToString() + " " + objEmployee.resultDT.Rows[0]["EmployeeMNameEng"].ToString();
+                    txtPayDesignation.Text = objEmployee.resultDT.Rows[0]["DesignationName"].ToString();
+                    txtPayDepartment.Text = objEmployee.resultDT.Rows[0]["DepartmentName"].ToString();
+                    txtGoossRS.Text = objEmployee.resultDT.Rows[0]["Gross"].ToString();
                 }
-            }
-            else
-            {
-                ddlMonth.SelectedIndex = 0;
-                ddlYear.SelectedValue = Convert.ToString(DateTime.Now.Year);
-                txtPayTotalDays.Text = "0";
-                txtPayEarnedDays.Text = "0";
-                objLeaveRequest = ObjLeaveMBl.UserLeaveM_Select_ByTrustMID(Convert.ToInt32(Session[ApplicationSession.TRUSTID]));
 
-                if (objLeaveRequest.resultDT.Rows.Count > 0)
+                objTemplateZero = objUserTemplateBl.EmployeeTemplate_SelectForZero(Convert.ToInt32(ViewState["EmployeeMID"].ToString()), Convert.ToInt32(Session[ApplicationSession.TRUSTID]), Convert.ToInt32(Session[ApplicationSession.SCHOOLID]));
+                gvEarnings.DataSource = objTemplateZero.resultDT;
+                gvEarnings.DataBind();
+                int a = 0;
+                foreach (GridViewRow rowItem in gvEarnings.Rows)
                 {
-                    BindLeaveBalance(Convert.ToInt32(ViewState["EmployeeMID"].ToString()), ddlMonth.SelectedValue, Convert.ToInt32(ddlYear.SelectedValue));
-                    //ABC
-                    //GDBalance.DataSource = objLeaveRequest.resultDT;
-                    //GDBalance.DataBind();
-
-                    //int k = 0;
-                    //foreach (GridViewRow rowItem in GDBalance.Rows)
-                    //{
-                    //    //txt = (TextBox)rowItem.FindControl("textDays");
-                    //    ////txt.Text = "0";
-                    //    //  GDBalance.Rows[k].Cells[5].Text = GDBalance.Rows[k].Cells[3].Text.ToString();
-                    //    k = k + 1;
-                    //}
+                    //Note :  Change for TemplateField replace to BoundField get value Name : Arpit Shah, Date : 22-12-2021
+                    //For PayItemName
+                    lbl = (Label)rowItem.Cells[1].FindControl("lblName");
+                    lbl.Text = Convert.ToString(objTemplateZero.resultDT.Rows[a]["Name"].ToString());
+                    //For amount
+                    txt = (TextBox)rowItem.Cells[2].FindControl("textAmount");
+                    txt.Text = Convert.ToString(Math.Round(Convert.ToDouble(objTemplateZero.resultDT.Rows[a]["Amount"].ToString()), 2));
+                    a = a + 1;
                 }
-                else
-                {
-                    month = ddlMonth.SelectedIndex;
-                    year = Convert.ToInt32(ddlYear.SelectedValue.ToString());
-
-                    objLeaveFinal = ObjLeaveMBl.UserLeave_M_Select_Final(month, year, Convert.ToInt32(ViewState["EmployeeMID"].ToString()));
-                    BindLeaveBalance(Convert.ToInt32(ViewState["EmployeeMID"].ToString()), ddlMonth.SelectedValue,Convert.ToInt32(ddlYear.SelectedValue));
-                    //ABC
-                    //GDBalance.DataSource = objLeaveFinal.resultDT;
-                    //GDBalance.DataBind();
-
-                    //int k = 0;
-                    //foreach (GridViewRow rowItem in GDBalance.Rows)
-                    //{
-                    //    txt = (TextBox)rowItem.FindControl("textDays");
-                    //    // txt.Text = "0";
-                    //    //  GDBalance.Rows[k].Cells[5].Text = GDBalance.Rows[k].Cells[3].Text.ToString();
-
-                    //    k = k + 1;
-                    //}
-
-                }
-                if (objResult.resultDT.Rows.Count > 0 && objResult.resultDT.Rows[0]["LastPaySlipGenerated"].ToString() != "0")
-                {
-                    ViewState["PaySlipID"] = Convert.ToInt32(objResult.resultDT.Rows[0]["LastPaySlipGenerated"].ToString());
-                    objResult.resultDT = null;
-                    objResult = ObjLeaveMBl.LeaveRequestM_SelectLeaveID(Convert.ToInt32(ViewState["PaySlipID"].ToString()));
-                    //ABC
-                    // if (objResult.resultDT.Rows.Count > 0)
-                    //{
-                    //    foreach (GridViewRow rowItem in GDBalance.Rows)
-                    //    {
-                    //        txt = (TextBox)rowItem.FindControl("textDays");
-
-                    //        // txt.Text = "0";
-                    //    }
-                    //}
-                }
-            }
-
-            //ABC
-            //foreach (GridViewRow rowItem in GDBalance.Rows)
-            //{
-            //    TextBox txt = (TextBox)rowItem.FindControl("textDays");
-            //    //txt.Enabled = true;
-            //}
-
-            //txtTotal.Enabled = true;
-
-            objEmployee = objEmployeeBl.SelectEmployee_For_ProcessPayRoll(Convert.ToInt32(ViewState["EmployeeMID"].ToString()));
-
-            if (objEmployee.resultDT.Rows.Count > 0)
-            {
-                txtPayEmpCode.Text = objEmployee.resultDT.Rows[0]["EmployeeCode"].ToString();
-                txtEmpName.Text = objEmployee.resultDT.Rows[0]["EmployeeLNameEng"].ToString() + " " + objEmployee.resultDT.Rows[0]["EmployeeFNameEng"].ToString() + " " + objEmployee.resultDT.Rows[0]["EmployeeMNameEng"].ToString();
-                txtPayDesignation.Text = objEmployee.resultDT.Rows[0]["DesignationName"].ToString();
-                txtPayDepartment.Text = objEmployee.resultDT.Rows[0]["DepartmentName"].ToString();
-                txtGoossRS.Text = objEmployee.resultDT.Rows[0]["Gross"].ToString();
-            }
-
-            objTemplateZero = objUserTemplateBl.EmployeeTemplate_SelectForZero(Convert.ToInt32(ViewState["EmployeeMID"].ToString()), Convert.ToInt32(Session[ApplicationSession.TRUSTID]), Convert.ToInt32(Session[ApplicationSession.SCHOOLID]));
-            gvEarnings.DataSource = objTemplateZero.resultDT;
-            gvEarnings.DataBind();
-            int a = 0;
-            foreach (GridViewRow rowItem in gvEarnings.Rows)
-            {
-                //Note :  Change for TemplateField replace to BoundField get value Name : Arpit Shah, Date : 22-12-2021
-                //For PayItemName
-                lbl = (Label)rowItem.Cells[1].FindControl("lblName");
-                lbl.Text = Convert.ToString(objTemplateZero.resultDT.Rows[a]["Name"].ToString());
-                //For amount
-                txt = (TextBox)rowItem.Cells[2].FindControl("textAmount");
-                txt.Text = Convert.ToString(Math.Round(Convert.ToDouble(objTemplateZero.resultDT.Rows[a]["Amount"].ToString()), 2));
-                a = a + 1;
-            }
-            Double TotalEarnings = 0;
-            Double TotalSalary = 0;
-            int j = 0;
-            foreach (GridViewRow rowItem in gvEarnings.Rows)
-            {
-                txt = (TextBox)rowItem.Cells[2].FindControl("textAmount");
-                TotalEarnings = TotalEarnings + Convert.ToDouble(txt.Text.ToString());
-                j = j + 1;
-                if (Convert.ToInt32(rowItem.Cells[0].Text) == 1 || Convert.ToInt32(rowItem.Cells[0].Text) == 2)
+                Double TotalEarnings = 0;
+                Double TotalSalary = 0;
+                int j = 0;
+                foreach (GridViewRow rowItem in gvEarnings.Rows)
                 {
                     txt = (TextBox)rowItem.Cells[2].FindControl("textAmount");
-                    TotalSalary = TotalSalary + Convert.ToDouble(txt.Text.ToString());
+                    TotalEarnings = TotalEarnings + Convert.ToDouble(txt.Text.ToString());
                     j = j + 1;
+                    if (Convert.ToInt32(rowItem.Cells[0].Text) == 1 || Convert.ToInt32(rowItem.Cells[0].Text) == 2)
+                    {
+                        txt = (TextBox)rowItem.Cells[2].FindControl("textAmount");
+                        TotalSalary = TotalSalary + Convert.ToDouble(txt.Text.ToString());
+                        j = j + 1;
+                    }
                 }
+                Double SA;
+                txtBasicTotal.Text = objControl.ConvertToCurrancy(TotalSalary.ToString());
+                SA = Gross - TotalEarnings;
+
+                txtPayTotalEarnings.Text = objControl.ConvertToCurrancy(TotalEarnings.ToString());
+
+                ApplicationResult ObjUserTempleteOne = new ApplicationResult();
+                ObjUserTempleteOne = objUserPayItemTemplateBl.EmployeeTemplate_SelectForEarning(Convert.ToInt32(ViewState["EmployeeMID"].ToString()), (Convert.ToInt32(Session[ApplicationSession.SCHOOLID])));
+                gvDeduction.DataSource = ObjUserTempleteOne.resultDT;
+                gvDeduction.DataBind();
+                int l = 0;
+                foreach (GridViewRow rowItem in gvDeduction.Rows)
+                {
+                    //Note :  Change for TemplateField replace to BoundField get value Name : Arpit Shah, Date : 22-12-2021
+                    //For PayItemName
+                    lbl = (Label)rowItem.Cells[1].FindControl("lblName");
+                    lbl.Text = Convert.ToString(ObjUserTempleteOne.resultDT.Rows[l]["Name"].ToString());
+                    //For amount
+                    txt = (TextBox)rowItem.Cells[2].FindControl("textAmount");
+                    txt.Text = Convert.ToString(Math.Round(Convert.ToDouble(ObjUserTempleteOne.resultDT.Rows[l]["Amount"].ToString()), 2));
+                    l = l + 1;
+                }
+                j = 0;
+                Double TotalDedction = 0;
+
+                //Pension and GPF Calcualtion
+                Double pf = 0;
+                Double Pension = 0;
+                foreach (GridViewRow rowItem in gvDeduction.Rows)
+                {
+                    txt = (TextBox)rowItem.Cells[2].FindControl("textAmount");
+                    //string strAmount = Convert.ToString(Math.Round(Convert.ToDouble(ObjUserTempleteOne.resultDT.Rows[l]["Amount"].ToString(),0), 0));
+                    TotalDedction = TotalDedction + Convert.ToDouble(txt.Text.ToString());
+                    //j = j + 1;
+
+                    //Pension = Math.Round(TotalSalary * Convert.ToDouble(8.3333) / 100, 0);
+                    //txtPension.Text = objControl.ConvertToCurrancy(Pension.ToString());
+                    //pf = Math.Round(TotalSalary * Convert.ToDouble(3.6667) / 100, 0);
+                    //txtGpf.Text = objControl.ConvertToCurrancy(pf.ToString());
+
+                    // if (Convert.ToInt32(rowItem.Cells[0].Text) == 8)
+                    //{
+                    //    Pension = Math.Round(TotalSalary * Convert.ToDouble(8.3333) / 100, 2);
+                    //    if (Pension >= 542)
+                    //    {
+                    //        txtPension.Text = objControl.ConvertToCurrancy("542");
+                    //        pf = Math.Round(Convert.ToDouble(Convert.ToDouble(txt.Text.ToString()) - Convert.ToInt32(542)), 2);
+                    //        txtGpf.Text = objControl.ConvertToCurrancy(pf.ToString());
+                    //    }
+                    //    else
+                    //    {
+                    //        txtPension.Text = objControl.ConvertToCurrancy(Pension.ToString());
+                    //        pf = Math.Round(Convert.ToDouble(Convert.ToInt32(txt.Text.ToString()) - Convert.ToInt32(Pension)), 2);
+                    //        txtGpf.Text = Convert.ToString((pf));
+                    //    }
+                    //}
+                }
+                txtPayTotalDeduction.Text = objControl.ConvertToCurrancy(TotalDedction.ToString());
+                txtPayNetSalary.Text = objControl.ConvertToCurrancy((TotalEarnings - TotalDedction).ToString());
+                txtPayNetSalaryRoundOf.Text = Convert.ToString(Math.Round(Convert.ToDouble(objControl.ConvertToCurrancy((TotalEarnings - TotalDedction).ToString())), 0));
             }
-            Double SA;
-            txtBasicTotal.Text = objControl.ConvertToCurrancy(TotalSalary.ToString());
-            SA = Gross - TotalEarnings;
-
-            txtPayTotalEarnings.Text = objControl.ConvertToCurrancy(TotalEarnings.ToString());
-
-            ApplicationResult ObjUserTempleteOne = new ApplicationResult();
-            ObjUserTempleteOne = objUserPayItemTemplateBl.EmployeeTemplate_SelectForEarning(Convert.ToInt32(ViewState["EmployeeMID"].ToString()), (Convert.ToInt32(Session[ApplicationSession.SCHOOLID])));
-            gvDeduction.DataSource = ObjUserTempleteOne.resultDT;
-            gvDeduction.DataBind();
-            int l = 0;
-            foreach (GridViewRow rowItem in gvDeduction.Rows)
+            catch(Exception ex)
             {
-                //Note :  Change for TemplateField replace to BoundField get value Name : Arpit Shah, Date : 22-12-2021
-                //For PayItemName
-                lbl = (Label)rowItem.Cells[1].FindControl("lblName");
-                lbl.Text = Convert.ToString(ObjUserTempleteOne.resultDT.Rows[l]["Name"].ToString());
-                //For amount
-                txt = (TextBox)rowItem.Cells[2].FindControl("textAmount");
-                txt.Text = Convert.ToString(Math.Round(Convert.ToDouble(ObjUserTempleteOne.resultDT.Rows[l]["Amount"].ToString()), 2));
-                l = l + 1;
+                logger.Error("Error", ex);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Oops! There is some technical issue. Please Contact to your administrator.');", true);
             }
-            j = 0;
-            Double TotalDedction = 0;
-
-            //Pension and GPF Calcualtion
-            Double pf = 0;
-            Double Pension = 0;
-            foreach (GridViewRow rowItem in gvDeduction.Rows)
-            {
-                txt = (TextBox)rowItem.Cells[2].FindControl("textAmount");
-                //string strAmount = Convert.ToString(Math.Round(Convert.ToDouble(ObjUserTempleteOne.resultDT.Rows[l]["Amount"].ToString(),0), 0));
-                TotalDedction = TotalDedction + Convert.ToDouble(txt.Text.ToString());
-                //j = j + 1;
-
-                //Pension = Math.Round(TotalSalary * Convert.ToDouble(8.3333) / 100, 0);
-                //txtPension.Text = objControl.ConvertToCurrancy(Pension.ToString());
-                //pf = Math.Round(TotalSalary * Convert.ToDouble(3.6667) / 100, 0);
-                //txtGpf.Text = objControl.ConvertToCurrancy(pf.ToString());
-
-                // if (Convert.ToInt32(rowItem.Cells[0].Text) == 8)
-                //{
-                //    Pension = Math.Round(TotalSalary * Convert.ToDouble(8.3333) / 100, 2);
-                //    if (Pension >= 542)
-                //    {
-                //        txtPension.Text = objControl.ConvertToCurrancy("542");
-                //        pf = Math.Round(Convert.ToDouble(Convert.ToDouble(txt.Text.ToString()) - Convert.ToInt32(542)), 2);
-                //        txtGpf.Text = objControl.ConvertToCurrancy(pf.ToString());
-                //    }
-                //    else
-                //    {
-                //        txtPension.Text = objControl.ConvertToCurrancy(Pension.ToString());
-                //        pf = Math.Round(Convert.ToDouble(Convert.ToInt32(txt.Text.ToString()) - Convert.ToInt32(Pension)), 2);
-                //        txtGpf.Text = Convert.ToString((pf));
-                //    }
-                //}
-            }
-            txtPayTotalDeduction.Text = objControl.ConvertToCurrancy(TotalDedction.ToString());
-            txtPayNetSalary.Text = objControl.ConvertToCurrancy((TotalEarnings - TotalDedction).ToString());
-            txtPayNetSalaryRoundOf.Text = Convert.ToString(Math.Round(Convert.ToDouble(objControl.ConvertToCurrancy((TotalEarnings - TotalDedction).ToString())), 0));
         }
         #endregion
 
@@ -557,7 +564,7 @@ namespace GEIMS.PayRoll
             Controls objControl = new Controls();
             btnSendForApproval.Enabled = true;
             btnCalculate.Enabled = false;
-            btnCalculate.Enabled = true;
+           // btnCalculate.Enabled = true;
             btnRedo.Enabled = true;
 
             lblerror.Visible = false;
@@ -629,7 +636,7 @@ namespace GEIMS.PayRoll
                 j = j + 1;
             }
            
-            double TD = Convert.ToDouble(txtPayTotalDays.Text.ToString()); //tota ldays in a month
+            double TD = Convert.ToDouble(txtPayTotalDays.Text.ToString()); //total days in a month
             //double TD = Convert.ToDouble(hftxtPayTotalDays.Value);
             //double TD = Convert.ToDouble(30);
             //LWP = Convert.ToDouble(txtPayEarnedDays.Text);

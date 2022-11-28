@@ -273,8 +273,10 @@ namespace GEIMS.Leave
                         objResult1 = objLeaveBl.Leave_SelectName_ByID(objLeaveTemplateBo.LeaveID);
                         if (objResult1.status == ApplicationResult.CommonStatusType.SUCCESS)
                         {
-                            intCount += 1;
-                            if ((objLeaveTemplateBo.Total != "") || (objLeaveTemplateBo.Total != " "))  
+                           
+                            string total = objLeaveTemplateBo.Total;
+                           // if ((objLeaveTemplateBo.Total != "") || (objLeaveTemplateBo.Total != " ") || (objLeaveTemplateBo.Total != string.Empty))  
+                            if (total != "" && total != " " && total != string.Empty)  
                             {
                                 if ((objLeaveTemplateBo.Total == "0") || (objLeaveTemplateBo.Total == "00"))
                                 {
@@ -291,6 +293,7 @@ namespace GEIMS.Leave
                                         if (objResult != null)
                                         {
                                             k += 1;
+                                            intCount += 1;
                                         }
                                     }
                                 }
@@ -300,6 +303,7 @@ namespace GEIMS.Leave
                                     if (objResult != null)
                                     {
                                         k += 1;
+                                        intCount += 1;
                                     }
                                 }
                             }
