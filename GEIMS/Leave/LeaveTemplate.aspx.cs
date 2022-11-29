@@ -278,6 +278,7 @@ namespace GEIMS.Leave
                            // if ((objLeaveTemplateBo.Total != "") || (objLeaveTemplateBo.Total != " ") || (objLeaveTemplateBo.Total != string.Empty))  
                             if (total != "" && total != " " && total != string.Empty)  
                             {
+ //check if starts with 0 and give alert
                                 if ((objLeaveTemplateBo.Total == "0") || (objLeaveTemplateBo.Total == "00"))
                                 {
                                     if ((objResult1.resultDT.Rows[0]["LeaveName"].ToString() != "Duty Leave") )

@@ -216,47 +216,47 @@ namespace GEIMS.ReportUI
         [Obsolete]
         protected void btnExportPDF_Click(object sender, ImageClickEventArgs e)
         {
-        //    try
-        //    {
-        //        Response.Clear();
-        //        Response.Buffer = true;
-        //        Response.ContentType = "application/pdf";
-        //        Response.AddHeader("content-disposition", "attachment;filename=Employee Pay" + "_" + DateTime.Now.Date.ToString("yyyy-mm-dd") + ".pdf");
-        //        Response.Cache.SetCacheability(HttpCacheability.NoCache);
-        //        StringWriter sw = new StringWriter();
-        //        HtmlTextWriter hw = new HtmlTextWriter(sw);
-        //        gvReport.AllowPaging = false;
-        //        //gvReport.DataBind();
-        //        gvReport.RenderControl(hw);
-        //        string strPath = Request.Url.GetLeftPart(UriPartial.Authority) + "/images/Logo1.jpg";
-        //        // string content = "<div align='center' style='font-family:verdana;font-size:13px'><span style='font-size:13px;'>" + ReportTitle + "</span><br/><br/><span style='font-size:8px:font-weight:bold'>" + sw.ToString() + "</span></div>";
-        //        string content = "<div align='center' style='font-family:verdana;font-size:13px'>" +
-        //            //"<span style='width:100px;height:100px'><img src='"+ strPath + "' style='height:100px;width:100px'/> </span> "+
-        //            "<span style='font-size:16px:font-weight:bold;color:Maroon;'>Report : School List</span><br/>" +
-        //            "<span style='font-size:13px:font-weight:bold'></span><br/><span align='center' style='font-family:verdana;font-size:11px'>" +
-        //            "<strong>Date :</strong>" + System.DateTime.Now.ToShortDateString() + "</span><br/>" +
-        //            "<span align='center' style='font-family:verdana;font-size:11px'><strong>Trust Name :</strong>" +
-        //            Session[ApplicationSession.TRUSTNAME].ToString() + "</span><br/><br/><br/> " + sw.ToString() + "<br/>";
-        //        // Response.Output.Write(content);
+            try
+            {
+                Response.Clear();
+                Response.Buffer = true;
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("content-disposition", "attachment;filename=Employee Pay" + "_" + DateTime.Now.Date.ToString("yyyy-mm-dd") + ".pdf");
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
+                gvReport.AllowPaging = false;
+                //gvReport.DataBind();
+                gvReport.RenderControl(hw);
+                string strPath = Request.Url.GetLeftPart(UriPartial.Authority) + "/images/Logo1.jpg";
+                // string content = "<div align='center' style='font-family:verdana;font-size:13px'><span style='font-size:13px;'>" + ReportTitle + "</span><br/><br/><span style='font-size:8px:font-weight:bold'>" + sw.ToString() + "</span></div>";
+                string content = "<div align='center' style='font-family:verdana;font-size:13px'>" +
+                    //"<span style='width:100px;height:100px'><img src='"+ strPath + "' style='height:100px;width:100px'/> </span> "+
+                    "<span style='font-size:16px:font-weight:bold;color:Maroon;'>Report : School List</span><br/>" +
+                    "<span style='font-size:13px:font-weight:bold'></span><br/><span align='center' style='font-family:verdana;font-size:11px'>" +
+                    "<strong>Date :</strong>" + System.DateTime.Now.ToShortDateString() + "</span><br/>" +
+                    "<span align='center' style='font-family:verdana;font-size:11px'><strong>Trust Name :</strong>" +
+                    Session[ApplicationSession.TRUSTNAME].ToString() + "</span><br/><br/><br/> " + sw.ToString() + "<br/>";
+                // Response.Output.Write(content);
 
-        //        StringReader sr = new StringReader(content);
-        //        Document pdfDoc = new Document(PageSize.A3, 10f, 10f, 10f, 0f);
-        //        HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
-        //        PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
-        //        pdfDoc.Open();
-        //        htmlparser.Parse(sr);
-        //        pdfDoc.Close();
-        //        Response.Write(pdfDoc);
-        //        //	HttpContext.Current.ApplicationInstance.CompleteRequest();
-        //        Response.End();
+                StringReader sr = new StringReader(content);
+                Document pdfDoc = new Document(PageSize.A3, 10f, 10f, 10f, 0f);
+                HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+                PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+                pdfDoc.Open();
+                htmlparser.Parse(sr);
+                pdfDoc.Close();
+                Response.Write(pdfDoc);
+                //	HttpContext.Current.ApplicationInstance.CompleteRequest();
+                Response.End();
 
 
-        //    }
-        //    catch (System.Threading.ThreadAbortException lException)
-        //    {
-        //        // logger.Error("Error", ex);
-        //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Oops! There is some technical issue. Please Contact to your administrator.');", true);
-        //    }
+            }
+            catch (System.Threading.ThreadAbortException lException)
+            {
+                // logger.Error("Error", ex);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Oops! There is some technical issue. Please Contact to your administrator.');", true);
+            }
         }
         #endregion
 

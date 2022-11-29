@@ -125,28 +125,17 @@
                             </div>
                         </asp:Panel>
 
-                        <div id="divButtons" runat="server" style="width: 100%; float: left; padding-top: 0px;" class="label">
-                            <div style="padding: 10px; padding-right: 30px;">
-                                <div style="float: left; text-align: center; width: 100%; padding-bottom: 10px;">
-                                    <asp:ImageButton ID="btnExportPDF" runat="server" ImageUrl="~/Images/adobe.PNG"
-                                        ToolTip="Export to PDF" OnClick="btnExportPDF_Click" />
-
-                                    &nbsp;
-                    <asp:ImageButton ID="btnExportExcel" runat="server" ImageUrl="~/Images/excel.PNG"
-                        ToolTip="Export to Excel" OnClick="btnExportExcel_Click" />
-                                    &nbsp;
-                    <asp:ImageButton ID="btnExportWord" runat="server" ImageUrl="~/Images/word.PNG"
-                        ToolTip="Export to Word" OnClick="btnExportWord_Click" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="divReport" runat="server" style="width: 100%; float: left; padding-top: 0px;" class="label">
-
+                    
+                            <div id="divReport" runat="server" style="width: 100%; float: left; padding-top: 0px;" class="label">
+                             <div id="divButtons" style="width: 100%;padding: 10px; padding-right: 30px;">
+                                    <div style="float:left;text-align:left; width: 20%; padding-bottom: 10px;"">
+                                        <img src="../Images/Logo1.jpg" style="height:100px;width:100px"/>
+                                    </div>
+                                  <div style="float: left; text-align: center; width: 60%; padding-bottom: 10px;">
                             <div style="width: 100%; float: left; padding-top: 0px;" class="label">
                                 <div style="padding: 10px; padding-right: 20px;">
                                     <div style="float: left; text-align: center; width: 100%; padding-bottom: 10px;">
-                                        <b>Report : Employee Wise Attendence Report</b>
+                                        <b>Report : Employee Wise Attendance Report</b>
                                     </div>
                                 </div>
                             </div>
@@ -179,22 +168,52 @@
                                                  <b>ToDate :</b>
                                         <asp:Label runat="server" ID="lblToDate"></asp:Label>
                                     </div>
-                                    <asp:Label ID="Label1" ForeColor="red" runat="server">Note *:  'A' Considered as <strong>Absent</strong></asp:Label>
-                                    <br />
-                                    <asp:Label ID="Label2" ForeColor="red" runat="server">Note *:  'P' Considered as <strong>Present</strong></asp:Label>
-                                    <br />
-                                    <asp:Label ID="Label3" ForeColor="red" runat="server">Note *:  '+' Considered as <strong>Half Day</strong></asp:Label>
-                                    <br />
-                                    <asp:Label ID="Label4" ForeColor="red" runat="server">Note *:  '*' Considered as <strong>Holiday</strong></asp:Label>
-                                    <br />
-                                    <asp:Label ID="Label5" ForeColor="red" runat="server">Note *:  '-' Considered as <strong>Week End</strong></asp:Label>
-                                    <br />
-                                     <asp:Label ForeColor="red" runat="server">Note *:  'CL/ML/DL..etc.' Considered as <strong>Approved Leave</strong></asp:Label>
-                                    <br/>
-                                     <asp:Label ForeColor="red" runat="server">Note *:  '+(CL),+(ML),+(DL)..etc.' Considered as <strong>Approved Halfday Leave</strong></asp:Label>  <br/>
+
+
+                                   
+
                                 </div>
                             </div>
                             <%--  <div style="width: 100%; float: left; padding-top: 0px;" class="label">
+                                        <div style="padding: 10px; padding-right: 30px;">
+                                            <div style="float: left; text-align: center; width: 100%; padding-bottom: 10px;">
+                                              
+                                            </div>
+                                        </div>
+                                    </div>--%>
+                                      </div>
+                                    <div style="float: right; text-align: right; width: 20%; padding-bottom: 10px;">
+                                         <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Images/adobe.PNG"
+                                        ToolTip="Export to PDF" OnClick="btnExportPDF_Click" />
+
+                                    &nbsp;
+                    <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/Images/excel.PNG"
+                        ToolTip="Export to Excel" OnClick="btnExportExcel_Click" />
+                                    &nbsp;
+                    <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/Images/word.PNG"
+                        ToolTip="Export to Word" OnClick="btnExportWord_Click" />
+                                        </div>
+                                 </div>
+                            <br />                             
+                           
+                            </div>
+                         <div id="divLabels" runat="server" style="width: 100%;padding: 10px; padding-right: 30px;">
+                                <asp:Label ID="Label1" ForeColor="red" runat="server">Note *:  'A' Considered as <strong>Absent</strong></asp:Label>
+                                <br />
+                                <asp:Label ID="Label2" ForeColor="red" runat="server">Note *:  'P' Considered as <strong>Present</strong></asp:Label>
+                                <br />
+                                <asp:Label ID="Label3" ForeColor="red" runat="server">Note *:  '+' Considered as <strong>Half Day</strong></asp:Label>
+                                <br />
+                                <asp:Label ID="Label4" ForeColor="red" runat="server">Note *:  '*' Considered as <strong>Holiday</strong></asp:Label>
+                                <br />
+                                <asp:Label ID="Label5" ForeColor="red" runat="server">Note *:  '-' Considered as <strong>Week End</strong></asp:Label>
+                                <br />
+                                <asp:Label ForeColor="red" runat="server">Note *:  'CL/ML/DL..etc.' Considered as <strong>Approved Leave</strong></asp:Label>
+                                <br/>
+                                    <asp:Label ForeColor="red" runat="server">Note *:  '+(CL),+(ML),+(DL)..etc.' Considered as <strong>Approved Halfday Leave</strong></asp:Label>  <br/>
+
+                           </div>
+                        <%--  <div style="width: 100%; float: left; padding-top: 0px;" class="label">
                                         <div style="padding: 10px; padding-right: 30px;">
                                             <div style="float: left; text-align: center; width: 100%; padding-bottom: 10px;">
                                               

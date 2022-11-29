@@ -31,7 +31,8 @@ namespace GEIMS.ReportUI
                 divReport.Visible = false;
                 btnPrintDetail.Visible = false;
                 btnBack.Visible = false;
-                divButtons.Visible = false;
+                //divButtons.Visible = false;
+                divLabels.Visible = false;
                 ddlSearchBy.SelectedIndex = 1;
                 ddlabsentHalfday.SelectedIndex = -1;
             }
@@ -53,7 +54,8 @@ namespace GEIMS.ReportUI
                 gvAttendance.DataBind();
 
                 divReport.Visible = true;
-                divButtons.Visible = true;
+                //divButtons.Visible = true;
+                divLabels.Visible = true;
                 btnBack.Visible = true;
                 btnPrintDetail.Visible = true;
                 pnlStudentAttendanceInfo.Visible = false;
@@ -67,7 +69,8 @@ namespace GEIMS.ReportUI
                 btnPrintDetail.Visible = false;
                 pnlStudentAttendanceInfo.Visible = true;
                 btnBack.Visible = false;
-                divButtons.Visible = true;
+                //divButtons.Visible = true;
+                divLabels.Visible = false;
                 ClearAll();
                 ddlSearchBy.SelectedIndex = 1;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('No Records Found.');", true);
@@ -262,7 +265,8 @@ namespace GEIMS.ReportUI
             objControls.ClearForm(Master.FindControl("ContentPlaceHolder1"));
             divReport.Visible = false;
             pnlStudentAttendanceInfo.Visible = true;
-            divButtons.Visible = false;
+            //divButtons.Visible = false;
+            divLabels.Visible = false;
         }
         #endregion
 

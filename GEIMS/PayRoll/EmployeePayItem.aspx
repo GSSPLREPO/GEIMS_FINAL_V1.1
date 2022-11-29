@@ -53,17 +53,58 @@
             if (charCode == 46) {
                 //Check if the text already contains the . character
                 if (txt.value.indexOf('.') === -1) {
+                    //numStr.split('.')[1].length
                     return true;
-                } else {
+                } else {                  
                     return false;
                 }
             } else {
                 if (charCode > 31 &&
                     (charCode < 48 || charCode > 57))
                     return false;
+
+              
             }
+            //29/11/2022 Bhandavi
+            //for checking of allowing only 2 decimal points after decimal point
+            if (txt.value.indexOf('.') != -1 && txt.value.split('.')[1].length >= 2)
+                return false;
+            else
+                return true;
+
             return true;
         }
+
+      
+   
+        //console.log(ParseFloat("10.547892", 2))
+
+        //$(function () {
+        //    $('#txtAmount').keypress(function (event) {
+        //        alert('hi');
+        //        var $this = $(this);
+        //        if ((event.which != 46 || $this.val().indexOf('.') != -1) && ((event.which < 48 || event.which > 57) && (event.which != 0 && event.which != 8))) {
+        //            event.preventDefault();
+        //        }
+        //        var text = $(this).val();
+        //        if (text.length === 18) {
+        //            $(this).val(text + ".")
+        //        }
+        //        if ((event.which == 46) && (text.indexOf('.') == -1)) {
+        //            setTimeout(function () {
+        //                if ($this.val().substring($this.val().indexOf('.')).length > 3) {
+        //                    $this.val($this.val().substring(0, $this.val().indexOf('.') + 3));
+        //                }
+        //            }, 1);
+        //        }
+        //        if ((text.indexOf('.') == 18 && text.substring(text.indexOf('.')).length > 2)) {
+        //            event.preventDefault();
+        //        }
+        //        if (((text.indexOf('.') != -1) && (text.substring(text.indexOf('.')).length > 2) && (event.which != 0 && event.which != 8) && ($(this)[0].selectionStart >= text.length - 2))) {
+        //            event.preventDefault();
+        //        }
+        //    });
+        //});
     
    
     </script>    
@@ -387,8 +428,13 @@
                                             Amount (Rs.) :
                                         </div>
                                         <div style="float: left; width: 80%;">
-                                            <asp:TextBox ID="txtAmount" Style="text-align: right;" runat="server" Width="160px" CssClass="TextBox"
-                                                TabIndex="7" onkeypress="return isNumberKey(this, event);" ></asp:TextBox>
+                                           <%-- <asp:TextBox ID="txtAmount" Style="text-align: right;" runat="server" Width="160px" CssClass="TextBox"
+                                                TabIndex="7" onkeypress="return isNumberKey(this, event);" ></asp:TextBox>--%>
+
+                                             <asp:TextBox ID="txtAmount" Style="text-align: right;" runat="server" Width="160px" 
+                                                 onkeypress="return isNumberKey(this, event);"
+                                                 CssClass="validate[custom[number],max[999999.99],min[0.00]] TextBox"
+                                                TabIndex="7"  ></asp:TextBox>
                                         </div>
 
                                     </div>

@@ -651,11 +651,17 @@ namespace GEIMS.PayRoll
                 Label lblBasic = (Label)rowItem.Cells[1].FindControl("lblName");
 
                 CheckBox ckb = new CheckBox();
-                ckb = (CheckBox)rowItem.Cells[4].FindControl("ckbAmount");
+                //ckb = (CheckBox)rowItem.Cells[4].FindControl("ckbAmount");
                 //if (ckb.Checked == true) //If check box is not checked then not calculating amount of LWP 
                 {
                     Double amt = 0;
+
+
                     txt = (TextBox)rowItem.Cells[2].FindControl("textAmount");
+                    //29/11/2022 Bhandavi for not updating values in generate psyslip page
+                    txt.Enabled = false;
+
+
                     amt = Math.Round(Convert.ToDouble(txt.Text.ToString()), 0); //
                     Double iTotal = Convert.ToDouble(txt.Text.ToString()) / Convert.ToDouble(TD); //salary perday
                     amt = (iTotal * Convert.ToDouble(txtPayEarnedDays.Text));
@@ -690,7 +696,7 @@ namespace GEIMS.PayRoll
             foreach (GridViewRow rowItem in gvDeduction.Rows)
             {
                 CheckBox ckb = new CheckBox();
-                ckb = (CheckBox)rowItem.Cells[3].FindControl("ckbAmount");
+                //ckb = (CheckBox)rowItem.Cells[3].FindControl("ckbAmount");
                 //if (ckb.Checked == true)
                 {
                     //Note : Find PayItem Name because this logic is used to calculate Professional Tax
@@ -709,6 +715,10 @@ namespace GEIMS.PayRoll
 
                     //For Amount
                     txt = (TextBox)rowItem.Cells[2].FindControl("textAmount");
+
+                    //29/11/2022 Bhandavi for not updating values in generate psyslip page
+                    txt.Enabled = false;
+
                     amt = Math.Round(Convert.ToDouble(txt.Text.ToString()), 0);
 
                     if (payname == "P.TAX")
@@ -776,6 +786,10 @@ namespace GEIMS.PayRoll
             foreach (GridViewRow rowItem in gvEarnings.Rows)
             {
                 txt = (TextBox)rowItem.Cells[2].FindControl("textAmount");
+
+                //29/11/2022 Bhandavi for not updating values in generate psyslip page
+                txt.Enabled = false;
+
                 TotalEarnings = TotalEarnings + Math.Round(Convert.ToDouble(txt.Text.ToString()), 0);
                 j = j + 1;
                 if (Convert.ToInt32(rowItem.Cells[0].Text) == 1 || Convert.ToInt32(rowItem.Cells[0].Text) == 2)
@@ -796,6 +810,10 @@ namespace GEIMS.PayRoll
             foreach (GridViewRow rowItem in gvDeduction.Rows)
             {
                 txt = (TextBox)rowItem.Cells[2].FindControl("textAmount");
+
+                //29/11/2022 Bhandavi for not updating values in generate psyslip page
+                txt.Enabled = false;
+
                 TotalDedction = TotalDedction + Convert.ToDouble(txt.Text.ToString());
                 j = j + 1;
 

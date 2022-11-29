@@ -301,7 +301,10 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Amount">
                                                                     <ItemTemplate>
-                                                                        <asp:TextBox ID="textAmount" AutoPostBack="true" OnTextChanged="ChangePF" runat="server" CssClass="TextBox"
+                                                                           <%--   <asp:TextBox ID="textAmount" Enabled="false" AutoPostBack="true" OnTextChanged="ChangePF" runat="server" CssClass="TextBox"
+                                                                            Style="text-align: right" onkeypress="return numeric(event)"></asp:TextBox>--%>
+                                                                          <%-- Chnaged on 29/11/2022 Bhandavi payitem values are not editable while generating payslip --%>
+                                                                        <asp:TextBox ID="textAmount" Enabled="false" AutoPostBack="true" OnTextChanged="ChangePF" runat="server" CssClass="TextBox"
                                                                             Style="text-align: right" onkeypress="return numeric(event)"></asp:TextBox>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
@@ -309,11 +312,11 @@
                                                                     <HeaderStyle CssClass="hidden" />
                                                                     <ItemStyle CssClass="hidden" />
                                                                 </asp:BoundField>
-                                                                <asp:TemplateField HeaderText="">
+                                                                <%--<asp:TemplateField HeaderText="">
                                                                     <ItemTemplate>
                                                                         <asp:CheckBox ID="ckbAmount" runat="server" />
                                                                     </ItemTemplate>
-                                                                </asp:TemplateField>
+                                                                </asp:TemplateField>--%>
                                                             </Columns>
                                                             <EditRowStyle BackColor="#999999" />
                                                             <FooterStyle BackColor="#3B5998" Font-Bold="True" Font-Names="Verdana" Font-Size="12px" />
@@ -359,14 +362,17 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Amount">
                                                                     <ItemTemplate>
-                                                                        <asp:TextBox ID="textAmount" runat="server" Style="text-align: right" CssClass="TextBox" onkeypress="return numeric(event)"></asp:TextBox>
+                                                                      <%--  <asp:TextBox ID="textAmount" runat="server" Style="text-align: right" CssClass="TextBox" onkeypress="return numeric(event)"></asp:TextBox>--%>
+                                                                           <%-- Chnaged on 29/11/2022 Bhandavi payitem values are not editable while generating payslip --%>
+                                                                          <asp:TextBox ID="textAmount" Enabled="false" runat="server" Style="text-align: right" CssClass="TextBox" onkeypress="return numeric(event)"></asp:TextBox>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
-                                                                <asp:TemplateField HeaderText="">
+                                                                 
+                                                                <%--<asp:TemplateField HeaderText="">
                                                                     <ItemTemplate>
                                                                         <asp:CheckBox ID="ckbAmount" runat="server" />
                                                                     </ItemTemplate>
-                                                                </asp:TemplateField>
+                                                                </asp:TemplateField>--%>
                                                             </Columns>
                                                             <FooterStyle BackColor="#3B5998" Font-Bold="True" Font-Names="Verdana" Font-Size="12px" />
                                                             <PagerStyle BackColor="#3B5998" ForeColor="White" HorizontalAlign="center" />
