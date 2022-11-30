@@ -65,6 +65,8 @@
 
               
             }
+
+            
             //29/11/2022 Bhandavi
             //for checking of allowing only 2 decimal points after decimal point
             if (txt.value.indexOf('.') != -1 && txt.value.split('.')[1].length >= 2)

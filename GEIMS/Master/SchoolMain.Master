@@ -252,11 +252,11 @@
                                     <li id="ExamResultReport" runat="server" visible="False"><a href="../Result/ExamResultReport.aspx">Result Reports</a></li>--%>
                                     <li id="SchoolGeneralReports" runat="server" visible="False"><a href="../Client.UI/SchoolReports.aspx?Mode=SchoolGeneralReports">General Reports</a></li>
                                     <li id="SchoolStudentReports" runat="server" visible="False"><a href="../Client.UI/SchoolReports.aspx?Mode=SchoolStudentReports">Student Reports</a></li>
-                                    <%--<li id="SchoolFeesReports" runat="server" visible="False"><a href="../Client.UI/SchoolReports.aspx?Mode=SchoolFeesReports">Fees Reports</a></li>
-                                    <li id="SchoolInventoryReports" runat="server" visible="False"><a href="../Client.UI/SchoolReports.aspx?Mode=SchoolInventoryReports">Inventory Reports</a></li>
-                                    <li id="SchoolAccountingReports" runat="server" visible="True"><a href="../Client.UI/SchoolReports.aspx?Mode=SchoolAccountingReports">Accounting Reports</a></li>--%>
+                               
+                                    <%--<li id="SchoolInventoryReports" runat="server" visible="False"><a href="../Client.UI/SchoolReports.aspx?Mode=SchoolInventoryReports">Inventory Reports</a></li>--%>
+                                    <li id="SchoolAccountingReports" runat="server" visible="True"><a href="../Client.UI/SchoolReports.aspx?Mode=SchoolAccountingReports">Accounting Reports</a></li>
                                     <li id="SchoolPayrollReports" runat="server" visible="False"><a href="../Client.UI/SchoolReports.aspx?Mode=SchoolPayrollReports">PayRoll Reports</a></li>
-                                    
+                                    <li id="SchoolFeesReports" runat="server" visible="False"><a href="../Client.UI/SchoolReports.aspx?Mode=SchoolFeesReports">Fees Reports</a></li>
                                     <li id="SchoolStatutoryReports" runat="server" visible="False"><a href="../Client.UI/SchoolReports.aspx?Mode=SchoolStatutoryReports">Statutory Reports</a></li>
                                     <li id="SchoolTimeTableReports" runat="server" visible="False"><a href="../Client.UI/SchoolReports.aspx?Mode=SchoolTimeTableReports">Time Table Reports</a></li>
                                     <li id="SchoolDEOReport" runat="server" visible="True"><a href="../Client.UI/SchoolReports.aspx?Mode=SchoolDEOReports">DEO Reports</a></li>

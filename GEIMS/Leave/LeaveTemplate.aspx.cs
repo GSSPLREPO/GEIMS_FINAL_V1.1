@@ -278,7 +278,6 @@ namespace GEIMS.Leave
                            // if ((objLeaveTemplateBo.Total != "") || (objLeaveTemplateBo.Total != " ") || (objLeaveTemplateBo.Total != string.Empty))  
                             if (total != "" && total != " " && total != string.Empty)  
                             {
- //check if starts with 0 and give alert
                                 if ((objLeaveTemplateBo.Total == "0") || (objLeaveTemplateBo.Total == "00"))
                                 {
                                     if ((objResult1.resultDT.Rows[0]["LeaveName"].ToString() != "Duty Leave") )
@@ -287,7 +286,8 @@ namespace GEIMS.Leave
                                         "<script language='javascript'>alert('Total Leave Cannot be 0 or 00,Please Fill Total Leaves of " + objResult1.resultDT.Rows[0]["LeaveName"].ToString() +
                                         ".');</script>");
                                         break;
-                                    }
+                                    }                                  
+                                       
                                     else
                                     {
                                         objResult = objLeaveTemplateBl.LeaveTemplate_Insert(objLeaveTemplateBo);
@@ -295,16 +295,30 @@ namespace GEIMS.Leave
                                         {
                                             k += 1;
                                             intCount += 1;
-                                        }
-                                    }
+                                        } 
+                                    }                                   
                                 }
                                 else
                                 {
-                                    objResult = objLeaveTemplateBl.LeaveTemplate_Insert(objLeaveTemplateBo);
-                                    if (objResult != null)
+                                    //check if starts with 0 and give alert
+                                    //30/11/2022
+
+                                    if (objLeaveTemplateBo.Total.StartsWith("0"))
                                     {
-                                        k += 1;
-                                        intCount += 1;
+                                        ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp",
+                                   "<script language='javascript'>alert('Total Leaves cannot starts with 0,Please Fill Total Leaves of " + objResult1.resultDT.Rows[0]["LeaveName"].ToString() +
+                                   ".');</script>");
+                                        break;
+                                    }
+                                    else
+                                    {
+
+                                        objResult = objLeaveTemplateBl.LeaveTemplate_Insert(objLeaveTemplateBo);
+                                        if (objResult != null)
+                                        {
+                                            k += 1;
+                                            intCount += 1;
+                                        }
                                     }
                                 }
                             }

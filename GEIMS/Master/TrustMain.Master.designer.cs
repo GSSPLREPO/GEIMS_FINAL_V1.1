@@ -474,6 +474,24 @@ namespace GEIMS.Master
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl PayRollReports;
 
         /// <summary>
+        /// FeesReports control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FeesReports;
+
+        /// <summary>
+        /// InventoryReports control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl InventoryReports;
+
+        /// <summary>
         /// MeetingReports control.
         /// </summary>
         /// <remarks>

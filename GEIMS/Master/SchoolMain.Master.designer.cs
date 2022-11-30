@@ -771,6 +771,15 @@ namespace GEIMS.Master
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl SchoolStudentReports;
 
         /// <summary>
+        /// SchoolAccountingReports control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SchoolAccountingReports;
+
+        /// <summary>
         /// SchoolPayrollReports control.
         /// </summary>
         /// <remarks>
@@ -778,6 +787,15 @@ namespace GEIMS.Master
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl SchoolPayrollReports;
+
+        /// <summary>
+        /// SchoolFeesReports control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SchoolFeesReports;
 
         /// <summary>
         /// SchoolStatutoryReports control.

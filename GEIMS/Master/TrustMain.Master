@@ -224,9 +224,11 @@
                                 <ul>
                                     <li id="GeneralReports" runat="server" visible="False"><a href="../Client.UI/TrustReports.aspx?Mode=GeneralReports">General Reports</a></li>
                                     <li id="PayRollReports" runat="server" visible="False"><a href="../Client.UI/TrustReports.aspx?Mode=PayRollReports">PayRoll Reports</a></li>
-                                    <%-- <li id="FeesReports" runat="server" visible="False"><a href="../Client.UI/TrustReports.aspx?Mode=FeesReport">Fees Reports</a></li>
+                                    <li id="FeesReports" runat="server" visible="False"><a href="../Client.UI/TrustReports.aspx?Mode=FeesReport">Fees Reports</a></li>
                                     <li id="InventoryReports" runat="server" visible="False"><a href="../Client.UI/TrustReports.aspx?Mode=InventoryReports">Inventory Reports</a></li>
-                                    <li id="AccountingReports" runat="server" visible="False"><a href="../Client.UI/TrustReports.aspx?Mode=AccountingReports">Accounting Reports</a></li>
+                                    
+                                    
+                                    <%-- <li id="AccountingReports" runat="server" visible="False"><a href="../Client.UI/TrustReports.aspx?Mode=AccountingReports">Accounting Reports</a></li>
                                     <li id="StatutoryReports" runat="server" visible="False"><a href="../Client.UI/TrustReports.aspx?Mode=StatutoryReports">Statutory Reports</a></li>
                                     <li id="ExamResultReport" runat="server" visible="False"><a href="../Result/ExamResultReport.aspx">Result Reports</a></li>--%>
 

@@ -137,12 +137,16 @@
                                                 <asp:Label ID="lblLeaveName" Text='<%#Eval("LeaveName") %> ' runat="server"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Total Leaves.">
+                                        <asp:TemplateField HeaderText="Total Leaves">
                                             <ItemTemplate>
                                                <%-- <asp:TextBox ID="txtTotalLeaves" runat="server" Width="100px" CssClass="txtTotalLeaves TextBox" onkeypress="return numeric(event)"  Text="0"></asp:TextBox>--%>
                                                 <asp:TextBox ID="txtTotalLeaves" runat="server" Width="100px" CssClass="txtTotalLeaves TextBox" placeholder="0" Style="text-align:right;"></asp:TextBox>
                                                 <%--<asp:CompareValidator ID="intValidator" runat="server" ControlToValidate="txtTotalLeaves" Operator="DataTypeCheck" Type="Double" ErrorMessage="Value must be a integer or float" ForeColor="Red"></asp:CompareValidator>--%>
-                                                <asp:RangeValidator runat="server" ID="RangeValidator1" Type="Double" ControlToValidate="txtTotalLeaves" MaximumValue='9999.99' MinimumValue="0" ErrorMessage="Value must be a Positive integer or float" Display="Dynamic" ForeColor="Red" />
+                                                <asp:RangeValidator runat="server" ID="RangeValidator1" Type="Double" 
+                                                    ControlToValidate="txtTotalLeaves" 
+                                                    MaximumValue='9999.99' MinimumValue="0" 
+                                                    ErrorMessage="Value must be a Positive integer or float" 
+                                                    Display="Dynamic" ForeColor="Red" />
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lblTotalLeaves" runat="server" CssClass="lblTotalLeaves" />
