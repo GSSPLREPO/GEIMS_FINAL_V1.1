@@ -180,41 +180,50 @@ namespace GEIMS.PayRoll
         #region Bind GridView
         public void BindgvReport()
         {
-            //PaySlipBl objPaySlipBl = new PaySlipBl();
-            //ApplicationResult objResult = new ApplicationResult();
-
-            //objResult = objPaySlipBl.Select_EmployeeDetail_ForPaySlipPrint(Convert.ToInt32(Session[ApplicationSession.TRUSTID]), Convert.ToInt32(Session[ApplicationSession.SCHOOLID]), 65, Convert.ToInt32(ddlMonth.SelectedValue), Convert.ToInt32(ddlYear.SelectedValue), 0);
-            ApplicationResult objResult = new ApplicationResult();
-            EmployeeBL objEmployeeBl = new EmployeeBL();
-            objResult = objEmployeeBl.Employee_SalarySummary(Convert.ToInt32(Session[ApplicationSession.TRUSTID]), Convert.ToInt32(ddlMonth.SelectedValue), Convert.ToInt32(ddlYear.SelectedValue), Convert.ToInt32(Session[ApplicationSession.SCHOOLID]), 4);
-
-            if (objResult != null)
+            try
             {
-                dlPaySlip.DataSource = null;
-               dlPaySlip1.DataSource = null;
-               // dlPaySlipOffice.DataSource = null;
+                //PaySlipBl objPaySlipBl = new PaySlipBl();
+                //ApplicationResult objResult = new ApplicationResult();
 
-                dlPaySlip.DataSource = objResult.resultDT;
-                dlPaySlip1.DataSource = objResult.resultDT;
-               // dlPaySlipOffice.DataSource = objResult.resultDT;
-                dlPaySlip.DataBind();
-                dlPaySlip1.DataBind();
-                //dlPaySlipOffice.DataBind();
+                //objResult = objPaySlipBl.Select_EmployeeDetail_ForPaySlipPrint(Convert.ToInt32(Session[ApplicationSession.TRUSTID]), Convert.ToInt32(Session[ApplicationSession.SCHOOLID]), 65, Convert.ToInt32(ddlMonth.SelectedValue), Convert.ToInt32(ddlYear.SelectedValue), 0);
+                ApplicationResult objResult = new ApplicationResult();
+                EmployeeBL objEmployeeBl = new EmployeeBL();
+                objResult = objEmployeeBl.Employee_SalarySummary(Convert.ToInt32(Session[ApplicationSession.TRUSTID]), Convert.ToInt32(ddlMonth.SelectedValue), Convert.ToInt32(ddlYear.SelectedValue), Convert.ToInt32(Session[ApplicationSession.SCHOOLID]), 4);
 
-                if (objResult.resultDT.Rows.Count > 0)
+                if (objResult != null)
                 {
-                    dlPaySlip.Visible = true;
-                    dlPaySlip1.Visible = true;
-                    //dlPaySlipOffice.DataSource = null;
-                    divReport.Visible = true;
-                    pnlEmployeePayrollInfo.Visible = false;
-                    btnPrintDetail.Visible = true;
+                    dlPaySlip.DataSource = null;
+                    dlPaySlip1.DataSource = null;
+                    // dlPaySlipOffice.DataSource = null;
+
+                    dlPaySlip.DataSource = objResult.resultDT;
+                    dlPaySlip1.DataSource = objResult.resultDT;
+                    // dlPaySlipOffice.DataSource = objResult.resultDT;
+                    dlPaySlip.DataBind();
+                    dlPaySlip1.DataBind();
+                    //dlPaySlipOffice.DataBind();
+
+                    if (objResult.resultDT.Rows.Count > 0)
+                    {
+                        dlPaySlip.Visible = true;
+                        dlPaySlip1.Visible = true;
+                        //dlPaySlipOffice.DataSource = null;
+                        divReport.Visible = true;
+                        pnlEmployeePayrollInfo.Visible = false;
+                        btnPrintDetail.Visible = true;
+                    }
+                    else
+                    {
+                        ClearAll();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('No Record Found.');", true);
+                    }
                 }
-                else
-                {
-                    ClearAll();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('No Record Found.');", true);
-                }
+            }
+
+            catch(Exception ex)
+            {
+                logger.Error("Error", ex);
+                ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Oops! There is some technical issue. Please Contact to your administrator.');</script>");
             }
 
         }
@@ -295,6 +304,8 @@ namespace GEIMS.PayRoll
             divReport.Visible = false;
             pnlEmployeePayrollInfo.Visible = true;
             btnPrintDetail.Visible = false;
+
+          
         }
         #endregion
 
@@ -302,7 +313,20 @@ namespace GEIMS.PayRoll
        
         protected void btnBack_Click(object sender, EventArgs e)
         {
+            //bindYear();
+            divReport.Visible = false;
+            gvParameter.Visible = false;
+            divSelectEmp.Visible = false;
             ClearAll();
+
+            //01/12/2022 Bhandavi to clear all fields (getting oops error)
+            //ddlMonth.SelectedValue = "";
+
+            ////bindYear();
+            //divReport.Visible = false;
+            //ddlYear.SelectedValue = "-1";
+            ////divSelectEmp.Visible = false;
+            //gvParameter.Visible = false;
         }
         #endregion
 

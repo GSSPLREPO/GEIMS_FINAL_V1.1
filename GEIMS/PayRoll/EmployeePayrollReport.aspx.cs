@@ -221,7 +221,7 @@ namespace GEIMS.ReportUI
                 Response.Clear();
                 Response.Buffer = true;
                 Response.ContentType = "application/pdf";
-                Response.AddHeader("content-disposition", "attachment;filename=Employee Pay" + "_" + DateTime.Now.Date.ToString("yyyy-mm-dd") + ".pdf");
+                Response.AddHeader("content-disposition", "attachment;filename=Employee Pay Slip" + "_" + DateTime.Now.Date.ToString("yyyy-mm-dd") + ".pdf");
                 Response.Cache.SetCacheability(HttpCacheability.NoCache);
                 StringWriter sw = new StringWriter();
                 HtmlTextWriter hw = new HtmlTextWriter(sw);
@@ -232,7 +232,7 @@ namespace GEIMS.ReportUI
                 // string content = "<div align='center' style='font-family:verdana;font-size:13px'><span style='font-size:13px;'>" + ReportTitle + "</span><br/><br/><span style='font-size:8px:font-weight:bold'>" + sw.ToString() + "</span></div>";
                 string content = "<div align='center' style='font-family:verdana;font-size:13px'>" +
                     //"<span style='width:100px;height:100px'><img src='"+ strPath + "' style='height:100px;width:100px'/> </span> "+
-                    "<span style='font-size:16px:font-weight:bold;color:Maroon;'>Report : School List</span><br/>" +
+                    "<span style='font-size:16px:font-weight:bold;color:Maroon;'>Report : Employee Pay slip</span><br/>" +
                     "<span style='font-size:13px:font-weight:bold'></span><br/><span align='center' style='font-family:verdana;font-size:11px'>" +
                     "<strong>Date :</strong>" + System.DateTime.Now.ToShortDateString() + "</span><br/>" +
                     "<span align='center' style='font-family:verdana;font-size:11px'><strong>Trust Name :</strong>" +
@@ -280,7 +280,7 @@ namespace GEIMS.ReportUI
                 Response.ContentType = "application/vnd.ms-excel";
                 Response.ContentEncoding = System.Text.Encoding.Unicode;
                 Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
-                string filename = "Employee Payroll Report (Monthly)" + DateTime.Now.ToString("dd/MM/yyyy") + "_" + DateTime.Now.ToString("HH:mm:ss") + ".xls";
+                string filename = "Employees Payroll Report (Monthly)" + DateTime.Now.ToString("dd/MM/yyyy") + "_" + DateTime.Now.ToString("HH:mm:ss") + ".xls";
             
 
                 Response.AddHeader("content-disposition", "attachment;filename=" + filename);
@@ -358,7 +358,7 @@ namespace GEIMS.ReportUI
                     gvReport.RenderControl(hw);
 
 
-                    string strSubTitle = "Report Name :Employee Payroll Report (Monthly) ";
+                    string strSubTitle = "Report Name :Employees Payroll Report (Monthly) ";
                     string strPath = Request.Url.GetLeftPart(UriPartial.Authority) + "/images/Logo1.jpg";
 
                     string content = "<div align='center' style='font-family:verdana;font-size:16px; width:800px;'>" +
@@ -407,7 +407,7 @@ namespace GEIMS.ReportUI
             try
             {
                 int count = 0;
-                Response.AddHeader("content-disposition", "attachment;filename=Employee Payroll Report(Monthly)" + Session[ApplicationSession.SCHOOLNAME].ToString().Replace(" ", "_").Replace("<br/>", "") + "_" + DateTime.Now.Date.ToString("dd-MM-yyyy") + ".doc");
+                Response.AddHeader("content-disposition", "attachment;filename=Employees Payroll Report(Monthly)" + Session[ApplicationSession.SCHOOLNAME].ToString().Replace(" ", "_").Replace("<br/>", "") + "_" + DateTime.Now.Date.ToString("dd-MM-yyyy") + ".doc");
                 Response.Charset = "";
                 Response.ContentType = "application/vnd.ms-word ";
                 using (StringWriter sw = new StringWriter())
@@ -482,7 +482,7 @@ namespace GEIMS.ReportUI
                     gvReport.RenderControl(hw);
 
 
-                    string strSubTitle = "Employee Payroll Report (Monthly) ";
+                    string strSubTitle = "Employees Payroll Report (Monthly) ";
                     string strPath = Request.Url.GetLeftPart(UriPartial.Authority) + "/images/Logo1.jpg";
 
                     string content = "<div align='center' style='font-family:verdana;font-size:16px; width:800px;'>" +

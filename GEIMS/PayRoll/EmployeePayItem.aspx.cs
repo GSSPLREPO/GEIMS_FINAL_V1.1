@@ -370,6 +370,7 @@ namespace GEIMS.PayRoll
                                         gvPayItem.Rows[i].Cells[6].Text = BasicAmt.ToString();
                                     }
 
+                                    //01/12/2022 Bhandavi Previously 0 for below 6000, 80 for 6000 to 9000, 150 for 9000 to 12000 and 200 for >12000
                                     //if (GrossValue <= 6000)
                                     //{
                                     //    BasicAmt = 0;

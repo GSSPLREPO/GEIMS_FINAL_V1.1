@@ -9,7 +9,7 @@
             <div id="divCurrenTabSelected" class="hidden" visible="false">div1</div>
             <div id="divMain" style="width: 100%; text-align: left; padding-top: 5px;">
                 <div id="divTitle" class="pageTitle" style="width: 100%;">
-                    Employee Payroll Report (Monthly)
+                    Employees Payroll Report (Monthly)
             <asp:Button ID="btnPrintDetail" runat="server" CssClass="btn-blue btn-blue-medium" Text="Print Detail" OnClick="btnPrintDetail_Click" />
                     &nbsp;
              <asp:Button ID="btnBack" runat="server" CssClass="btn-blue btn-blue-medium Detach" Text="Cancel"

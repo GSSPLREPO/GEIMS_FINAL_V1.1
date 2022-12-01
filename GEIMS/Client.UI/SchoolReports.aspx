@@ -158,7 +158,8 @@
                                                 <a style="text-decoration: none; color: black" href="../PayRoll/SchoolEmployeePayrollReport.aspx">Process PayRoll</a>
                                             </div>--%>
                                             <div style="text-align: left; width: 85%; float: left;" class="label">
-                                                <a style="text-decoration: none; color: black" href="../PayRoll/EmployeePayrollReport.aspx">Employee Payroll Report (Monthly)</a>
+                                                <%--<a style="text-decoration: none; color: black" href="../PayRoll/EmployeePayrollReport.aspx">Employee Payroll Report (Monthly)</a>--%>
+                                                <a style="text-decoration: none; color: black" href="../PayRoll/EmployeePayrollReport.aspx">Employees Payroll Report (Monthly)</a>
                                             </div>
                                         </div>
                                         <div style="text-align: left; width: 25%; float: left;" class="label">
@@ -178,7 +179,8 @@
                                                 <img src="../Images/checked.gif" />
                                             </div>
                                             <div style="text-align: left; width: 85%; float: left;" class="label">
-                                                <a style="text-decoration: none; color: black" href="../PayRoll/SchoolPaySlip.aspx">School PaySlip</a>
+                                                <%--<a style="text-decoration: none; color: black" href="../PayRoll/SchoolPaySlip.aspx">School Pay Slip</a>--%>
+                                                <a style="text-decoration: none; color: black" href="../PayRoll/SchoolPaySlip.aspx">Employee Monthly Pay Slip</a>
                                             </div>
                                         </div>
 

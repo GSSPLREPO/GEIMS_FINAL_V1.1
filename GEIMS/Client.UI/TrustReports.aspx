@@ -252,7 +252,8 @@
                                                 <img src="../Images/checked.gif" />
                                             </div>
                                             <div style="text-align: left; width: 85%; float: left;" class="label">
-                                                <a style="text-decoration: none; color: black" href="../PayRoll/PaySlip.aspx">PaySlip</a>
+                                             <%--   <a style="text-decoration: none; color: black" href="../PayRoll/PaySlip.aspx">PaySlip</a>--%>
+                                                <a style="text-decoration: none; color: black" href="../PayRoll/PaySlip.aspx">Employee Monthly Pay Slip</a>
                                             </div>
                                         </div>
                                         <div style="text-align: left; width: 25%; float: left;">

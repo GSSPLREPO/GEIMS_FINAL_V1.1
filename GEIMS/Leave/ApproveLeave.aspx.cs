@@ -76,6 +76,11 @@ namespace GEIMS.Leave
         #endregion
 
         #region Save Button Click Event
+        /// <summary>
+        /// to approve or reject a leave
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnSave_OnClick(object sender, EventArgs e)
         {
             try
@@ -125,7 +130,7 @@ namespace GEIMS.Leave
 
                         if (((CheckBox)row.FindControl("cbApprove")).Checked)
                         {
-                            //When Check box is selected so Leave is Cancelled or Reject
+                            //When Check box is selected then Leave is Approved
                             objResult = objLeaveApprovalBl.LeaveApproval_Update_ForApproval(objLeaveApprovalBo);
                             if (objResult.status == ApplicationResult.CommonStatusType.SUCCESS)
                             {
@@ -136,7 +141,7 @@ namespace GEIMS.Leave
                         }
                         else
                         {
-                            //When Check box is not selected so Leave is Cancelled or Reject
+                            //When Check box is not selected then Leave is Cancelled or Rejected
                             objResult = objLeaveApprovalBl.LeaveApproval_Update_ForReject(objLeaveApprovalBo);
                             if (objResult.status == ApplicationResult.CommonStatusType.SUCCESS)
                             {

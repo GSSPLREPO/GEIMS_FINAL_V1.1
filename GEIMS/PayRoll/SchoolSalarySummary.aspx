@@ -212,7 +212,7 @@
 
                                            
 
-                                         <asp:BoundField DataField="Name" HeaderText="Name">
+                                         <asp:BoundField DataField="Name" HeaderText="Employee Name">
                                                 <HeaderStyle Width="150px" HorizontalAlign="left" VerticalAlign="Top"  />
                                                 <ItemStyle HorizontalAlign="left" Width="10%" VerticalAlign="Top" Wrap="false" />
                                             </asp:BoundField>
