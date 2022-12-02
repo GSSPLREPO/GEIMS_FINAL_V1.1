@@ -1,15 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/SchoolMain.Master" AutoEventWireup="true" CodeBehind="YearlyEmployeeReport.aspx.cs" Inherits="GEIMS.PayRoll.YearlyEmployeeReport" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/TrustMain.Master" AutoEventWireup="true" CodeBehind="YearlyEmployeeReport.aspx.cs" Inherits="GEIMS.PayRoll.YearlyEmployeeReport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-	<%-- <asp:UpdatePanel ID="upGridSchool" UpdateMode="Conditional" runat="server">
+    <%-- <asp:UpdatePanel ID="upGridSchool" UpdateMode="Conditional" runat="server">
         <ContentTemplate>--%>
             <div id="divCurrenTabSelected" class="hidden" visible="false">div1</div>
             <div id="divMain" style="width: 100%; text-align: left; padding-top: 5px;">
                 <div id="divTitle" class="pageTitle" style="width: 100%;">
-                    Payslip (Yearly)
+                    Pay slip (Yearly)
             <asp:Button ID="btnPrintDetail" runat="server" CssClass="btn-blue btn-blue-medium" Text="Print Detail" OnClick="btnPrintDetail_Click" />
                     &nbsp;
              <asp:Button ID="btnBack" runat="server" CssClass="btn-blue btn-blue-medium Detach" Text="Cancel"

@@ -126,7 +126,7 @@ namespace GEIMS.ReportUI
             {
                 gvReport1.DataSource = null;
                 gvReport.DataSource = null;
-               
+
                 if (objResult.resultDT.Rows.Count > 0)
                 {
                     gvReport1.Visible = true;
@@ -159,7 +159,12 @@ namespace GEIMS.ReportUI
                 else
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('No record Found.');", true);
-                   //Response.Redirect("../PayRoll/EmployeePayRollReport.aspx");
+                    //Response.Redirect("../PayRoll/EmployeePayRollReport.aspx");
+                    //02/12/2022 Bhandavi to hide gridview whene no records found, after changing the month and year
+                    gvReport1.DataSource = null;
+                    gvReport1.DataBind();
+                    gvReport.DataSource = null;
+                    gvReport.DataBind();
                     ClearAll();
                 }
             }
@@ -171,8 +176,15 @@ namespace GEIMS.ReportUI
         #endregion
 
         #region btnBack Click Event
+        /// <summary>
+        /// 02/12/2022 Bhandavi
+        /// Cancel button click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnBack_Click(object sender, EventArgs e)
         {
+            gvReport.Visible = false;
             ClearAll();
         }
         #endregion
@@ -183,8 +195,8 @@ namespace GEIMS.ReportUI
             Controls objControls = new Controls();
             objControls.ClearForm(Master.FindControl("ContentPlaceHolder1"));
             divReport.Visible = false;
-             divEmployee .Visible = true;
-             btnPrintDetail.Visible = false;
+            divEmployee .Visible = true;
+            btnPrintDetail.Visible = false;
         }
         #endregion
 
@@ -221,7 +233,7 @@ namespace GEIMS.ReportUI
                 Response.Clear();
                 Response.Buffer = true;
                 Response.ContentType = "application/pdf";
-                Response.AddHeader("content-disposition", "attachment;filename=Employee Pay Slip" + "_" + DateTime.Now.Date.ToString("yyyy-mm-dd") + ".pdf");
+                Response.AddHeader("content-disposition", "attachment;filename=Employee Pay roll report" + "_" + DateTime.Now.Date.ToString("yyyy-mm-dd") + ".pdf");
                 Response.Cache.SetCacheability(HttpCacheability.NoCache);
                 StringWriter sw = new StringWriter();
                 HtmlTextWriter hw = new HtmlTextWriter(sw);
@@ -232,7 +244,7 @@ namespace GEIMS.ReportUI
                 // string content = "<div align='center' style='font-family:verdana;font-size:13px'><span style='font-size:13px;'>" + ReportTitle + "</span><br/><br/><span style='font-size:8px:font-weight:bold'>" + sw.ToString() + "</span></div>";
                 string content = "<div align='center' style='font-family:verdana;font-size:13px'>" +
                     //"<span style='width:100px;height:100px'><img src='"+ strPath + "' style='height:100px;width:100px'/> </span> "+
-                    "<span style='font-size:16px:font-weight:bold;color:Maroon;'>Report : Employee Pay slip</span><br/>" +
+                    "<span style='font-size:16px:font-weight:bold;color:Maroon;'>Report : Employeea Payroll Report (Monthly)</span><br/>" +
                     "<span style='font-size:13px:font-weight:bold'></span><br/><span align='center' style='font-family:verdana;font-size:11px'>" +
                     "<strong>Date :</strong>" + System.DateTime.Now.ToShortDateString() + "</span><br/>" +
                     "<span align='center' style='font-family:verdana;font-size:11px'><strong>Trust Name :</strong>" +

@@ -131,13 +131,14 @@ namespace GEIMS.PayRoll
                     lblYear.Text = ddlYear.SelectedItem.Text;
                     lblName.Text = txtEmployeeName.Text;
                     DataRow newrow1 = objResult.resultDT.NewRow();
-                    newrow1[1] = "Total";
-                    objResult.resultDT.Rows.Add(newrow1);
+                    //newrow1[1] = "Total";
+                    //objResult.resultDT.Rows.Add(newrow1);
                     int i = 0;
                     foreach (DataColumn col in objResult.resultDT.Columns)
                     {
 
-                        if (i != 0 && i != 1 && i != 2 && i != 3)
+                       // if (i != 0 && i != 1 && i != 2 && i != 3)
+                       if(i==4)
                         {
                             object sumObject;
                             sumObject = objResult.resultDT.Compute("Sum([" + col.ColumnName + "])", "");

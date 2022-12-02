@@ -212,7 +212,7 @@ namespace GEIMS.PayRoll
                    "</br>" +
                    "<span style='font-size:13px:font-weight:bold'></span>" +
                    "<br/>" +
-                   "<span align='center' style='font-family:verdana;font-size:11px'><strong>P.F. REGISTER</strong></span>" +
+                   "<span align='center' style='font-family:verdana;font-size:11px'><strong>Employee P.F. Register</strong></span>" +
                    "<br/>" +
                    "<span align='center' style='font-family:verdana;font-size:11px'><strong> Month:</strong>" + ddlMonth.SelectedItem.ToString() + "-" + ddlYear.Text + "</span>" +
                    "<br/>" +
@@ -538,7 +538,11 @@ namespace GEIMS.PayRoll
         #endregion
 
         #region Back Button Click
-        //on clear button click
+        /// <summary>
+        /// clear button click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnBack_Click(object sender, EventArgs e)
         {
             ClearAll();

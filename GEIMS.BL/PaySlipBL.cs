@@ -655,8 +655,8 @@ namespace GEIMS.BL
                 pSqlParameter[4].Direction = ParameterDirection.Input;
                 pSqlParameter[4].Value = intSchoolMID;
 
-                //strStoredProcName = "usp_rpt_EmployeePaySlipReport";
-                strStoredProcName = "usp_rpt_EmployeePaySlipReport1"; //Report
+                strStoredProcName = "usp_rpt_EmployeePaySlipReport1";
+                //strStoredProcName = "usp_rpt_EmployeePaySlipReport1"; //Report
                 //strStoredProcName = "usp_rpt_EmployeePaySlipReport_Yearly";
 
                 DataTable dtResult = new DataTable();

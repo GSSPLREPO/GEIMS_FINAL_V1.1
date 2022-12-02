@@ -87,6 +87,15 @@ namespace GEIMS.PayRoll
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divSelectEmp;
 
         /// <summary>
+        /// divemployee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divemployee;
+
+        /// <summary>
         /// gvParameter control.
         /// </summary>
         /// <remarks>

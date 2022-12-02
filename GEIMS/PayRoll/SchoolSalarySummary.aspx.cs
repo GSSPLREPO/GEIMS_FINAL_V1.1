@@ -27,13 +27,9 @@ namespace GEIMS.PayRoll
                     Response.Redirect("../UserLogin.aspx");
                 }
                 if (!Page.IsPostBack)
-                {
-                    //getDesignationName();
-                    //getDepartmentName();
+                {              
                     bindYear();
-                    divReport.Visible = false;
-                   // hfTrustMID.Value = Session[ApplicationSession.TRUSTID].ToString();
-                   // hfSchoolMID.Value = Session[ApplicationSession.SCHOOLID].ToString();
+                    divReport.Visible = false;                  
                     ClearAll();
                 }
             }
@@ -151,25 +147,28 @@ namespace GEIMS.PayRoll
             {
                 gvParameter.Visible = true;
                 divSelectEmp.Visible = true;
+                divemployee.Visible  = true;
                 gvParameter.DataSource = objResult.resultDT;
                 gvParameter.DataBind();
-                if (objResult.resultDT.Rows.Count > 0)
-                {
+                //if (objResult.resultDT.Rows.Count > 0)
+                //{
 
 
-                    foreach (GridViewRow row in gvParameter.Rows)
-                    {
-                        for (int i = 0; i < objResult.resultDT.Rows.Count; i++)
-                        {
-                            if (row.Cells[0].Text ==
-                                objResult.resultDT.Rows[i]["EmployeeMID"].ToString())
-                            {
+                  //  foreach (GridViewRow row in gvParameter.Rows)
+                    //{
+                      //  for (int i = 0; i < objResult.resultDT.Rows.Count; i++)
+                        //{
+                            //row.Cells[0].Text = objResult.resultDT.Rows[i]["EmployeeMID"].ToString();
+
+                            //if (row.Cells[0].Text ==
+                            //   objResult.resultDT.Rows[i]["EmployeeMID"].ToString())
+                           // {
                                 //((CheckBox)row.FindControl("chkChild")).Checked = true;
 
-                            }
-                        }
-                    }
-                }
+                            //}
+                        //}
+                    //}
+                //}
                 //gvParameter.Columns[0].Visible = false;
             }
 
@@ -304,29 +303,37 @@ namespace GEIMS.PayRoll
             divReport.Visible = false;
             pnlEmployeePayrollInfo.Visible = true;
             btnPrintDetail.Visible = false;
+         
 
-          
         }
         #endregion
 
         #region Back button Event
-       
+        /// <summary>
+        /// cancel button click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnBack_Click(object sender, EventArgs e)
         {
-            //bindYear();
+            //02/12/2022 Bhandavi to clear all fields (getting oops error)
+            //divSelectEmp.Visible = false;
+            pnlEmployeePayrollInfo.Visible = true;
+            ddlMonth.SelectedValue = "";
+            ddlYear.SelectedValue = "-1";
+
+            btnPrintDetail.Visible = false;
             divReport.Visible = false;
-            gvParameter.Visible = false;
-            divSelectEmp.Visible = false;
-            ClearAll();
 
-            //01/12/2022 Bhandavi to clear all fields (getting oops error)
-            //ddlMonth.SelectedValue = "";
-
-            ////bindYear();
-            //divReport.Visible = false;
-            //ddlYear.SelectedValue = "-1";
-            ////divSelectEmp.Visible = false;
-            //gvParameter.Visible = false;
+            CheckBox chkHeader = new CheckBox();
+            chkHeader = (CheckBox)gvParameter.HeaderRow.FindControl("chkHeader");
+            chkHeader.Checked = false;
+            CheckBox chk = new CheckBox();
+            foreach (GridViewRow row in gvParameter.Rows)
+            {
+                chk = (CheckBox)(row.Cells[2].FindControl("chk"));
+                chk.Checked = false;
+            }
         }
         #endregion
 

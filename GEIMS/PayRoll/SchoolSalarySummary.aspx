@@ -30,93 +30,9 @@
 
                                 <asp:Panel ID="pnlEmployeePayrollInfo" runat="server" GroupingText="Salary Summary">
 
-                                   <%-- <div style="width: 100%; float: left;" class="label">
+                                                                 <div style="width: 100%; float: left;" class="label">
                                         <div style="padding: 10px;">
-                                            <div style="float: left; width: 15%;">
-                                                Employee Name :<span style="color: red">*</span>
-                                            </div>
-                                            <div style="float: left; width: 85%;">
-                                                <asp:TextBox ID="txtEmployeeName" runat="server" CssClass="validate[required] TextBox autosuggest" Width="50%" Height="100%"></asp:TextBox>
-                                                <asp:HiddenField runat="server" ID="hfSchoolMID" />
-                                                <asp:HiddenField runat="server" ID="hfTrustMID" />
-                                                <asp:HiddenField runat="server" ID="hfEmployeeMID" />
-                                                <asp:HiddenField runat="server" ID="hfEmployeeCodeName" />
-                                            </div>
-                                        </div>
-                                    </div>--%>
-
-                                  <%--    <div style="width: 100%; float: left;" class="label">
-                                <div style="padding: 10px;">
-                                    <div style="float: left; width: 15%;">
-                                        Department Name :<span style="color: red">*</span>
-                                    </div>
-                                    <div style="float: left; width: 85%;">
-                                        <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="validate[required] Droptextarea" Width="260px" Enabled="true">
-                                        </asp:DropDownList>
-                                        <asp:HiddenField ID="hfTab" runat="server" ClientIDMode="Static" />
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div style="width: 100%; float: left;" class="label">
-                                <div style="padding: 10px;">
-                                    <div style="float: left; width: 15%;">
-                                        Designation Name :<span style="color: red">*</span>
-                                    </div>
-                                    <div style="float: left; width: 85%;">
-                                        <asp:DropDownList ID="ddlDesignation" runat="server" CssClass="validate[required] Droptextarea" Width="260px">
-                                        </asp:DropDownList>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div style="width: 100%; float: left;" class="label">
-                                <div style="padding: 10px;">
-                                    <div style="float: left; width: 15%;">
-                                        EmployeeType :<span style="color: red">*</span>
-                                    </div>
-                                    <div style="float: left; width: 85%;">
-                                        <asp:DropDownList ID="ddlEmployeeType" runat="server" CssClass="validate[required] Droptextarea" Width="260px">
-                                            <asp:ListItem Value="0">-Select-</asp:ListItem>
-                                                    <asp:ListItem Value="1">Parmanent</asp:ListItem>
-                                            <asp:ListItem Value="2">Temporary</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                            </div>--%>
-
-
-                                    <div style="width: 100%; float: left;" class="label">
-                                        <div style="padding: 10px;">
-                                    <%--        <div style="float: Left; width: 15%;">
-                                                Month :<span style="color: red">*</span>
-                                            </div>
-                                            <div style="float: Left; width: 25%;">
-                                                <asp:DropDownList ID="ddlMonth" runat="server" CssClass="validate[required] Droptextarea" Width="100px">
-                                                    <asp:ListItem Value="">-Select-</asp:ListItem>
-                                                    <asp:ListItem Value="1">January</asp:ListItem>
-                                                    <asp:ListItem Value="2">February</asp:ListItem>
-                                                    <asp:ListItem Value="3">March</asp:ListItem>
-                                                    <asp:ListItem Value="4">April</asp:ListItem>
-                                                    <asp:ListItem Value="5">May</asp:ListItem>
-                                                    <asp:ListItem Value="6">June</asp:ListItem>
-                                                    <asp:ListItem Value="7">July</asp:ListItem>
-                                                    <asp:ListItem Value="8">August</asp:ListItem>
-                                                    <asp:ListItem Value="9">September</asp:ListItem>
-                                                    <asp:ListItem Value="10">October</asp:ListItem>
-                                                    <asp:ListItem Value="11">November</asp:ListItem>
-                                                    <asp:ListItem Value="12">December</asp:ListItem>
-                                                </asp:DropDownList>
-                                            </div>
-
-
-                                            <div style="float: left; width: 8%;">
-                                                Year :<span style="color: red">*</span>
-                                            </div>
-                                            <div style="float: left; width: 32%;">
-                                                <asp:DropDownList ID="ddlYear" runat="server" CssClass="validate[required] Droptextarea" Width="100px">
-                                                </asp:DropDownList>
-                                            </div>--%>
+                                
 
                                               <div style="width: 100%; float: left;" class="label">
                                         <div style="padding: 10px;">
@@ -192,7 +108,7 @@
                                   <div id="divSelectEmp" runat="server" style="float: left; width: 15%;" visible="false">
                                         Select Employee :<span style="color: red">*</span>
                                     </div>
-                                    <div style="float: left; width: auto; text-align: center">
+                                    <div id="divemployee" runat="server" style="float: left; width: auto; text-align: center"  visible="false">
                                         <asp:GridView ID="gvParameter" runat="server" AutoGenerateColumns="false"
                                             BorderColor="#3B5998" BorderWidth="3px" BorderStyle="Solid" CellPadding="4" GridLines="Both"
                                             Font-Names="verdana" Font-Size="12px" BackColor="White"  >
