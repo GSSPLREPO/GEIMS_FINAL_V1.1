@@ -1451,7 +1451,7 @@ namespace GEIMS.PayRoll
                             ((TextBox)(GDBalance.Rows[i].Cells[4].FindControl("textDays"))).Enabled = false;
                     }
                     //to display absent days in selected month
-                    var objResultAbsent = objLeaveBl.Leave_Select_ForAbsentDays(intEmployeeMID, strMonth);
+                     var objResultAbsent = objLeaveBl.Leave_Select_ForAbsentDays(intEmployeeMID, strMonth);
                     if (objResultAbsent != null)
                     {
                         //Old Code
@@ -1498,7 +1498,8 @@ namespace GEIMS.PayRoll
                             decimal timeDiff = 0;
                             for (int i=0;i< dtLate.Rows.Count;i++)
                             {
-                                timeDiff +=Convert.ToDecimal(dtLate.Rows[i]["timeDiff"].ToString());                                
+                                if(dtLate.Rows[i]["timeDiff"].ToString() != "")
+                                    timeDiff +=Convert.ToDecimal(dtLate.Rows[i]["timeDiff"].ToString());                                
                             }
                             decimal lateHours = 0;
                             //change minutes into hours

@@ -567,7 +567,7 @@ namespace GEIMS.Bl
                 pSqlParameter[1].Direction = ParameterDirection.Input;
                 pSqlParameter[1].Value = strMonth;
 
-                strStoredProcName = " ";
+                strStoredProcName = "usp_tbl_Leave_M_Select_ForAbsentDays";
 
                 DataTable dtTable = new DataTable();
                 dtTable = Database.ExecuteDataTable(CommandType.StoredProcedure, strStoredProcName, pSqlParameter);
